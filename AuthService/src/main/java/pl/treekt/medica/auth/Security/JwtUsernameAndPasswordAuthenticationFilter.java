@@ -11,10 +11,13 @@ import org.springframework.security.core.AuthenticationException;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
+import org.springframework.web.context.WebApplicationContext;
+import org.springframework.web.context.support.WebApplicationContextUtils;
+import pl.treekt.medica.auth.Entity.AuthHistory;
+import pl.treekt.medica.auth.Repository.AuthHistoryRepository;
 import pl.treekt.medica.config.Security.JwtConfig;
 
-import javax.servlet.FilterChain;
-import javax.servlet.ServletException;
+import javax.servlet.*;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
@@ -23,6 +26,8 @@ import java.util.Date;
 import java.util.stream.Collectors;
 
 public class JwtUsernameAndPasswordAuthenticationFilter extends UsernamePasswordAuthenticationFilter {
+
+    private AuthHistoryRepository authHistoryRepository;
 
     // We use auth manager to validate the user credentials
     private AuthenticationManager authManager;
@@ -37,6 +42,17 @@ public class JwtUsernameAndPasswordAuthenticationFilter extends UsernamePassword
         // In our case, we use "/auth". So, we need to override the defaults.
         this.setRequiresAuthenticationRequestMatcher(new AntPathRequestMatcher(jwtConfig.getUri(), "POST"));
     }
+
+
+//    //Leniwe wstrzyknięcie authHistoryRepository
+//    @Override
+//    public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain) {
+//        if(authHistoryRepository == null){
+//            ServletContext servletContext = request.getServletContext();
+//            WebApplicationContext webApplicationContext = WebApplicationContextUtils.getWebApplicationContext(servletContext);
+//            authHistoryRepository = webApplicationContext.getBean(AuthHistoryRepository.class);
+//        }
+//    }
 
     @Override
     public Authentication attemptAuthentication(HttpServletRequest request, HttpServletResponse response)
@@ -77,6 +93,16 @@ public class JwtUsernameAndPasswordAuthenticationFilter extends UsernamePassword
                 .signWith(SignatureAlgorithm.HS512, jwtConfig.getSecret().getBytes())
                 .compact();
 
+
+//        DateFormat dateFormat = new SimpleDateFormat("dd-mm-yyyy hh:mm:ss");
+
+//        UserCredentials userCredentials = (UserCredentials) auth.getCredentials();
+////        Credentials credentials = credentialsRepository.findCredentialsByEmail(userCredentials.getUsername());
+//        AuthHistory authHistory = new AuthHistory(0, new Date(now), 3);
+//        authHistoryRepository.save(authHistory);
+
+
+
         // Add token to header
         response.addHeader(jwtConfig.getHeader(), jwtConfig.getPrefix() + token);
     }
@@ -85,6 +111,5 @@ public class JwtUsernameAndPasswordAuthenticationFilter extends UsernamePassword
     @Data
     private static class UserCredentials {
         private String username, password;
-        // getters and setters ...
     }
 }

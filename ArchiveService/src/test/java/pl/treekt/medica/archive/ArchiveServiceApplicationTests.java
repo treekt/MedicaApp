@@ -1,4 +1,4 @@
-package pl.treekt.medica.archive_service;
+package pl.treekt.medica.archive;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;

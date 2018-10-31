@@ -1,4 +1,4 @@
-package pl.treekt.medica.archive_service;
+package pl.treekt.medica.archive;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
