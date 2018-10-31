@@ -1,7 +1,7 @@
 package pl.treekt.medica.user.Controller;
 
 import org.springframework.web.bind.annotation.*;
-import pl.treekt.medica.user.Entity.User;
+import pl.treekt.medica.user.Document.User;
 
 import java.util.ArrayList;
 import java.util.List;
