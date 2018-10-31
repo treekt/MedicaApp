@@ -7,4 +7,5 @@ import pl.treekt.medica.user.Document.User;
 @Repository
 public interface UserRepository extends MongoRepository<User, String> {
 
+    User findUserById(String id);
 }

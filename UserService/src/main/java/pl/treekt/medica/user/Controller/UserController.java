@@ -10,9 +10,7 @@ import pl.treekt.medica.user.Repository.OfficeUserRepository;
 import pl.treekt.medica.user.Repository.RoleRepository;
 import pl.treekt.medica.user.Repository.UserRepository;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.UUID;
+import java.util.*;
 
 @RestController
 @RequestMapping("/")
@@ -32,24 +30,34 @@ public class UserController {
 
 
     @PostMapping("/")
-    public String saveUser(@RequestBody User user){
+    public Map saveUser(@RequestBody User user){
         user.setId(UUID.randomUUID().toString());
         userRepository.save(user);
-        return user.getId();
+        return Collections.singletonMap("id", user.getId());
+    }
+
+    @GetMapping("/{id}")
+    public User getUser(@PathVariable("id") final String id){
+        return userRepository.findUserById(id);
     }
 
 
     @PostMapping("/office")
-    public String saveOfficeUser(@RequestBody OfficeUser officeUser){
+    public Map saveOfficeUser(@RequestBody OfficeUser officeUser){
         officeUser.setId(UUID.randomUUID().toString());
         officeUserRepository.save(officeUser);
-        return officeUser.getId();
+        return Collections.singletonMap("id", officeUser.getId());
+    }
+
+    @GetMapping("/office/{id}")
+    public OfficeUser getOfficeUser(@PathVariable("id") final String id){
+        return officeUserRepository.findOfficeUserById(id);
     }
 
     @PostMapping("/role")
-    public Integer saveRole(@RequestBody Role role){
+    public Map saveRole(@RequestBody Role role){
         roleRepository.save(role);
-        return role.getId();
+        return Collections.singletonMap("id", role.getId());
     }
 
 
