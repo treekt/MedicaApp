@@ -1,14 +1,16 @@
-import { BrowserModule } from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
+import {BrowserModule} from '@angular/platform-browser';
+import {NgModule} from '@angular/core';
 
-import { AppRoutingModule } from './app-routing.module';
-import { AppComponent } from './app.component';
-import { AuthComponent } from './auth/auth.component';
+import {AppRoutingModule} from './app-routing.module';
+import {AppComponent} from './app.component';
+import { AuthFormComponent } from './auth/auth-form/auth-form.component';
+import { UserDetailsComponent } from './user/user-details/user-details.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    AuthComponent
+    AuthFormComponent,
+    UserDetailsComponent,
   ],
   imports: [
     BrowserModule,
