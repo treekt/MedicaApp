@@ -6,7 +6,7 @@ export class User {
   roleId: number;
 }
 
-export class OfficeUser{
+export class OfficeUser {
   id: string;
   pwz: number;
   degree: string;
