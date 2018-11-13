@@ -1,6 +1,6 @@
 import {Injectable} from '@angular/core';
 import {HttpClient} from '@angular/common/http';
-import {Credentials} from '../credentials';
+import {Credentials} from '../auth/credentials';
 import {shareReplay, tap} from 'rxjs/operators';
 import { JwtHelperService } from '@auth0/angular-jwt';
 
@@ -32,7 +32,8 @@ export class AuthService {
   }
 
 
-  isTokenExpired(token?: string): boolean {
+  isTokenExpired(): boolean {
+    if(!this.getToken())
     return helper.isTokenExpired(token);
   }
 
