@@ -3,7 +3,6 @@ package pl.treekt.medica.auth.Security;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
-import lombok.Data;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
@@ -11,13 +10,11 @@ import org.springframework.security.core.AuthenticationException;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
-import org.springframework.web.context.WebApplicationContext;
-import org.springframework.web.context.support.WebApplicationContextUtils;
-import pl.treekt.medica.auth.Entity.AuthHistory;
 import pl.treekt.medica.auth.Repository.AuthHistoryRepository;
 import pl.treekt.medica.config.Security.JwtConfig;
 
-import javax.servlet.*;
+import javax.servlet.FilterChain;
+import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
@@ -38,8 +35,6 @@ public class JwtUsernameAndPasswordAuthenticationFilter extends UsernamePassword
         this.authManager = authManager;
         this.jwtConfig = jwtConfig;
 
-        // By default, UsernamePasswordAuthenticationFilter listens to "/login" path.
-        // In our case, we use "/auth". So, we need to override the defaults.
         this.setRequiresAuthenticationRequestMatcher(new AntPathRequestMatcher(jwtConfig.getUri(), "POST"));
     }
 
@@ -55,17 +50,18 @@ public class JwtUsernameAndPasswordAuthenticationFilter extends UsernamePassword
 //    }
 
     @Override
-    public Authentication attemptAuthentication(HttpServletRequest request, HttpServletResponse response)
-            throws AuthenticationException {
+    public Authentication attemptAuthentication(HttpServletRequest request, HttpServletResponse response) throws AuthenticationException {
 
         try {
 
             // 1. Get credentials from request
-            UserCredentials creds = new ObjectMapper().readValue(request.getInputStream(), UserCredentials.class);
+            UserCredentialsRequest creds = new ObjectMapper().readValue(request.getInputStream(), UserCredentialsRequest.class);
 
             // 2. Create auth object (contains credentials) which will be used by auth manager
             UsernamePasswordAuthenticationToken authToken = new UsernamePasswordAuthenticationToken(
-                    creds.getUsername(), creds.getPassword(), Collections.emptyList());
+                    creds.getEmail(),
+                    creds.getPassword(),
+                    Collections.emptyList());
 
             // 3. Authentication manager authenticate the user, and use UserDetialsServiceImpl::loadUserByUsername() method to load the user.
             return authManager.authenticate(authToken);
@@ -78,38 +74,20 @@ public class JwtUsernameAndPasswordAuthenticationFilter extends UsernamePassword
     // Upon successful authentication, generate a token.
     // The 'auth' passed to successfulAuthentication() is the current authenticated user.
     @Override
-    protected void successfulAuthentication(HttpServletRequest request, HttpServletResponse response, FilterChain chain,
-                                            Authentication auth) throws IOException, ServletException {
+    protected void successfulAuthentication(HttpServletRequest request, HttpServletResponse response, FilterChain chain, Authentication auth) {
+        response.addHeader(jwtConfig.getHeader(), jwtConfig.getPrefix() + makeToken(auth));
+    }
 
+
+    private String makeToken(Authentication auth) {
         Long now = System.currentTimeMillis();
-        String token = Jwts.builder()
+        return Jwts.builder()
                 .setSubject(auth.getName())
-                // Convert to list of strings.
-                // This is important because it affects the way we get them back in the Gateway.
-                .claim("authorities", auth.getAuthorities().stream()
-                        .map(GrantedAuthority::getAuthority).collect(Collectors.toList()))
+                .claim("authorities", auth.getAuthorities().stream().map(GrantedAuthority::getAuthority).collect(Collectors.toList()))
                 .setIssuedAt(new Date(now))
                 .setExpiration(new Date(now + jwtConfig.getExpiration() * 1000))  // in milliseconds
-                .signWith(SignatureAlgorithm.HS512, jwtConfig.getSecret().getBytes())
-                .compact();
+                .signWith(SignatureAlgorithm.HS512, jwtConfig.getSecret().getBytes()).compact();
 
-
-//        DateFormat dateFormat = new SimpleDateFormat("dd-mm-yyyy hh:mm:ss");
-
-//        UserCredentials userCredentials = (UserCredentials) auth.getCredentials();
-////        Credentials credentials = credentialsRepository.findCredentialsByEmail(userCredentials.getUsername());
-//        AuthHistory authHistory = new AuthHistory(0, new Date(now), 3);
-//        authHistoryRepository.save(authHistory);
-
-
-
-        // Add token to header
-        response.addHeader(jwtConfig.getHeader(), jwtConfig.getPrefix() + token);
     }
 
-    // A (temporary) class just to represent the user credentials
-    @Data
-    private static class UserCredentials {
-        private String username, password;
-    }
 }
