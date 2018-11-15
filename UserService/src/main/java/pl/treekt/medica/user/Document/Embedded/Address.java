@@ -9,10 +9,10 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 public class Address {
 
-    private String city;
     private String street;
     private String houseNumber;
     private String apartmentNumber;
+    private String city;
     private String voivodeship;
     private String zip;
 

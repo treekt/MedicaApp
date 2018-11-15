@@ -9,7 +9,7 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
-import pl.treekt.medica.auth.Entity.Credentials;
+import pl.treekt.medica.auth.Document.Credentials;
 
 import java.util.Arrays;
 import java.util.List;

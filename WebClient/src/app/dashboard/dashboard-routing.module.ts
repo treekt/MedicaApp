@@ -5,6 +5,8 @@ import {HomeComponent} from './home/home.component';
 import {AdminComponent} from './admin/admin.component';
 import {AuthGuard} from '../services/guards/auth-guard.service';
 import {RoleGuard} from '../services/guards/role-guard.service';
+import {CreateOfficeUserComponent} from "../core/user/create-office-user/create-office-user.component";
+import {CreateRoleComponent} from "../core/role/create-role/create-role.component";
 
 
 export const dashboardRoutes: Routes = [
@@ -24,7 +26,18 @@ export const dashboardRoutes: Routes = [
         path: 'admin',
         component: AdminComponent,
         canActivate: [RoleGuard],
-        data: {expectedRole: 'admin'}
+        data: {
+          expectedRole: 'admin',
+        },
+        children: [
+          {
+            path: 'create-office-user',
+            component: CreateOfficeUserComponent,
+          },
+          {
+            path: 'create-role',
+            component: CreateRoleComponent,
+          }]
       }
     ]
   }

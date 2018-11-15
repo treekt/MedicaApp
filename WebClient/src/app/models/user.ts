@@ -1,4 +1,4 @@
-export class User {
+export interface User {
   id: string;
   isUserOffice: boolean;
   userDetails: UserDetails;
@@ -6,14 +6,14 @@ export class User {
   roleId: number;
 }
 
-export class OfficeUser {
+export interface OfficeUser {
   id: string;
   pwz: number;
   degree: string;
   userId: string;
 }
 
-export class UserDetails {
+export interface UserDetails {
   firstName: string;
   lastName: string;
   familyName: string;
@@ -23,7 +23,7 @@ export class UserDetails {
   phone: number;
 }
 
-export class Address {
+export interface Address {
   city: string;
   street: string;
   houseNr: number;

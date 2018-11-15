@@ -2,7 +2,7 @@ package pl.treekt.medica.auth.Repository;
 
 import org.springframework.data.mongodb.repository.MongoRepository;
 import org.springframework.stereotype.Repository;
-import pl.treekt.medica.auth.Entity.AuthHistory;
+import pl.treekt.medica.auth.Document.AuthHistory;
 
 import java.util.List;
 

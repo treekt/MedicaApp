@@ -1,4 +1,4 @@
-package pl.treekt.medica.auth.Entity;
+package pl.treekt.medica.auth.Document;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;

@@ -1,0 +1,15 @@
+<div class="ui card">
+  <div class="content">
+    <div *ngIf="title" class="header">
+      {{title}}
+    </div>
+    <div *ngIf="description" class="description">
+      {{description}}
+    </div>
+  </div>
+  <div routerLink="{{routeAddress}}" class="ui bottom attached buttons">
+    <div class="ui button">
+      {{buttonName}}
+    </div>
+  </div>
+</div>
