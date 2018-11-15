@@ -4,6 +4,7 @@ import {LayoutComponent} from './layout/layout.component';
 import {HomeComponent} from './home/home.component';
 import {AdminComponent} from './admin/admin.component';
 import {AuthGuard} from '../services/guards/auth-guard.service';
+import {RoleGuard} from '../services/guards/role-guard.service';
 
 
 export const dashboardRoutes: Routes = [
@@ -12,9 +13,19 @@ export const dashboardRoutes: Routes = [
     canActivate: [AuthGuard],
     component: LayoutComponent,
     children: [
-      { path: '', redirectTo:  'home', pathMatch: 'full' },
-      { path: 'home', component: HomeComponent},
-      { path: 'admin', component: AdminComponent}
+      {path: '', redirectTo: 'home', pathMatch: 'full'},
+      {
+        path: 'home',
+        component: HomeComponent,
+        canActivate: [RoleGuard],
+        data: {expectedRole: 'user'},
+      },
+      {
+        path: 'admin',
+        component: AdminComponent,
+        canActivate: [RoleGuard],
+        data: {expectedRole: 'admin'}
+      }
     ]
   }
 ];
@@ -24,4 +35,5 @@ export const dashboardRoutes: Routes = [
   exports: [RouterModule]
 })
 
-export class DashboardRoutingModule { }
+export class DashboardRoutingModule {
+}

@@ -13,11 +13,8 @@ export class AuthService {
 
   constructor(private http: HttpClient) {
   }
-
-
   private url = 'http://localhost:8762/auth';
 
-  // private headers = new Headers({ 'Content-Type': 'application/json' });
 
   login(credentials) {
     return this.http.post(this.url, JSON.stringify(credentials), {observe: 'response'}).pipe(
@@ -39,10 +36,16 @@ export class AuthService {
     if (!token) {
       return true;
     }
-
     return helper.isTokenExpired(token);
   }
 
+  getTokenPayload() {
+    return helper.decodeToken(this.getToken());
+  }
+
+  getRolesCurrentUser() {
+    return this.getTokenPayload().roles;
+  }
 
   getToken(): string {
     return localStorage.getItem(TOKEN_NAME);
