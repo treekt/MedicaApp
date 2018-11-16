@@ -1,8 +1,9 @@
-import {Component, Input, OnInit} from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {UserRestService} from '../../../services/rest/user-rest.service';
 import {Permission} from '../../../models/permission';
 import {map} from 'rxjs/operators';
 import {Role} from '../../../models/role';
+import {RoleRestService} from '../../../services/rest/role-rest.service';
 
 @Component({
   selector: 'app-create-role',
@@ -13,24 +14,24 @@ export class CreateRoleComponent implements OnInit {
   permissions: Permission[];
   role: Role;
 
-  constructor(private userRestService: UserRestService) {
+  constructor(private roleRestService: RoleRestService) {
   }
 
   ngOnInit() {
-    this.userRestService.getPermissions().pipe(
-      map(response => response.map(permission => ({id: permission.id, name: permission.name, checked: true})))).subscribe(
-      result => this.permissions = result
-    );
-
+    this.getAvailablePermissions();
     this.role = new Role();
   }
 
 
-  saveRole() {
-    this.role.id = 4;
-    this.userRestService.saveRole(this.role).subscribe(result => console.log('success ' + result));
+  getAvailablePermissions() {
+    this.roleRestService.getPermissions().pipe(
+      map(response => response.map(permission => ({id: permission.id, name: permission.name, checked: true}))))
+      .subscribe(result => this.permissions = result);
   }
 
+  addNameToRole($event) {
+    this.role.name = $event.target.value;
+  }
 
   addPermissionToRole(permission: Permission) {
     if (permission.checked) {
@@ -43,7 +44,9 @@ export class CreateRoleComponent implements OnInit {
     }
   }
 
-  addNameToRole($event) {
-    this.role.name = $event.target.value;
+  saveRole() {
+    this.roleRestService.saveRole(this.role)
+      .subscribe(result => console.log('success ' + result));
   }
+
 }

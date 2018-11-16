@@ -19,13 +19,11 @@ public class UserController {
     private final UserRepository userRepository;
     private final OfficeUserRepository officeUserRepository;
 
-    private final RoleRepository roleRepository;
 
     @Autowired
-    public UserController(UserRepository userRepository, OfficeUserRepository officeUserRepository, RoleRepository roleRepository) {
+    public UserController(UserRepository userRepository, OfficeUserRepository officeUserRepository) {
         this.userRepository = userRepository;
         this.officeUserRepository = officeUserRepository;
-        this.roleRepository = roleRepository;
     }
 
 
@@ -52,17 +50,6 @@ public class UserController {
     @GetMapping("/office/{id}")
     public OfficeUser getOfficeUser(@PathVariable("id") final String id) {
         return officeUserRepository.findOfficeUserById(id);
-    }
-
-    @PostMapping("/role")
-    public void saveRole(@RequestBody Role role) {
-        System.out.println("asdadada");
-        roleRepository.save(role);
-    }
-
-    @GetMapping("/permissions")
-    public List<Privilages.Permission> getAllPermissions() {
-        return Privilages.Permission.getAllPermissions();
     }
 
 

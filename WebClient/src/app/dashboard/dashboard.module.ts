@@ -11,6 +11,7 @@ import {RoleGuard} from '../services/guards/role-guard.service';
 import {CreateOfficeUserComponent} from '../core/user/create-office-user/create-office-user.component';
 import {CreateRoleComponent} from '../core/role/create-role/create-role.component';
 import {UserRestService} from '../services/rest/user-rest.service';
+import {RoleRestService} from '../services/rest/role-rest.service';
 
 @NgModule({
   imports: [
@@ -24,7 +25,7 @@ import {UserRestService} from '../services/rest/user-rest.service';
     SelectCardComponent,
     CreateOfficeUserComponent,
     CreateRoleComponent],
-  providers: [AuthGuard, AuthService, RoleGuard, UserRestService]
+  providers: [AuthGuard, AuthService, RoleGuard, UserRestService, RoleRestService]
 })
 export class DashboardModule {
 }
