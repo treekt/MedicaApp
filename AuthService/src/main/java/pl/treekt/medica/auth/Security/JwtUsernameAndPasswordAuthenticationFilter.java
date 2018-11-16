@@ -80,7 +80,7 @@ public class JwtUsernameAndPasswordAuthenticationFilter extends UsernamePassword
 
 
     private String makeToken(Authentication auth) {
-        Long now = System.currentTimeMillis();
+        long now = System.currentTimeMillis();
         return Jwts.builder()
                 .setSubject(auth.getName())
                 .claim("roles", auth.getAuthorities().stream().map(GrantedAuthority::getAuthority).collect(Collectors.toList()))

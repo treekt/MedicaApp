@@ -9,7 +9,8 @@ import {AuthService} from '../services/auth.service';
 import {SelectCardComponent} from './items/select-card/select-card.component';
 import {RoleGuard} from '../services/guards/role-guard.service';
 import {CreateOfficeUserComponent} from '../core/user/create-office-user/create-office-user.component';
-import {CreateRoleComponent} from "../core/role/create-role/create-role.component";
+import {CreateRoleComponent} from '../core/role/create-role/create-role.component';
+import {UserRestService} from '../services/rest/user-rest.service';
 
 @NgModule({
   imports: [
@@ -23,7 +24,7 @@ import {CreateRoleComponent} from "../core/role/create-role/create-role.componen
     SelectCardComponent,
     CreateOfficeUserComponent,
     CreateRoleComponent],
-  providers: [AuthGuard, AuthService, RoleGuard]
+  providers: [AuthGuard, AuthService, RoleGuard, UserRestService]
 })
 export class DashboardModule {
 }

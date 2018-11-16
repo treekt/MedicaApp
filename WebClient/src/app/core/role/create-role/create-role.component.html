@@ -4,17 +4,17 @@
   <div class="two fields">
     <div class="field">
       <label>Nazwa roli</label>
-      <input type="text" placeholder="Nazwa roli">
+      <input type="text" (keyup)="addNameToRole($event)" placeholder="Nazwa roli">
     </div>
     <div class="field">
       <label>Uprawnienia</label>
       <div class="grouped fields">
-        <div *ngFor="let permission of permissions; let i = index;" class="ui toggle checkbox field">
-          <input id="{{permission.id}}"  type="checkbox" [checked]="permission.checked" title="">
+        <div *ngFor="let permission of permissions;" class="ui toggle checkbox field">
+          <input id="{{permission.id}}" (change)="addPermissionToRole(permission)" type="checkbox" title="">
           <label for="{{permission.id}}">{{permission.name}}</label>
         </div>
       </div>
     </div>
   </div>
-  <button class="ui button" type="submit">Zapisz role</button>
+  <button (click)="saveRole()" class="ui button" type="submit">Zapisz role</button>
 </div>

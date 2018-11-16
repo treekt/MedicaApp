@@ -56,7 +56,7 @@ public class JwtTokenAuthenticationFilter extends OncePerRequestFilter {
 
             String username = claims.getSubject();
             if(username != null) {
-                @SuppressWarnings("unchecked") List<String> authorities = (List<String>) claims.get("authorities");
+                @SuppressWarnings("unchecked") List<String> authorities = (List<String>) claims.get("roles");
 
                 // 5. Create auth object
                 // UsernamePasswordAuthenticationToken: A built-in object, used by spring to represent the current authenticated / being authenticated user.

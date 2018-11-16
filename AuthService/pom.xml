@@ -8,7 +8,7 @@
     <version>0.0.1-SNAPSHOT</version>
     <packaging>jar</packaging>
 
-    <name>AuthInterceptor</name>
+    <name>TokenInterceptor</name>
     <description>Auth Service</description>
 
     <parent>
