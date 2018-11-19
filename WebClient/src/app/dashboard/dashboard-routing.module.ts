@@ -5,8 +5,11 @@ import {HomeComponent} from './home/home.component';
 import {AdminComponent} from './admin/admin.component';
 import {AuthGuard} from '../services/guards/auth-guard.service';
 import {RoleGuard} from '../services/guards/role-guard.service';
-import {CreateOfficeUserComponent} from "../core/user/create-office-user/create-office-user.component";
-import {CreateRoleComponent} from "../core/role/create-role/create-role.component";
+import {CreateOfficeUserComponent} from "../core/user/user-management/create-office-user/create-office-user.component";
+import {CreateRoleComponent} from "../core/role/role-management/create-role/create-role.component";
+import {RoleListComponent} from '../core/role/role-management/role-list/role-list.component';
+import {RoleManagementComponent} from '../core/role/role-management/role-management.component';
+import {UserManagementComponent} from '../core/user/user-management/user-management.component';
 
 
 export const dashboardRoutes: Routes = [
@@ -31,12 +34,12 @@ export const dashboardRoutes: Routes = [
         },
         children: [
           {
-            path: 'create-office-user',
-            component: CreateOfficeUserComponent,
+            path: 'user-management',
+            component: UserManagementComponent,
           },
           {
-            path: 'create-role',
-            component: CreateRoleComponent,
+            path: 'role-management',
+            component: RoleManagementComponent,
           }]
       }
     ]

@@ -1,20 +1,25 @@
-export interface User {
+export class User {
   id: string;
   isUserOffice: boolean;
   userDetails: UserDetails;
   address: Address;
-  roleId: number;
+  roleId: string;
+
+  constructor() {
+    this.userDetails = new UserDetails();
+    this.address = new Address();
+  }
 }
 
-export interface OfficeUser {
-  id: string;
+export class OfficeUser {
+  userId: string;
   pwz: number;
   degree: string;
-  userId: string;
 }
 
-export interface UserDetails {
+export class UserDetails {
   firstName: string;
+  secondName: string;
   lastName: string;
   familyName: string;
   birthday: Date;
@@ -23,7 +28,7 @@ export interface UserDetails {
   phone: number;
 }
 
-export interface Address {
+export class Address {
   city: string;
   street: string;
   houseNr: number;

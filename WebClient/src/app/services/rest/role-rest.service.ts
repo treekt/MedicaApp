@@ -24,8 +24,16 @@ export class RoleRestService {
   //   return body || {};
   // }
 
+  getAllRoles(): Observable<any> {
+    return this.http.get<Role[]>(this.endpoint + '/all');
+  }
+
   saveRole(role: Role): Observable<any> {
     return this.http.post(this.endpoint, JSON.stringify(role), this.httpOptions);
+  }
+
+  deleteRole(id: string): Observable<any> {
+    return this.http.delete(this.endpoint + '/' + id);
   }
 
   getPermissions(): Observable<any> {

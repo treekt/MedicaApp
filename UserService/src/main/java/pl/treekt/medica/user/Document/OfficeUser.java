@@ -9,8 +9,7 @@ import org.springframework.data.mongodb.core.mapping.Document;
 public class OfficeUser {
 
     @Id
-    private String id;
+    private String userId;
     private Integer pwz;
     private String degree;
-    private String userId;
 }

@@ -1,8 +1,7 @@
 import {Injectable} from '@angular/core';
 import {HttpClient, HttpHeaders} from '@angular/common/http';
 import {Observable} from 'rxjs';
-import {Role} from '../../models/role';
-import {Permission} from '../../models/permission';
+import {OfficeUser, User} from '../../models/user';
 
 @Injectable({
   providedIn: 'root'
@@ -19,11 +18,11 @@ export class UserRestService {
   constructor(private http: HttpClient) {
   }
 
-  getPermissions(): Observable<any> {
-    return this.http.get<Permission[]>(this.endpoint + '/permissions');
+  saveUser(user: User): Observable<any> {
+    return this.http.post(this.endpoint, JSON.stringify(user), this.httpOptions);
   }
 
-  saveRole(role: Role): Observable<any> {
-    return this.http.post(this.endpoint + '/role', JSON.stringify(role), this.httpOptions);
+  saveOfficeUser(officeUser: OfficeUser): Observable<any> {
+    return this.http.post(this.endpoint + '/office', JSON.stringify(officeUser), this.httpOptions);
   }
 }

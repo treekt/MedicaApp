@@ -8,5 +8,5 @@ import pl.treekt.medica.user.Document.User;
 @Repository
 public interface OfficeUserRepository extends MongoRepository<OfficeUser, String> {
 
-    OfficeUser findOfficeUserById(String id);
+    OfficeUser findOfficeUserByUserId(String id);
 }

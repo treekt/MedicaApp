@@ -1,0 +1,19 @@
+<form class="ui form">
+  <!--Dane podstawowe-->
+  <h4 class="ui dividing header">Rola</h4>
+  <div class="field">
+    <label>Nazwa roli</label>
+    <input type="text" (keyup)="updateName($event)" placeholder="Nazwa roli">
+  </div>
+  <div class="field">
+    <label>Uprawnienia</label>
+    <div class="grouped fields">
+      <div *ngFor="let permission of permissions;" class="ui toggle checkbox field">
+        <input id="{{permission.id}}"  type="checkbox" title="">
+        <label for="{{permission.id}}">{{permission.name}}</label>
+      </div>
+    </div>
+  </div>
+  <button (click)="saveRole()" class="ui button" type="submit">Zapisz role</button>
+</form>
+

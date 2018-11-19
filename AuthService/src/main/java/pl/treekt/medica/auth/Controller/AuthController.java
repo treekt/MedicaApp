@@ -34,8 +34,6 @@ public class AuthController {
         credentialsRepository.save(credentials);
     }
 
-
-
     @GetMapping("/history/{credsId}")
     public List<AuthHistory> getAllAuthenticationHistoryFor(@PathVariable("credsId") final int credsId){
         return authHistoryRepository.getAllByCredentialsId(credsId);

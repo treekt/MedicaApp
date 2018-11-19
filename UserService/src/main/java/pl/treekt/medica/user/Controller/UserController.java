@@ -3,14 +3,13 @@ package pl.treekt.medica.user.Controller;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import pl.treekt.medica.user.Document.OfficeUser;
-import pl.treekt.medica.user.Document.Role;
 import pl.treekt.medica.user.Document.User;
-import pl.treekt.medica.user.Enums.Privilages;
 import pl.treekt.medica.user.Repository.OfficeUserRepository;
-import pl.treekt.medica.user.Repository.RoleRepository;
 import pl.treekt.medica.user.Repository.UserRepository;
 
-import java.util.*;
+import java.util.Collections;
+import java.util.Map;
+import java.util.UUID;
 
 @RestController
 @RequestMapping("/")
@@ -41,15 +40,13 @@ public class UserController {
 
 
     @PostMapping("/office")
-    public Map saveOfficeUser(@RequestBody OfficeUser officeUser) {
-        officeUser.setId(UUID.randomUUID().toString());
+    public void saveOfficeUser(@RequestBody OfficeUser officeUser) {
         officeUserRepository.save(officeUser);
-        return Collections.singletonMap("id", officeUser.getId());
     }
 
     @GetMapping("/office/{id}")
     public OfficeUser getOfficeUser(@PathVariable("id") final String id) {
-        return officeUserRepository.findOfficeUserById(id);
+        return officeUserRepository.findOfficeUserByUserId(id);
     }
 
 
