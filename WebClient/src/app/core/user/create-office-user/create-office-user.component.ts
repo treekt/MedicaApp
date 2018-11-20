@@ -1,10 +1,11 @@
 import {Component, OnInit} from '@angular/core';
-import {Role} from '../../../../models/role';
-import {RoleRestService} from '../../../../services/rest/role-rest.service';
-import {OfficeUser, User} from '../../../../models/user';
-import {Credentials} from '../../../../models/credentials';
-import {UserRestService} from '../../../../services/rest/user-rest.service';
-import {CredsRestService} from '../../../../services/rest/creds-rest.service';
+import {Role} from '../../../models/role';
+import {OfficeUser, User} from '../../../models/user';
+import {Credentials} from '../../../models/credentials';
+import {RoleRestService} from '../../../services/rest/role-rest.service';
+import {UserRestService} from '../../../services/rest/user-rest.service';
+import {CredsRestService} from '../../../services/rest/creds-rest.service';
+
 
 @Component({
   selector: 'app-create-office-user',

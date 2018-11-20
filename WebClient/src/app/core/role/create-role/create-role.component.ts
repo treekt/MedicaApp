@@ -1,7 +1,7 @@
 import {Component, OnInit} from '@angular/core';
-import {Role} from '../../../../models/role';
-import {RoleRestService} from '../../../../services/rest/role-rest.service';
-import {Permission} from '../../../../models/permissions';
+import {Permission} from '../../../models/permissions';
+import {Role} from '../../../models/role';
+import {RoleRestService} from '../../../services/rest/role-rest.service';
 
 @Component({
   selector: 'app-create-role',
