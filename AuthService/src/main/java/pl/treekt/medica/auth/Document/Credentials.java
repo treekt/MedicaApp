@@ -11,7 +11,7 @@ import org.springframework.data.mongodb.core.mapping.Document;
 public class Credentials {
 
     @Id
-    private Integer userId;
+    private String userId;
     private String email;
     private String password;
 }

@@ -26,8 +26,8 @@ public class UserDetailsServiceImpl implements UserDetailsService {
 
         // hard coding the credentials. All passwords must be encoded.
         final List<Credentials> credentials = Arrays.asList(
-                new Credentials(1, "treekt@gmail.com", encoder.encode("12345")),
-                new Credentials(2, "admin", encoder.encode("12345"))
+                new Credentials("asdad", "treekt@gmail.com", encoder.encode("12345")),
+                new Credentials("ASdasdd", "admin", encoder.encode("12345"))
         );
 
         for(Credentials creds : credentials) {

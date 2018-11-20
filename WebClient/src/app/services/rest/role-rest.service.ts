@@ -1,7 +1,6 @@
 import {Injectable} from '@angular/core';
 import {HttpClient, HttpHeaders} from '@angular/common/http';
 import {Observable} from 'rxjs';
-import {Permission} from '../../models/permission';
 import {Role} from '../../models/role';
 
 @Injectable({
@@ -36,8 +35,5 @@ export class RoleRestService {
     return this.http.delete(this.endpoint + '/' + id);
   }
 
-  getPermissions(): Observable<any> {
-    return this.http.get<Permission[]>(this.endpoint + '/permissions');
-  }
 
 }

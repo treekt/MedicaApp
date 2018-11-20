@@ -4,8 +4,7 @@ import {Role} from '../../../../models/role';
 
 @Component({
   selector: 'app-role-list',
-  templateUrl: './role-list.component.html',
-  styleUrls: ['./role-list.component.css']
+  templateUrl: './role-list.component.html'
 })
 export class RoleListComponent implements OnInit {
   roles: Role[];

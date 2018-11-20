@@ -8,8 +8,7 @@ import {CredsRestService} from '../../../../services/rest/creds-rest.service';
 
 @Component({
   selector: 'app-create-office-user',
-  templateUrl: './create-office-user.component.html',
-  styleUrls: ['./create-office-user.component.css']
+  templateUrl: './create-office-user.component.html'
 })
 export class CreateOfficeUserComponent implements OnInit {
   roles: Role[];
@@ -19,7 +18,9 @@ export class CreateOfficeUserComponent implements OnInit {
   credentials: Credentials;
   confirmPassword: string;
 
-  constructor(private roleRestService: RoleRestService, private userRestService: UserRestService, private credsRestService: CredsRestService) {
+  constructor(private roleRestService: RoleRestService,
+              private userRestService: UserRestService,
+              private credsRestService: CredsRestService) {
   }
 
   ngOnInit() {

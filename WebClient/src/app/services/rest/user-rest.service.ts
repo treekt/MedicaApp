@@ -22,6 +22,18 @@ export class UserRestService {
     return this.http.post(this.endpoint, JSON.stringify(user), this.httpOptions);
   }
 
+  getAllUsers(): Observable<any> {
+    return this.http.get(this.endpoint + '/all');
+  }
+
+  getAllUserIfDefaultUser(): Observable<any> {
+    return this.http.get(this.endpoint + '/allDefault');
+  }
+
+  getAllUsersIfOfficeUser(): Observable<any> {
+    return this.http.get(this.endpoint + '/allOffice');
+  }
+
   saveOfficeUser(officeUser: OfficeUser): Observable<any> {
     return this.http.post(this.endpoint + '/office', JSON.stringify(officeUser), this.httpOptions);
   }

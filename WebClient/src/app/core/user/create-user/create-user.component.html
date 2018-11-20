@@ -1,0 +1,117 @@
+<form  class="ui form" (ngSubmit)="saveUser()">
+  {{user | json}}
+  <br/>
+  {{credentials | json}}
+  <!--Dane podstawowe-->
+  <h4 class="ui dividing header">Dane podstawowe</h4>
+  <div class="three fields">
+    <div class="field">
+      <label>Email</label>
+      <input type="text" placeholder="Email" name="email" [(ngModel)]="credentials.email">
+    </div>
+    <div class="field">
+      <label>Hasło</label>
+      <input type="password" placeholder="Hasło" name="password" [(ngModel)]="credentials.password">
+    </div>
+    <div class="field">
+      <label>Powtórz hasło</label>
+      <input type="password" placeholder="Powtórz hasło" name="confirmPassword" [(ngModel)]="confirmPassword">
+    </div>
+  </div>
+
+
+  <!--Dane osobowe-->
+  <h4 class="ui dividing header">Dane osobowe</h4>
+  <div class="two fields">
+    <div class="field">
+      <label>Pierwsze imię</label>
+      <input type="text" placeholder="Pierwsze imię" name="firstName" [(ngModel)]="user.userDetails.firstName">
+    </div>
+    <div class="field">
+      <label>Drugie imie</label>
+      <input type="text" placeholder="Drugie imię" name="secondName" [(ngModel)]="user.userDetails.secondName">
+    </div>
+  </div>
+  <div class="two fields">
+    <div class="field">
+      <label>Nazwisko</label>
+      <input type="text" placeholder="Nazwisko" name="lastName" [(ngModel)]="user.userDetails.lastName">
+    </div>
+    <div class="field">
+      <label>Nazwisko panieńskie</label>
+      <input type="text" placeholder="Nazwisko panieńskie" name="familyName" [(ngModel)]="user.userDetails.familyName">
+    </div>
+  </div>
+  <div class="two fields">
+    <div class="field">
+      <label>Płeć</label>
+      <select class="ui fluid dropdown" title="Płeć" name="gender" [(ngModel)]="user.userDetails.gender">
+        <option value="">Płeć</option>
+        <option value="M">Mężczyzna</option>
+        <option value="K">Kobieta</option>
+      </select>
+    </div>
+  </div>
+  <div class="two fields">
+    <div class="field">
+      <label>Pesel</label>
+      <input type="number" placeholder="Pesel" name="pesle" [(ngModel)]="user.userDetails.pesel">
+    </div>
+    <div class="field">
+      <label>Numer telefonu</label>
+      <input type="number" placeholder="Numer telefonu" name="phone" [(ngModel)]="user.userDetails.phone">
+    </div>
+  </div>
+
+  <!--Adres-->
+  <h4 class="ui dividing header">Adres</h4>
+  <div class="three fields">
+    <div class="field">
+      <label>Ulica</label>
+      <input type="number" placeholder="Ulica" name="street" [(ngModel)]="user.address.street">
+    </div>
+    <div class="field">
+      <label>Numer domu</label>
+      <input type="number" placeholder="Numer domu" name="houseNr" [(ngModel)]="user.address.houseNr">
+    </div>
+    <div class="field">
+      <label>Numer mieszkania</label>
+      <input type="text" placeholder="Numer mieszkania" name="apartmentNr" [(ngModel)]="user.address.apartmentNr">
+    </div>
+  </div>
+  <div class="three fields">
+    <div class="field">
+      <label>Miasto</label>
+      <input type="text" placeholder="Miasto" name="city" [(ngModel)]="user.address.city">
+    </div>
+    <div class="field">
+      <label>Województwo</label>
+      <select class="ui fluid dropdown" title="Województwo" name="voivodeship" [(ngModel)]="user.address.voivodeship">
+        <option value="">Województwo</option>
+        <option value="DŚ">Dolnośląskie</option>
+        <option value="KP">Kujawsko-Pomorskie</option>
+        <option value="LB">Lubelskie</option>
+        <option value="LS">Lubuskie</option>
+        <option value="ŁD">Łódzkie</option>
+        <option value="MZ">Mazowieckie</option>
+        <option value="MP">Małopolskie</option>
+        <option value="OP">Opolskie</option>
+        <option value="PL">Podlaskie</option>
+        <option value="PK">Podkarpackie</option>
+        <option value="PM">Pomorskie</option>
+        <option value="ŚL">Śląskie</option>
+        <option value="ŚW">Świętokrzyskie</option>
+        <option value="WP">Wielkopolskie</option>
+        <option value="WM">Warmińsko-mazurskie</option>
+        <option value="ZP">Zachodniopomorskie</option>
+
+      </select>
+    </div>
+    <div class="field">
+      <label>Kod pocztowy</label>
+      <input type="text" placeholder="Kod pocztowy" name="zip" [(ngModel)]="user.address.zip">
+    </div>
+  </div>
+
+  <button class="ui button" type="submit">Stwórz pracownika</button>
+</form>

@@ -1,15 +1,18 @@
 <form class="ui form">
-  <!--Dane podstawowe-->
+
+  {{role | json}}
+
   <h4 class="ui dividing header">Rola</h4>
   <div class="field">
     <label>Nazwa roli</label>
-    <input type="text" (keyup)="updateName($event)" placeholder="Nazwa roli">
+    <input type="text" placeholder="Nazwa roli" name="roleName" [(ngModel)]="role.name">
   </div>
   <div class="field">
     <label>Uprawnienia</label>
     <div class="grouped fields">
-      <div *ngFor="let permission of permissions;" class="ui toggle checkbox field">
-        <input id="{{permission.id}}"  type="checkbox" title="">
+      <div *ngFor="let permission of permissions; let i = index"  class="ui toggle checkbox field">
+        <input id="{{permission.id}}" type="checkbox" title=""
+               (change)="onCheckboxChange(permission, $event)">
         <label for="{{permission.id}}">{{permission.name}}</label>
       </div>
     </div>

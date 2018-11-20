@@ -8,6 +8,7 @@ import pl.treekt.medica.user.Repository.OfficeUserRepository;
 import pl.treekt.medica.user.Repository.UserRepository;
 
 import java.util.Collections;
+import java.util.List;
 import java.util.Map;
 import java.util.UUID;
 
@@ -38,6 +39,20 @@ public class UserController {
         return userRepository.findUserById(id);
     }
 
+    @GetMapping("/all")
+    public List<User> getAllUsers(){
+        return userRepository.findAll();
+    }
+
+    @GetMapping("/allDefault")
+    public List<User> getAllDefaultUsers(){
+        return userRepository.findAllByIsOfficeUser(false);
+    }
+
+    @GetMapping("/allOffice")
+    public List<User> getAllOfficeUsers(){
+        return userRepository.findAllByIsOfficeUser(true);
+    }
 
     @PostMapping("/office")
     public void saveOfficeUser(@RequestBody OfficeUser officeUser) {
