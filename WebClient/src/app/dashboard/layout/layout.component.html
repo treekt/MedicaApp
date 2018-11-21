@@ -1,9 +1,23 @@
+<div class="ui mini menu">
+  <!--<a class="active item">-->
+  <!--Home-->
+  <!--</a>-->
+  <!--<a class="item">-->
+  <!--Messages-->
+  <!--</a>-->
+  <div class="right menu">
+    <div class="item">
+      <div class="ui primary button" (click)="logout()">Wyloguj się</div>
+    </div>
+  </div>
+</div>
 
-<h1>Dashboard Layout</h1>
-<p>
-<a routerLink="default" >Home</a> |
-<a routerLink="admin"> Admin </a> |
-<a (click)="logout()">Wyloguj się</a>
-</p>
-<router-outlet></router-outlet>
+<div class="ui individual grid">
+  <app-select-card routerLink="user-management" buttonName="Zarządzanie użytkownikami"></app-select-card>
+  <app-select-card routerLink="role-management" buttonName="Zarządzanie rolami"></app-select-card>
+</div>
+
+<div class="ui container">
+  <router-outlet></router-outlet>
+</div>
 

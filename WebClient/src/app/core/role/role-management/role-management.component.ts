@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, ElementRef, OnInit, ViewChild} from '@angular/core';
 
 @Component({
   selector: 'app-role-management',
@@ -6,9 +6,16 @@ import { Component, OnInit } from '@angular/core';
 })
 export class RoleManagementComponent implements OnInit {
 
-  constructor() { }
+  selectedItem: string;
+
+
+  constructor() {
+  }
 
   ngOnInit() {
   }
 
+  selectItem(itemName: string) {
+    this.selectedItem = itemName;
+  }
 }
