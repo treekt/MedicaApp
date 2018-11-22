@@ -6,19 +6,20 @@ import {AuthGuard} from '../services/guards/auth-guard.service';
 import {AuthService} from '../services/auth.service';
 import {SelectCardComponent} from './items/select-card/select-card.component';
 import {RoleGuard} from '../services/guards/role-guard.service';
-import {CreateOfficeUserComponent} from '../core/user/create-office-user/create-office-user.component';
 import {CreateRoleComponent} from '../core/role/create-role/create-role.component';
 import {UserRestService} from '../services/rest/user-rest.service';
 import {RoleRestService} from '../services/rest/role-rest.service';
 import {RoleListComponent} from '../core/role/role-list/role-list.component';
-import {RoleManagementComponent} from '../core/role/role-management/role-management.component';
-import {UserManagementComponent} from '../core/user/user-management/user-management.component';
+import {RoleManagementComponent} from '../core/role/role-management.component';
+import {UserManagementComponent} from '../core/user/user-management.component';
 import {FormsModule} from '@angular/forms';
-import { CreateUserComponent } from '../core/user/create-user/create-user.component';
-import { UserListComponent } from '../core/user/user-list/user-list.component';
+import {CreateUserComponent} from '../core/user/create-user/create-user.component';
+import {UserListComponent} from '../core/user/user-list/user-list.component';
 import {BrowserModule} from '@angular/platform-browser';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
-import {MatCardModule, MatMenuModule, MatButtonModule, MatIconModule} from '@angular/material';
+import {MatButtonModule, MatCardModule, MatIconModule, MatMenuModule} from '@angular/material';
+import { VisitManagementComponent } from '../core/visit/visit-management.component';
+import { CreateVisitComponent } from '../core/visit/create-visit/create-visit.component';
 
 @NgModule({
   imports: [
@@ -37,11 +38,13 @@ import {MatCardModule, MatMenuModule, MatButtonModule, MatIconModule} from '@ang
     SelectCardComponent,
     UserManagementComponent,
     RoleManagementComponent,
-    CreateOfficeUserComponent,
+    CreateUserComponent,
     CreateRoleComponent,
     RoleListComponent,
     CreateUserComponent,
-    UserListComponent],
+    UserListComponent,
+    VisitManagementComponent,
+    CreateVisitComponent],
   providers: [AuthGuard, AuthService, RoleGuard, UserRestService, RoleRestService]
 })
 export class DashboardModule {

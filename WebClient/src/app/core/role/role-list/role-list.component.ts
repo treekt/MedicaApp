@@ -10,13 +10,7 @@ import {ActivatedRoute} from '@angular/router';
 export class RoleListComponent implements OnInit {
   roles: Role[];
 
-  something: string;
-
-
-  constructor(private roleRestService: RoleRestService, private route: ActivatedRoute) {
-    this.route.data.subscribe(data => {
-      this.something = data['something'];
-    });
+  constructor(private roleRestService: RoleRestService) {
   }
 
   ngOnInit() {

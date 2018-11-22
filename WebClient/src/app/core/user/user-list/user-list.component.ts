@@ -1,6 +1,7 @@
-import {Component, Input, OnInit} from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {User} from '../../../models/user';
 import {UserRestService} from '../../../services/rest/user-rest.service';
+import {ActivatedRoute} from '@angular/router';
 
 @Component({
   selector: 'app-user-list',
@@ -8,12 +9,14 @@ import {UserRestService} from '../../../services/rest/user-rest.service';
 })
 export class UserListComponent implements OnInit {
 
-  @Input()
   onlyOfficeUsers: boolean;
 
   users: User[];
 
-  constructor(private userRest: UserRestService) {
+  constructor(private userRest: UserRestService, private route: ActivatedRoute) {
+    this.route.data.subscribe(data => {
+      this.onlyOfficeUsers = data['onlyOfficeUsers'];
+    });
   }
 
   ngOnInit() {

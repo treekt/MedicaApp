@@ -1,14 +1,19 @@
-<form  class="ui form" (ngSubmit)="saveUser()">
-  {{user | json}}
-  <br/>
-  {{credentials | json}}
+<form  class="ui form" (ngSubmit)="saveOfficeUser()">
   <!--Dane podstawowe-->
   <h4 class="ui dividing header">Dane podstawowe</h4>
-  <div class="three fields">
+  <div class="two fields">
     <div class="field">
       <label>Email</label>
       <input type="text" placeholder="Email" name="email" [(ngModel)]="credentials.email">
     </div>
+    <div *ngIf="isOfficeUser" class="field" >
+      <label>Rola</label>
+      <select class="ui fluid dropdown" title="Rola" name="role" [(ngModel)]="user.roleId" >
+        <option *ngFor="let role of roles" [value]="role.id" >{{role.name}}</option>
+      </select>
+    </div>
+  </div>
+  <div class="two fields">
     <div class="field">
       <label>Hasło</label>
       <input type="password" placeholder="Hasło" name="password" [(ngModel)]="credentials.password">
@@ -19,6 +24,21 @@
     </div>
   </div>
 
+  <!--Dane zawodowe-->
+  <ng-container *ngIf="isOfficeUser">
+    <h4 class="ui dividing header">Dane zawodowe</h4>
+    <div class="two fields">
+      <div class="field">
+        <label>Tytuł naukowy</label>
+        <input type="text" placeholder="Tytuł naukowy" name="degree" [(ngModel)]="officeUser.degree">
+      </div>
+      <div class="field">
+        <label>PWZ</label>
+        <input type="number" placeholder="PWZ" name="pwz" [(ngModel)]="officeUser.pwz">
+      </div>
+    </div>
+
+  </ng-container>
 
   <!--Dane osobowe-->
   <h4 class="ui dividing header">Dane osobowe</h4>
@@ -113,5 +133,11 @@
     </div>
   </div>
 
-  <button class="ui button" type="submit">Stwórz pracownika</button>
+  <button class="ui green button" type="submit">
+    Zarejestruj
+    <ng-container *ngIf="isOfficeUser; else defaultUser">
+      pracownika
+    </ng-container>
+    <ng-template #defaultUser>pacjenta</ng-template>
+  </button>
 </form>
