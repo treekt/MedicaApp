@@ -1,4 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
+
+declare var $: any;
 
 @Component({
   selector: 'app-create-visit',
@@ -7,7 +9,8 @@ import { Component, OnInit } from '@angular/core';
 })
 export class CreateVisitComponent implements OnInit {
 
-  constructor() { }
+  constructor() {
+  }
 
   ngOnInit() {
   }

@@ -9,6 +9,7 @@ import {LoginComponent} from './auth/login/login.component';
 import {DashboardModule} from './dashboard/dashboard.module';
 import {PageNotFoundComponent} from './errors/page-not-found/page-not-found.component';
 import {TokenInterceptor} from './interceptors/token.interceptor';
+import { SemanticDropdownDirective } from './directives/semantic-dropdown.directive';
 
 @NgModule({
   declarations: [
