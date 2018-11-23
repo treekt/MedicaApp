@@ -8,7 +8,8 @@
     </div>
     <div *ngIf="isOfficeUser" class="field" >
       <label>Rola</label>
-      <select class="ui fluid dropdown" title="Rola" name="role" [(ngModel)]="user.roleId" >
+      <select class="ui fluid dropdown" title="Rola" name="role" [(ngModel)]="user.roleId" semanticDropdown>
+        <option value="">Rola</option>
         <option *ngFor="let role of roles" [value]="role.id" >{{role.name}}</option>
       </select>
     </div>
@@ -65,7 +66,7 @@
   <div class="two fields">
     <div class="field">
       <label>Płeć</label>
-      <select class="ui fluid dropdown" title="Płeć" name="gender" [(ngModel)]="user.userDetails.gender">
+      <select class="ui fluid dropdown" title="Płeć" name="gender" [(ngModel)]="user.userDetails.gender" semanticDropdown>
         <option value="">Płeć</option>
         <option value="M">Mężczyzna</option>
         <option value="K">Kobieta</option>
@@ -106,7 +107,7 @@
     </div>
     <div class="field">
       <label>Województwo</label>
-      <select class="ui fluid dropdown" title="Województwo" name="voivodeship" [(ngModel)]="user.address.voivodeship">
+      <select class="ui fluid dropdown" title="Województwo" name="voivodeship" [(ngModel)]="user.address.voivodeship" semanticDropdown>
         <option value="">Województwo</option>
         <option value="DŚ">Dolnośląskie</option>
         <option value="KP">Kujawsko-Pomorskie</option>
