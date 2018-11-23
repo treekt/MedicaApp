@@ -28,6 +28,7 @@
     "jwt-decode": "^2.2.0",
     "rxjs": "^6.3.3",
     "semantic-ui": "^2.4.2",
+    "semantic-ui-calendar": "0.0.8",
     "semantic-ui-css": "^2.4.1",
     "semantic-ui-dropdown": "^2.4.1",
     "zone.js": "~0.8.26"

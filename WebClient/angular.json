@@ -24,10 +24,12 @@
             ],
             "styles": [
               "semantic/dist/semantic.min.css",
+              "node_modules/semantic-ui-calendar/dist/calendar.min.css",
               "src/styles.css"
             ],
             "scripts": [
               "node_modules/jquery/dist/jquery.min.js",
+              "node_modules/semantic-ui-calendar/dist/calendar.min.js",
               "semantic/dist/semantic.min.js"
             ]
           },

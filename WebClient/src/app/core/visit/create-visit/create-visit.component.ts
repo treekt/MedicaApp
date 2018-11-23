@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {AfterViewInit, Component, OnInit} from '@angular/core';
 
 declare var $: any;
 
@@ -7,12 +7,18 @@ declare var $: any;
   templateUrl: './create-visit.component.html',
   styleUrls: ['./create-visit.component.css']
 })
-export class CreateVisitComponent implements OnInit {
+export class CreateVisitComponent implements OnInit, AfterViewInit {
 
   constructor() {
   }
 
   ngOnInit() {
+  }
+
+  ngAfterViewInit(): void {
+    $('#example2').calendar({
+      type: 'date'
+    });
   }
 
 }
