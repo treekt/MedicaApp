@@ -18,6 +18,7 @@ import {UserListComponent} from '../core/user/user-list/user-list.component';
 import {VisitManagementComponent} from '../core/visit/visit-management.component';
 import {CreateVisitComponent} from '../core/visit/create-visit/create-visit.component';
 import {SemanticDropdownDirective} from '../directives/semantic-dropdown.directive';
+import { SemanticCalendarDirective } from '../directives/semantic-calendar.directive';
 
 @NgModule({
   imports: [
@@ -37,7 +38,8 @@ import {SemanticDropdownDirective} from '../directives/semantic-dropdown.directi
     UserListComponent,
     VisitManagementComponent,
     CreateVisitComponent,
-    SemanticDropdownDirective],
+    SemanticDropdownDirective,
+    SemanticCalendarDirective],
   providers: [AuthGuard, AuthService, RoleGuard, UserRestService, RoleRestService]
 })
 export class DashboardModule {
