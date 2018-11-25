@@ -6,26 +6,34 @@ import {AppComponent} from './app.component';
 import {HTTP_INTERCEPTORS, HttpClientModule} from '@angular/common/http';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {LoginComponent} from './auth/login/login.component';
-import {DashboardModule} from './dashboard/dashboard.module';
 import {PageNotFoundComponent} from './errors/page-not-found/page-not-found.component';
 import {TokenInterceptor} from './interceptors/token.interceptor';
-import { SemanticDropdownDirective } from './directives/semantic-dropdown.directive';
+import {CoreComponent} from "./core/core.component";
+import {SemanticDropdownDirective} from "./directives/semantic-dropdown.directive";
+import {SemanticCalendarDirective} from "./directives/semantic-calendar.directive";
+import {AuthGuard} from "./services/guards/auth-guard.service";
+import {AuthService} from "./services/auth.service";
 
 @NgModule({
-  declarations: [
-    AppComponent,
-    LoginComponent,
-    PageNotFoundComponent
-  ],
   imports: [
     HttpClientModule,
     FormsModule,
     BrowserModule,
     AppRoutingModule,
-    DashboardModule,
     ReactiveFormsModule
   ],
-  providers: [    {
+  declarations: [
+    AppComponent,
+    LoginComponent,
+    CoreComponent,
+    PageNotFoundComponent,
+    SemanticDropdownDirective,
+    SemanticCalendarDirective
+  ],
+  providers: [
+    AuthGuard,
+    AuthService,
+    {
     provide: HTTP_INTERCEPTORS,
     useClass: TokenInterceptor,
     multi: true

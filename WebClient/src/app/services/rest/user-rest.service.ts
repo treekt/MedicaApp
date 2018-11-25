@@ -2,6 +2,7 @@ import {Injectable} from '@angular/core';
 import {HttpClient, HttpHeaders} from '@angular/common/http';
 import {Observable} from 'rxjs';
 import {OfficeUser, User} from '../../models/user';
+import {debounceTime, distinctUntilChanged, switchMap} from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root'
@@ -16,6 +17,18 @@ export class UserRestService {
   };
 
   constructor(private http: HttpClient) {
+  }
+
+  search(terms: Observable<string>) {
+    return terms.pipe(
+      debounceTime(400),
+      distinctUntilChanged(),
+      switchMap(term => this.searchUsers(term))
+    );
+  }
+
+  searchUsers(term): Observable<any> {
+    return this.http.get(this.endpoint + '/search/' + term);
   }
 
   saveUser(user: User): Observable<any> {

@@ -3,6 +3,8 @@ import {Role} from '../../../models/role';
 import {RoleRestService} from '../../../services/rest/role-rest.service';
 import {ActivatedRoute} from '@angular/router';
 
+declare var $: any;
+
 @Component({
   selector: 'app-role-list',
   templateUrl: './role-list.component.html'
@@ -25,6 +27,10 @@ export class RoleListComponent implements OnInit {
     this.roleRestService.deleteRole(role.id).subscribe(success => console.log(success));
     const roleIndex = this.roles.indexOf(role);
     this.roles.splice(roleIndex, 1);
+  }
+
+  openModal() {
+    $('.ui.basic.modal').modal('show');
   }
 
   edit(role: Role) {

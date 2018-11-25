@@ -1,29 +1,79 @@
-<form class="ui form">
-  <h4 class="ui dividing header">Wizyta</h4>
-  <div class="field">
-    <label>Pacjent</label>
-    <select class="ui search dropdown" semanticDropdown>
-      <option value="">Pacjent</option>
-      <option value="AL">Alabama</option>
-    </select>
-  </div>
-  <div class="field">
-    <label>Pracownik</label>
-    <select class="ui search dropdown" semanticDropdown>
-      <option value="">Pracownik</option>
-      <option value="AL">Alabama</option>
-    </select>
-  </div>
-  <div class="field">
-    <label>Data wizyty</label>
-    <div class="ui calendar" semanticCalendar>
-    </div>
-    <br/>
-  </div>
+<div class="ui two columns grid">
+  <div class="column">
+    <form class="ui form">
+      <h4 class="ui dividing header">Wizyta</h4>
+      <div class="field">
+        <label>Pacjent</label>
+        <select class="ui search dropdown" name="user" [(ngModel)]="visit.userId"
+                (keyup)="searchUser$.next($event.target.value)" semanticDropdown>
+          <option value="">Pacjent</option>
+          <option *ngFor="let user of users" [value]="user.id">
+            {{user.userDetails.firstName}} {{user.userDetails.lastName }}
+          </option>
+        </select>
+      </div>
+      <div class="field">
+        <label>Pracownik</label>
+        <select class="ui search dropdown" name="officeUser" [(ngModel)]="visit.officeUserId"
+                (keyup)="searchOfficeUser$.next($event.target.value)" semanticDropdown>
+          <option value="">Pracownik</option>
+          <option *ngFor="let officeUser of officeUsers" [value]="officeUser.id">
+            {{officeUser.userDetails.firstName}} {{officeUser.userDetails.lastName}}
+          </option>
+        </select>
+      </div>
+      <div class="two fields">
+        <div class="field">
+          <label>Data od</label>
+          <div class="ui calendar" semanticCalendar>
+            <div class="ui input left icon">
+              <i class="calendar icon"></i>
+              <input type="text" placeholder="Data od" name="dateFrom" [(ngModel)]="visit.dateRequest.dateFrom" autofocus>
+            </div>
+          </div>
+        </div>
+        <div class="field">
+          <label>Data do</label>
+          <div class="ui calendar" semanticCalendar>
+            <div class="ui input left icon">
+              <i class="calendar icon"></i>
+              <input type="text" placeholder="Data do" name="dateTo" [(ngModel)]="visit.dateRequest.dateTo" autofocus>
+            </div>
+          </div>
+        </div>
+      </div>
 
-  <button class="ui green button" type="submit">
-    Umów wizytę
-  </button>
-</form>
-
-
+      <div class="ui two column grid">
+        <div class="column">
+          <button class="ui blue button" type="submit" (click)="searchVisitDates()">
+            Wyszukaj terminy
+          </button>
+        </div>
+        <div #appointment class="right aligned column">
+          <button class="ui green button disabled" type="submit" (click)="makeAppointment()">
+            Umów wizytę
+          </button>
+        </div>
+      </div>
+    </form>
+  </div>
+  <div class="column">
+    <table class="ui selectable table">
+      <thead>
+      <tr>
+        <th>Data</th>
+        <th class="right aligned">
+        </th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr *ngFor="let visitDate of visitDateProps">
+        <td>{{visitDate.date}}</td>
+        <td class="right aligned">
+          <button class="ui blue button" (click)="selectDateForVisit(visitDate.date)">Wybierz</button>
+        </td>
+      </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
