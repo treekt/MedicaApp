@@ -25,7 +25,7 @@
       <div class="two fields">
         <div class="field">
           <label>Data od</label>
-          <div class="ui calendar" semanticCalendar>
+          <div class="ui calendar" semanticCalendar calendarType="datetime">
             <div class="ui input left icon">
               <i class="calendar icon"></i>
               <input type="text" placeholder="Data od" name="dateFrom" [(ngModel)]="visit.dateRequest.dateFrom" autofocus>
@@ -34,7 +34,7 @@
         </div>
         <div class="field">
           <label>Data do</label>
-          <div class="ui calendar" semanticCalendar>
+          <div class="ui calendar" semanticCalendar calendarType="datetime">
             <div class="ui input left icon">
               <i class="calendar icon"></i>
               <input type="text" placeholder="Data do" name="dateTo" [(ngModel)]="visit.dateRequest.dateTo" autofocus>

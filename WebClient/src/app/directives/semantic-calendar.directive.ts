@@ -1,4 +1,4 @@
-import {AfterViewInit, Directive, ElementRef} from '@angular/core';
+import {AfterViewInit, Directive, ElementRef, Input} from '@angular/core';
 
 declare var $: any;
 
@@ -6,6 +6,9 @@ declare var $: any;
   selector: '[semanticCalendar]'
 })
 export class SemanticCalendarDirective implements AfterViewInit {
+
+  @Input()
+  calendarType: string;
 
   constructor(private calendar: ElementRef) {
   }
@@ -26,7 +29,7 @@ export class SemanticCalendarDirective implements AfterViewInit {
           am: 'AM',
           pm: 'PM'
         },
-        type: 'date'
+        type: this.calendarType
       }
     );
   }

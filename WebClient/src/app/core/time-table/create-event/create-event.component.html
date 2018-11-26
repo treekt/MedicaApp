@@ -1,0 +1,39 @@
+<form class="ui form">
+  <h4 class="ui dividing header">Zdarzenie</h4>
+  <div class="field">
+    <label>Nazwa</label>
+    <input type="text" placeholder="Nazwa zdarzenia" name="eventName">
+  </div>
+  <div  class="field" >
+    <label>Rodzaj</label>
+    <select class="ui fluid dropdown" title="Rola" name="role" semanticDropdown>
+      <option value="">Rodzaj</option>
+      <option value="work">Dzień pracujący</option>
+      <option value="holiday">Urlop</option>
+      <option value="sudden">Nagłe</option>
+    </select>
+  </div>
+  <div class="two fields">
+    <div class="field">
+      <label>Data od</label>
+      <div class="ui calendar" semanticCalendar calendarType="datetime">
+        <div class="ui input left icon">
+          <i class="calendar icon"></i>
+          <input type="text" placeholder="Data od" name="dateFrom" >
+        </div>
+      </div>
+    </div>
+    <div class="field">
+      <label>Data do</label>
+      <div class="ui calendar" semanticCalendar calendarType="datetime">
+        <div class="ui input left icon">
+          <i class="calendar icon"></i>
+          <input type="text" placeholder="Data do" name="dateTo">
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <button class="ui green button" type="submit">Zapisz zdarzenie</button>
+</form>
+

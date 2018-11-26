@@ -28,7 +28,7 @@ import {FullCalendarModule} from 'ng-fullcalendar';
     LoginComponent,
     CoreComponent,
     SemanticDropdownDirective,
-    SemanticCalendarDirective,
+    SemanticCalendarDirective
   ],
   providers: [
     AuthGuard,
