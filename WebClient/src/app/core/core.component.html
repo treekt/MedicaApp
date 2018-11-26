@@ -1,14 +1,21 @@
 <div class="ui mini menu">
-  <a class="active item">
+  <a class="item" routerLink="/dashboard" routerLinkActive="active">
     <i class="tachometer alternate icon"></i>
     Start
   </a>
 
   <div class="right menu">
     <a class="item">
-      <i class="user circle icon"></i>
-      Konto
+      <i class="wrench icon"></i>
+      Ustawienia
     </a>
+    <div class="ui dropdown item" semanticDropdown>
+      <i class="user circle icon"></i>
+      Konto <i class="dropdown icon"></i>
+      <div class="menu">
+        <a class="item" routerLink="/profile" routerLinkActive="active">Zarządzanie profilem</a>
+      </div>
+    </div>
     <div class="item">
       <div class="ui primary button" (click)="logout()">Wyloguj się</div>
     </div>

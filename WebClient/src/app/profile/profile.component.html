@@ -1,0 +1,36 @@
+<div class="ui container">
+  <div class="ui grid">
+    <div class="three wide column">
+      <div class="ui vertical menu">
+        <div class="header">
+          {{email}}
+        </div>
+        <div class="item">
+          <div class="header">
+            <i class="user icon"></i>
+            Konto
+          </div>
+          <div class="menu">
+            <a class="item">
+              <i class="address card icon"></i>
+              Dane użytkownika
+            </a>
+            <a class="item">
+              <i class="key icon"></i>
+              Uprawnienia
+            </a>
+            <a class="item">
+              <i class="calendar alternate outline icon"></i>
+              Grafik
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="thirteen wide stretched column">
+      <div class="ui segment">
+        <router-outlet></router-outlet>
+      </div>
+    </div>
+  </div>
+</div>
