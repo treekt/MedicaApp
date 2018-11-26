@@ -12,6 +12,7 @@ import {SemanticDropdownDirective} from './directives/semantic-dropdown.directiv
 import {SemanticCalendarDirective} from './directives/semantic-calendar.directive';
 import {AuthGuard} from './services/guards/auth-guard.service';
 import {AuthService} from './services/auth.service';
+import {FullCalendarModule} from 'ng-fullcalendar';
 
 @NgModule({
   imports: [
@@ -19,7 +20,8 @@ import {AuthService} from './services/auth.service';
     FormsModule,
     BrowserModule,
     ReactiveFormsModule,
-    AppRoutingModule
+    AppRoutingModule,
+    FullCalendarModule
   ],
   declarations: [
     AppComponent,
