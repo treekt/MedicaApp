@@ -21,7 +21,7 @@ import {FullCalendarModule} from 'ng-fullcalendar';
     BrowserModule,
     ReactiveFormsModule,
     AppRoutingModule,
-    FullCalendarModule
+    FullCalendarModule,
   ],
   declarations: [
     AppComponent,

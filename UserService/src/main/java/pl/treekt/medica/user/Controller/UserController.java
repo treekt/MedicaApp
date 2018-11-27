@@ -35,8 +35,13 @@ public class UserController {
     }
 
     @GetMapping("/{id}")
-    public User getUser(@PathVariable("id") final String id) {
+    public User getUser(@PathVariable() String id) {
         return userRepository.findUserById(id);
+    }
+
+    @GetMapping("/byEmail/{email}")
+    public User getUserByEmail(@PathVariable() String email){
+        return null;
     }
 
     @GetMapping("/all")
@@ -60,7 +65,7 @@ public class UserController {
     }
 
     @GetMapping("/office/{id}")
-    public OfficeUser getOfficeUser(@PathVariable("id") final String id) {
+    public OfficeUser getOfficeUser(@PathVariable() final String id) {
         return officeUserRepository.findOfficeUserByUserId(id);
     }
 

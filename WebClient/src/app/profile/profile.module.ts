@@ -3,12 +3,11 @@ import { CommonModule } from '@angular/common';
 import {ProfileRoutingModule} from './profile-routing.module';
 import { ProfileComponent } from './profile.component';
 import {FullCalendarModule} from 'ng-fullcalendar';
-import { TimeTableComponent } from '../core/time-table/time-table.component';
+import { SchedulerComponent } from '../core/scheduler/scheduler.component';
 import {EventService} from './event.service';
-import { CreateEventComponent } from '../core/time-table/create-event/create-event.component';
-import { CalendarComponent } from '../core/time-table/calendar/calendar.component';
-import {SemanticDropdownDirective} from '../directives/semantic-dropdown.directive';
-import {SemanticCalendarDirective} from '../directives/semantic-calendar.directive';
+import { CreateScheduleComponent } from '../core/scheduler/create-event/create-schedule.component';
+import { CalendarComponent } from '../core/scheduler/calendar/calendar.component';
+import {UserDetailsComponent} from '../core/user/user-details/user-details.component';
 
 @NgModule({
   imports: [
@@ -18,9 +17,10 @@ import {SemanticCalendarDirective} from '../directives/semantic-calendar.directi
   ],
   declarations: [
     ProfileComponent,
-    TimeTableComponent,
-    CreateEventComponent,
-    CalendarComponent
+    UserDetailsComponent,
+    SchedulerComponent,
+    CreateScheduleComponent,
+    CalendarComponent,
   ],
   providers: [EventService]
 })

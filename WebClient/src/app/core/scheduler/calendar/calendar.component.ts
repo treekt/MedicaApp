@@ -1,6 +1,7 @@
-import {Component, OnInit, ViewChild} from '@angular/core';
+import {Component, Input, OnInit, ViewChild} from '@angular/core';
 import {Options} from 'fullcalendar';
-import {EventService} from '../../../profile/event.service';
+import {User} from '../../../models/user';
+import {UserRestService} from '../../../services/rest/user-rest.service';
 
 @Component({
   selector: 'app-calendar',
@@ -8,12 +9,16 @@ import {EventService} from '../../../profile/event.service';
   styleUrls: ['./calendar.component.css']
 })
 export class CalendarComponent implements OnInit {
+
+  @Input()
+  schedulerOwner: User;
+
   calendarOptions: Options;
   displayEvent: any;
-  events = null;
+  schedules = null;
   @ViewChild(CalendarComponent) ucCalendar: CalendarComponent;
 
-  constructor(protected eventService: EventService) {
+  constructor(private userRest: UserRestService) {
   }
 
   ngOnInit() {
@@ -50,12 +55,15 @@ export class CalendarComponent implements OnInit {
         'Nie', 'Pon', 'Wt', 'Śr', 'Czw', 'Pt', 'Sob'
       ]
     };
+
+    this.loadSchedules();
   }
 
-  loadevents() {
-    this.eventService.getEvents().subscribe(data => {
-      this.events = data;
-    });
+  loadSchedules() {
+    this.userRest.getAllSchedulesByUserId(this.schedulerOwner.id)
+      .subscribe(data => {
+        this.schedules = data;
+      });
   }
 
   clickButton(model: any) {

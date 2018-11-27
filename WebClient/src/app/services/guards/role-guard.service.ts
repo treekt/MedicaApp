@@ -13,7 +13,7 @@ export class RoleGuard implements CanActivate {
   canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<boolean> | Promise<boolean> | boolean {
     return true;
     const expectedRole = route.data.expectedRole;
-    const userRoles = this.authService.getRolesCurrentUser();
+    const userRoles = this.authService.getRolesOfAuthenticatedUser();
     if (!this.authService.isTokenExpired() && userRoles.indexOf(expectedRole) > -1) {
       return true;
     }

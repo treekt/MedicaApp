@@ -4,13 +4,13 @@
     <label>Nazwa</label>
     <input type="text" placeholder="Nazwa zdarzenia" name="eventName">
   </div>
-  <div  class="field" >
+  <div class="field">
     <label>Rodzaj</label>
     <select class="ui fluid dropdown" title="Rola" name="role" semanticDropdown>
       <option value="">Rodzaj</option>
-      <option value="work">Dzień pracujący</option>
-      <option value="holiday">Urlop</option>
-      <option value="sudden">Nagłe</option>
+      <option value="0">Dzień pracujący</option>
+      <option value="1">Urlop</option>
+      <option value="2">Nagłe</option>
     </select>
   </div>
   <div class="two fields">
@@ -19,7 +19,7 @@
       <div class="ui calendar" semanticCalendar calendarType="datetime">
         <div class="ui input left icon">
           <i class="calendar icon"></i>
-          <input type="text" placeholder="Data od" name="dateFrom" >
+          <input type="text" placeholder="Data od" name="dateFrom">
         </div>
       </div>
     </div>
@@ -34,6 +34,6 @@
     </div>
   </div>
 
-  <button class="ui green button" type="submit">Zapisz zdarzenie</button>
+  <button (click)="saveSchedule()" class="ui green button" type="submit">Zapisz zdarzenie</button>
 </form>
 

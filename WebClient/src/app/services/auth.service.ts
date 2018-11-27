@@ -1,5 +1,5 @@
 import {Injectable} from '@angular/core';
-import {HttpClient, HttpResponse} from '@angular/common/http';
+import {HttpClient} from '@angular/common/http';
 import {tap} from 'rxjs/operators';
 import {JwtHelperService} from '@auth0/angular-jwt';
 
@@ -13,6 +13,7 @@ export class AuthService {
 
   constructor(private http: HttpClient) {
   }
+
   private url = 'http://localhost:8762/auth';
 
 
@@ -43,8 +44,12 @@ export class AuthService {
     return helper.decodeToken(this.getToken());
   }
 
-  getRolesCurrentUser() {
+  getRolesOfAuthenticatedUser() {
     return this.getTokenPayload().roles;
+  }
+
+  getEmailOfAuthenticatedUser() {
+    return this.getTokenPayload().sub;
   }
 
   getToken(): string {

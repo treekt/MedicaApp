@@ -3,10 +3,12 @@ import {Observable, of} from 'rxjs';
 
 @Injectable()
 export class EventService {
+
   public getEvents(): Observable<any> {
     const dateObj = new Date();
     const yearMonth = dateObj.getUTCFullYear() + '-' + (dateObj.getUTCMonth() + 1);
-    const data: any = [{
+    const data: any = [
+      {
       title: 'All Day Event',
       start: yearMonth + '-01'
     },

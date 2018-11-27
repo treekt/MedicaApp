@@ -1,0 +1,22 @@
+<a class="ui orange ribbon label">Harmonogram pracy</a>
+<div class="ui segment" *ngIf="isAdmin">
+  <form class="ui form">
+    <div class="field">
+      <label>Pracownik</label>
+      <select class="ui fluid dropdown" title="officeUser" name="officeUser" semanticDropdown>
+        <option value="">Pracownik</option>
+        <option *ngFor="let user of officeUsers" [value]="user.id">{{user.userDetails.firstName}}
+          {{user.userDetails.lastName}} ({{user.userDetails.pesel}})
+        </option>
+      </select>
+    </div>
+  </form>
+</div>
+<ng-container *ngIf="officeUser">
+  <div class="ui segment">
+    <app-create-event [schedulerOwner]="officeUser"></app-create-event>
+  </div>
+  <div class="ui segment">
+    <app-calendar [schedulerOwner]="officeUser"></app-calendar>
+  </div>
+</ng-container>

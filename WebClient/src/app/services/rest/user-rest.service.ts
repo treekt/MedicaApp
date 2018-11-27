@@ -3,6 +3,8 @@ import {HttpClient, HttpHeaders} from '@angular/common/http';
 import {Observable} from 'rxjs';
 import {OfficeUser, User} from '../../models/user';
 import {debounceTime, distinctUntilChanged, switchMap} from 'rxjs/operators';
+import {Schedule} from '../../models/schedule';
+import {AuthService} from '../auth.service';
 
 @Injectable({
   providedIn: 'root'
@@ -16,7 +18,12 @@ export class UserRestService {
     })
   };
 
-  constructor(private http: HttpClient) {
+  constructor(private http: HttpClient, private authService: AuthService) {
+  }
+
+  getAuthenticatedUser(): Observable<any> {
+    const email = this.authService.getEmailOfAuthenticatedUser();
+    return this.http.get(this.endpoint + '/byEmail' + email);
   }
 
   search(terms: Observable<string>) {
@@ -49,5 +56,17 @@ export class UserRestService {
 
   saveOfficeUser(officeUser: OfficeUser): Observable<any> {
     return this.http.post(this.endpoint + '/office', JSON.stringify(officeUser), this.httpOptions);
+  }
+
+  saveSchedule(schedule: Schedule): Observable<any> {
+    return this.http.post(this.endpoint + '/workScheduler', JSON.stringify(schedule), this.httpOptions);
+  }
+
+  getAllSchedulesByUserId(userId: string): Observable<any> {
+    return this.http.get(this.endpoint + '/all/' + userId);
+  }
+
+  getAllSchedulesByUserIdAndType(userId: string, type: number): Observable<any> {
+    return this.http.get(this.endpoint + '/all/' + userId + '/' + type);
   }
 }
