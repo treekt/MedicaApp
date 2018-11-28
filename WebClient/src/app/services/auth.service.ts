@@ -14,7 +14,7 @@ export class AuthService {
   constructor(private http: HttpClient) {
   }
 
-  private url = 'http://localhost:8762/auth';
+  private url = 'http://localhost:8762/auth/login';
 
 
   login(credentials) {

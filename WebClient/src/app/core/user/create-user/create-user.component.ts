@@ -4,7 +4,7 @@ import {OfficeUser, User} from '../../../models/user';
 import {Credentials} from '../../../models/credentials';
 import {RoleRestService} from '../../../services/rest/role-rest.service';
 import {UserRestService} from '../../../services/rest/user-rest.service';
-import {CredsRestService} from '../../../services/rest/creds-rest.service';
+import {AuthRestService} from '../../../services/rest/auth-rest.service';
 import {ActivatedRoute} from '@angular/router';
 
 
@@ -24,7 +24,7 @@ export class CreateUserComponent implements OnInit {
 
   constructor(private roleRestService: RoleRestService,
               private userRestService: UserRestService,
-              private credsRestService: CredsRestService,
+              private credsRestService: AuthRestService,
               private route: ActivatedRoute) {
 
     this.route.data.subscribe(data => {

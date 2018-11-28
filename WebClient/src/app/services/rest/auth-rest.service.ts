@@ -6,9 +6,9 @@ import {Observable} from 'rxjs';
 @Injectable({
   providedIn: 'root'
 })
-export class CredsRestService {
+export class AuthRestService {
 
-  endpoint = 'http://localhost:8762/user/credentials';
+  endpoint = 'http://localhost:8762/auth/credentials';
   httpOptions = {
     headers: new HttpHeaders({
       'Content-Type': 'application/json'

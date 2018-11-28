@@ -5,6 +5,7 @@ import org.springframework.web.bind.annotation.*;
 import pl.treekt.medica.user.Document.Role;
 import pl.treekt.medica.user.Enums.Privilages;
 import pl.treekt.medica.user.Repository.RoleRepository;
+import pl.treekt.medica.user.Repository.UserRepository;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -16,10 +17,12 @@ public class RoleController {
 
 
     private final RoleRepository roleRepository;
+    private final UserRepository userRepository;
 
     @Autowired
-    public RoleController(RoleRepository roleRepository) {
+    public RoleController(RoleRepository roleRepository, UserRepository userRepository) {
         this.roleRepository = roleRepository;
+        this.userRepository = userRepository;
     }
 
 
@@ -41,6 +44,12 @@ public class RoleController {
         }
     }
 
+    @GetMapping("/name/user/{userId}")
+    public String getRoleNameForUser(@PathVariable String userId){
+        String roleId = userRepository.findUserById(userId).getRoleId();
+        return roleRepository.getRoleById(roleId).getName();
+    }
+
     @GetMapping("/all")
     public List<Role> getAllRoles(){
         return roleRepository.findAll();
@@ -51,5 +60,6 @@ public class RoleController {
     public List<Privilages.Permission> getAllPermissions() {
         return Privilages.Permission.getAllPermissions();
     }
+
 
 }

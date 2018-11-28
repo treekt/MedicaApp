@@ -23,7 +23,7 @@ export class UserRestService {
 
   getAuthenticatedUser(): Observable<any> {
     const email = this.authService.getEmailOfAuthenticatedUser();
-    return this.http.get(this.endpoint + '/byEmail' + email);
+    return this.http.get(this.endpoint + '/email/' + email);
   }
 
   search(terms: Observable<string>) {
@@ -47,11 +47,11 @@ export class UserRestService {
   }
 
   getAllUserIfDefaultUser(): Observable<any> {
-    return this.http.get(this.endpoint + '/allDefault');
+    return this.http.get(this.endpoint + '/default/all');
   }
 
   getAllUsersIfOfficeUser(): Observable<any> {
-    return this.http.get(this.endpoint + '/allOffice');
+    return this.http.get(this.endpoint + '/office/all');
   }
 
   saveOfficeUser(officeUser: OfficeUser): Observable<any> {

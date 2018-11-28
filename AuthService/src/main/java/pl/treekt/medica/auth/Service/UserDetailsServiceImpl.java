@@ -1,5 +1,6 @@
 package pl.treekt.medica.auth.Service;
 
+import com.netflix.discovery.converters.Auto;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.ParameterizedTypeReference;
 import org.springframework.http.HttpMethod;
@@ -14,8 +15,8 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 import pl.treekt.medica.auth.Document.Credentials;
+import pl.treekt.medica.auth.Repository.CredentialsRepository;
 
-import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 
@@ -24,32 +25,24 @@ public class UserDetailsServiceImpl implements UserDetailsService {
 
     private final RestTemplate restTemplate;
     private final BCryptPasswordEncoder encoder;
+    private final CredentialsRepository credentialsRepository;
 
     @Autowired
-    public UserDetailsServiceImpl(RestTemplate restTemplate, BCryptPasswordEncoder encoder) {
+    public UserDetailsServiceImpl(RestTemplate restTemplate, BCryptPasswordEncoder encoder, CredentialsRepository credentialsRepository) {
         this.restTemplate = restTemplate;
         this.encoder = encoder;
+        this.credentialsRepository = credentialsRepository;
     }
 
     @Override
     public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
 
-        ResponseEntity<List<Credentials>> response = restTemplate.exchange(
-                "http://user-service/credentials/all",
-                HttpMethod.GET,
-                null,
-                new ParameterizedTypeReference<List<Credentials>>(){});
-        List<Credentials> credentials = response.getBody();
-        final List<Credentials> adminCreds = Collections.singletonList(
-                new Credentials("admin", "admin", encoder.encode("admin"))
-        );
-        credentials.addAll(adminCreds);
+        List<Credentials> credentials = credentialsRepository.findAll();
+        credentials.addAll(getSpecialCredentials());
 
-        for(Credentials creds : credentials) {
-            if(creds.getEmail().equals(email)) {
+        for (Credentials creds : credentials) {
+            if (creds.getEmail().equals(email)) {
 
-                // Remember that Spring needs roles to be in this format: "ROLE_" + userRole (i.e. "ROLE_ADMIN")
-                // So, we need to set it to that format, so we can verify and compare roles (i.e. hasRole("ADMIN")).
                 List<GrantedAuthority> grantedAuthorities = AuthorityUtils
                         .commaSeparatedStringToAuthorityList(
                                 creds.getUserId().equals("admin") ? "admin, user" : fetchRoleNameByUserId(creds.getUserId())
@@ -66,8 +59,14 @@ public class UserDetailsServiceImpl implements UserDetailsService {
     }
 
 
-
     private String fetchRoleNameByUserId(String userId) {
-        return restTemplate.getForObject("http://user-service/roleName/" + userId, String.class);
+        return restTemplate.getForObject("http://user-service/role/name/user/" + userId, String.class);
+    }
+
+    private List<Credentials> getSpecialCredentials(){
+        List<Credentials> specialCredentials = Collections.singletonList(
+                new Credentials("admin", "admin", encoder.encode("admin"))
+        );
+        return specialCredentials;
     }
 }

@@ -8,6 +8,6 @@ import pl.treekt.medica.auth.Document.Credentials;
 public interface CredentialsRepository extends MongoRepository<Credentials, String> {
 
 
-    Credentials findCredentialsByUserId(Integer userId);
+    Credentials findCredentialsByUserId(String userId);
     Credentials findCredentialsByEmail(String email);
 }

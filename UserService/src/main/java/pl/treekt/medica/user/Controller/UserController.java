@@ -2,9 +2,9 @@ package pl.treekt.medica.user.Controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.client.RestTemplate;
 import pl.treekt.medica.user.Document.OfficeUser;
 import pl.treekt.medica.user.Document.User;
-import pl.treekt.medica.user.Repository.CredentialsRepository;
 import pl.treekt.medica.user.Repository.OfficeUserRepository;
 import pl.treekt.medica.user.Repository.RoleRepository;
 import pl.treekt.medica.user.Repository.UserRepository;
@@ -18,18 +18,16 @@ import java.util.UUID;
 @RequestMapping("/")
 public class UserController {
 
+    private final RestTemplate restTemplate;
+
     private final UserRepository userRepository;
     private final OfficeUserRepository officeUserRepository;
-    private final CredentialsRepository credentialsRepository;
-    private final RoleRepository roleRepository;
-
 
     @Autowired
-    public UserController(UserRepository userRepository, OfficeUserRepository officeUserRepository, CredentialsRepository credentialsRepository, RoleRepository roleRepository) {
+    public UserController(UserRepository userRepository, OfficeUserRepository officeUserRepository, RestTemplate restTemplate) {
         this.userRepository = userRepository;
         this.officeUserRepository = officeUserRepository;
-        this.credentialsRepository = credentialsRepository;
-        this.roleRepository = roleRepository;
+        this.restTemplate = restTemplate;
     }
 
 
@@ -45,9 +43,9 @@ public class UserController {
         return userRepository.findUserById(id);
     }
 
-    @GetMapping("/byEmail/{email}")
+    @GetMapping("/email/{email}")
     public User getUserByEmail(@PathVariable() String email) {
-        String userId = credentialsRepository.getCredentialsByEmail(email).getUserId();
+        String userId = restTemplate.getForObject("http://auth-service/credentials/userId/" + email, String.class);
         return userRepository.findUserById(userId);
     }
 
@@ -56,12 +54,12 @@ public class UserController {
         return userRepository.findAll();
     }
 
-    @GetMapping("/allDefault")
+    @GetMapping("/default/all")
     public List<User> getAllDefaultUsers() {
         return userRepository.findAllByIsOfficeUser(false);
     }
 
-    @GetMapping("/allOffice")
+    @GetMapping("/office/all")
     public List<User> getAllOfficeUsers() {
         return userRepository.findAllByIsOfficeUser(true);
     }
@@ -76,11 +74,6 @@ public class UserController {
         return officeUserRepository.findOfficeUserByUserId(id);
     }
 
-    @GetMapping("/roleName/{userId}")
-    public String getRoleNameByUserId(@PathVariable String userId) {
-        String roleId = userRepository.findUserById(userId).getRoleId();
-        return this.roleRepository.getRoleById(roleId).getName();
-    }
 
 
 }

@@ -1,6 +1,7 @@
 package pl.treekt.medica.auth.Controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.web.bind.annotation.*;
 import pl.treekt.medica.auth.Document.AuthHistory;
 import pl.treekt.medica.auth.Document.Credentials;
@@ -10,43 +11,33 @@ import pl.treekt.medica.auth.Repository.CredentialsRepository;
 import java.util.List;
 
 @RestController
-@RequestMapping("/credentials")
+@RequestMapping("/auth")
 public class AuthController {
 
+    private BCryptPasswordEncoder passwordEncoder;
     private final CredentialsRepository credentialsRepository;
 
-    private final AuthHistoryRepository authHistoryRepository;
-
     @Autowired
-    public AuthController(CredentialsRepository credentialsRepository, AuthHistoryRepository authHistoryRepository) {
+    public AuthController(CredentialsRepository credentialsRepository, BCryptPasswordEncoder passwordEncoder) {
         this.credentialsRepository = credentialsRepository;
-        this.authHistoryRepository = authHistoryRepository;
+        this.passwordEncoder = passwordEncoder;
+    }
+
+    @GetMapping
+    public String getSometing(){
+        return "BANG!!";
     }
 
 
-    @GetMapping()
-    public String getSomething(){
-        return "BANG!";
-    }
-
-
-    @GetMapping("/creds/{userId}")
-    public Credentials getCredentials(@PathVariable("userId") final int userId){
-        return credentialsRepository.findCredentialsByUserId(userId);
-    }
-
-    @PostMapping("/creds")
+    @PostMapping("/credentials")
     public void saveCredentials(@RequestBody Credentials credentials){
+        credentials.setPassword(passwordEncoder.encode(credentials.getPassword()));
         credentialsRepository.save(credentials);
     }
 
-    @GetMapping("/history/{credsId}")
-    public List<AuthHistory> getAllAuthenticationHistoryFor(@PathVariable("credsId") final int credsId){
-        return authHistoryRepository.getAllByCredentialsId(credsId);
+    @GetMapping("/credentials/userId/{email}")
+    public String getEmailOfCredentials(@PathVariable String email){
+        return credentialsRepository.findCredentialsByEmail(email).getUserId();
     }
 
-    @GetMapping("/history/all")
-    public List<AuthHistory> getAllAuthenticationHistory(){
-        return authHistoryRepository.findAll();
-    }
 }
