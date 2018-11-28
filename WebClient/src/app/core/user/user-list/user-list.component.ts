@@ -9,26 +9,26 @@ import {ActivatedRoute} from '@angular/router';
 })
 export class UserListComponent implements OnInit {
 
-  onlyOfficeUsers: boolean;
+  userType: string;
 
   users: User[];
 
   constructor(private userRest: UserRestService, private route: ActivatedRoute) {
     this.route.data.subscribe(data => {
-      this.onlyOfficeUsers = data['onlyOfficeUsers'];
+      this.userType = data['userType'];
     });
   }
 
   ngOnInit() {
-    // this.initUsers();
+    this.initUsers();
   }
 
   private initUsers() {
-    if (this.onlyOfficeUsers === null) {
+    if (this.userType === 'all') {
       this.userRest.getAllUsers().subscribe(response => this.users = response);
-    } else if (this.onlyOfficeUsers) {
+    } else if (this.userType === 'office') {
       this.userRest.getAllUsersIfOfficeUser().subscribe(response => this.users = response);
-    } else {
+    } else if (this.userType === 'default') {
       this.userRest.getAllUserIfDefaultUser().subscribe(response => this.users = response);
     }
   }

@@ -50,10 +50,17 @@ export const dashboardRoutes: Routes = [
             }
           },
           {
-            path: 'user-list',
+            path: 'patient-list',
             component: UserListComponent,
             data: {
-              onlyOfficeUsers: true
+              userType: 'default'
+            }
+          },
+          {
+            path: 'office-user-list',
+            component: UserListComponent,
+            data: {
+              userType: 'office'
             }
           }
         ],

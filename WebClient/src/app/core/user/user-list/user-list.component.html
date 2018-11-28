@@ -1,5 +1,18 @@
-<p>
-  xd
-  {{onlyOfficeUsers}}
-  dx
-</p>
+<table class="ui very basic collapsing celled table">
+  <thead>
+  <tr>
+    <th>Imię</th>
+    <th>Nazwisko</th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr *ngFor="let user of users">
+    <td>
+      {{user.userDetails.firstName}}
+    </td>
+    <td>
+      {{user.userDetails.lastName}}
+    </td>
+  </tr>
+  </tbody>
+</table>
