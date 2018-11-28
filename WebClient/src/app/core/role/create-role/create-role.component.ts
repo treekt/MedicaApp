@@ -22,8 +22,7 @@ export class CreateRoleComponent implements OnInit {
 
 
   saveRole() {
-    this.roleRestService.saveRole(this.role)
-      .subscribe(result => console.log('success ' + result));
+    this.roleRestService.saveRole(this.role).subscribe(() => {});
   }
 
   onCheckboxChange(permission, $event) {

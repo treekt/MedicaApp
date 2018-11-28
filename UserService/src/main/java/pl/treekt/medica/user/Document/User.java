@@ -6,6 +6,7 @@ import lombok.NoArgsConstructor;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 import pl.treekt.medica.user.Document.Embedded.Address;
+import pl.treekt.medica.user.Document.Embedded.OfficeDetails;
 import pl.treekt.medica.user.Document.Embedded.UserDetails;
 
 @Data
@@ -17,6 +18,7 @@ public class User {
     @Id
     private String id;
     private Boolean isOfficeUser;
+    private OfficeDetails officeDetails;
     private UserDetails userDetails;
     private Address address;
     private String roleId;

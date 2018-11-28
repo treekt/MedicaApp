@@ -14,11 +14,11 @@
       </div>
       <div class="field">
         <label>Pracownik</label>
-        <select class="ui search dropdown" name="officeUser" [(ngModel)]="visit.officeUserId"
+        <select class="ui search dropdown" name="officeDetails" [(ngModel)]="visit.officeUserId"
                 (keyup)="searchOfficeUser$.next($event.target.value)" semanticDropdown>
           <option value="">Pracownik</option>
-          <option *ngFor="let officeUser of officeUsers" [value]="officeUser.id">
-            {{officeUser.userDetails.firstName}} {{officeUser.userDetails.lastName}}
+          <option *ngFor="let officeDetails of officeUsers" [value]="officeDetails.id">
+            {{officeDetails.userDetails.firstName}} {{officeDetails.userDetails.lastName}}
           </option>
         </select>
       </div>

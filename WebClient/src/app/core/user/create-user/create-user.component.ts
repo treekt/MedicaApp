@@ -1,6 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {Role} from '../../../models/role';
-import {OfficeUser, User} from '../../../models/user';
+import {OfficeDetails, User} from '../../../models/user';
 import {Credentials} from '../../../models/credentials';
 import {RoleRestService} from '../../../services/rest/role-rest.service';
 import {UserRestService} from '../../../services/rest/user-rest.service';
@@ -16,7 +16,6 @@ export class CreateUserComponent implements OnInit {
   roles: Role[];
 
   user: User;
-  officeUser: OfficeUser;
   credentials: Credentials;
   confirmPassword: string;
 
@@ -35,12 +34,12 @@ export class CreateUserComponent implements OnInit {
   ngOnInit() {
     this.user = new User();
     if (this.isOfficeUser) {
-      this.officeUser = new OfficeUser();
+      this.user.officeDetails = new OfficeDetails();
+      this.user.isOfficeUser = this.isOfficeUser;
     } else {
       // TODO: Ustaw dla uzytkowika role 'Pacjent'
     }
     this.credentials = new Credentials();
-    this.user.isUserOffice = this.isOfficeUser;
     this.initAvailableRoles();
   }
 
@@ -50,11 +49,6 @@ export class CreateUserComponent implements OnInit {
 
   saveOfficeUser() {
     this.userRestService.saveUser(this.user).subscribe(response => {
-      if (this.isOfficeUser) {
-        this.officeUser.userId = response.id;
-        this.userRestService.saveOfficeUser(this.officeUser).subscribe(() => {
-        });
-      }
       this.credentials.userId = response.id;
       this.credsRestService.saveCredentials(this.credentials).subscribe(() => {
       });

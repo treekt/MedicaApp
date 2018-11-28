@@ -1,7 +1,7 @@
 import {Injectable} from '@angular/core';
 import {HttpClient, HttpHeaders} from '@angular/common/http';
 import {Observable} from 'rxjs';
-import {OfficeUser, User} from '../../models/user';
+import {User} from '../../models/user';
 import {debounceTime, distinctUntilChanged, switchMap} from 'rxjs/operators';
 import {Schedule} from '../../models/schedule';
 import {AuthService} from '../auth.service';
@@ -52,10 +52,6 @@ export class UserRestService {
 
   getAllUsersIfOfficeUser(): Observable<any> {
     return this.http.get(this.endpoint + '/office/all');
-  }
-
-  saveOfficeUser(officeUser: OfficeUser): Observable<any> {
-    return this.http.post(this.endpoint + '/office', JSON.stringify(officeUser), this.httpOptions);
   }
 
   saveSchedule(schedule: Schedule): Observable<any> {

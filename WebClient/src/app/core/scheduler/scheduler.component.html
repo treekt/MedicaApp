@@ -3,7 +3,7 @@
   <form class="ui form">
     <div class="field">
       <label>Pracownik</label>
-      <select class="ui fluid dropdown" title="officeUser" name="officeUser" semanticDropdown>
+      <select class="ui fluid dropdown" title="officeDetails" name="officeDetails" semanticDropdown>
         <option value="">Pracownik</option>
         <option *ngFor="let user of officeUsers" [value]="user.id">{{user.userDetails.firstName}}
           {{user.userDetails.lastName}} ({{user.userDetails.pesel}})
@@ -12,11 +12,11 @@
     </div>
   </form>
 </div>
-<ng-container *ngIf="officeUser">
+<ng-container *ngIf="officeDetails">
   <div class="ui segment">
-    <app-create-event [schedulerOwner]="officeUser"></app-create-event>
+    <app-create-event [schedulerOwner]="officeDetails"></app-create-event>
   </div>
   <div class="ui segment">
-    <app-calendar [schedulerOwner]="officeUser"></app-calendar>
+    <app-calendar [schedulerOwner]="officeDetails"></app-calendar>
   </div>
 </ng-container>

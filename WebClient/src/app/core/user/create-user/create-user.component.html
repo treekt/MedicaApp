@@ -31,11 +31,11 @@
     <div class="two fields">
       <div class="field">
         <label>Tytuł naukowy</label>
-        <input type="text" placeholder="Tytuł naukowy" name="degree" [(ngModel)]="officeUser.degree">
+        <input type="text" placeholder="Tytuł naukowy" name="degree" [(ngModel)]="user.officeDetails.degree">
       </div>
       <div class="field">
         <label>PWZ</label>
-        <input type="number" placeholder="PWZ" name="pwz" [(ngModel)]="officeUser.pwz">
+        <input type="number" placeholder="PWZ" name="pwz" [(ngModel)]="user.officeDetails.pwz">
       </div>
     </div>
 
@@ -89,7 +89,7 @@
   <div class="three fields">
     <div class="field">
       <label>Ulica</label>
-      <input type="number" placeholder="Ulica" name="street" [(ngModel)]="user.address.street">
+      <input type="text" placeholder="Ulica" name="street" [(ngModel)]="user.address.street">
     </div>
     <div class="field">
       <label>Numer domu</label>

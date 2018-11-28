@@ -3,10 +3,8 @@ package pl.treekt.medica.user.Controller;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.client.RestTemplate;
-import pl.treekt.medica.user.Document.OfficeUser;
+import pl.treekt.medica.user.Document.Embedded.OfficeDetails;
 import pl.treekt.medica.user.Document.User;
-import pl.treekt.medica.user.Repository.OfficeUserRepository;
-import pl.treekt.medica.user.Repository.RoleRepository;
 import pl.treekt.medica.user.Repository.UserRepository;
 
 import java.util.Collections;
@@ -21,12 +19,10 @@ public class UserController {
     private final RestTemplate restTemplate;
 
     private final UserRepository userRepository;
-    private final OfficeUserRepository officeUserRepository;
 
     @Autowired
-    public UserController(UserRepository userRepository, OfficeUserRepository officeUserRepository, RestTemplate restTemplate) {
+    public UserController(UserRepository userRepository, RestTemplate restTemplate) {
         this.userRepository = userRepository;
-        this.officeUserRepository = officeUserRepository;
         this.restTemplate = restTemplate;
     }
 
@@ -64,15 +60,6 @@ public class UserController {
         return userRepository.findAllByIsOfficeUser(true);
     }
 
-    @PostMapping("/office")
-    public void saveOfficeUser(@RequestBody OfficeUser officeUser) {
-        officeUserRepository.save(officeUser);
-    }
-
-    @GetMapping("/office/{id}")
-    public OfficeUser getOfficeUser(@PathVariable() final String id) {
-        return officeUserRepository.findOfficeUserByUserId(id);
-    }
 
 
 

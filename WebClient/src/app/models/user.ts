@@ -1,6 +1,7 @@
 export class User {
   id: string;
-  isUserOffice: boolean;
+  isOfficeUser: boolean;
+  officeDetails: OfficeDetails;
   userDetails: UserDetails;
   address: Address;
   roleId: string;
@@ -11,8 +12,7 @@ export class User {
   }
 }
 
-export class OfficeUser {
-  userId: string;
+export class OfficeDetails {
   pwz: number;
   degree: string;
 }
