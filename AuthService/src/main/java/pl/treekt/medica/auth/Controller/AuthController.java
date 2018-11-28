@@ -10,7 +10,7 @@ import pl.treekt.medica.auth.Repository.CredentialsRepository;
 import java.util.List;
 
 @RestController
-@RequestMapping("/")
+@RequestMapping("/credentials")
 public class AuthController {
 
     private final CredentialsRepository credentialsRepository;
@@ -21,6 +21,12 @@ public class AuthController {
     public AuthController(CredentialsRepository credentialsRepository, AuthHistoryRepository authHistoryRepository) {
         this.credentialsRepository = credentialsRepository;
         this.authHistoryRepository = authHistoryRepository;
+    }
+
+
+    @GetMapping()
+    public String getSomething(){
+        return "BANG!";
     }
 
 

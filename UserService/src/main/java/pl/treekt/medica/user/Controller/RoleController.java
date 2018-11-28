@@ -6,6 +6,7 @@ import pl.treekt.medica.user.Document.Role;
 import pl.treekt.medica.user.Enums.Privilages;
 import pl.treekt.medica.user.Repository.RoleRepository;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 
@@ -44,6 +45,7 @@ public class RoleController {
     public List<Role> getAllRoles(){
         return roleRepository.findAll();
     }
+
 
     @GetMapping("/permissions")
     public List<Privilages.Permission> getAllPermissions() {

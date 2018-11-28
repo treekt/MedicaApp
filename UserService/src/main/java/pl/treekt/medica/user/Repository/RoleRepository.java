@@ -12,4 +12,5 @@ public interface RoleRepository extends MongoRepository<Role, String> {
     Role getRoleById(String id);
     void deleteById(String id);
     boolean existsById(String id);
+
 }

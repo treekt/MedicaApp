@@ -19,5 +19,5 @@ public class User {
     private Boolean isOfficeUser;
     private UserDetails userDetails;
     private Address address;
-    private Integer roleId;
+    private String roleId;
 }

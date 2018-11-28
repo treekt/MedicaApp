@@ -11,7 +11,7 @@ import java.util.Date;
 public class WorkScheduler {
 
     @Id
-    private Long id;
+    private String id;
     private String title;
     private Integer type;
     private Date start;

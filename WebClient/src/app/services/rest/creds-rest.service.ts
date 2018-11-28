@@ -8,7 +8,7 @@ import {Observable} from 'rxjs';
 })
 export class CredsRestService {
 
-  endpoint = 'http://localhost:8762/auth/creds';
+  endpoint = 'http://localhost:8762/user/credentials';
   httpOptions = {
     headers: new HttpHeaders({
       'Content-Type': 'application/json'
