@@ -6,6 +6,7 @@ import {UserListComponent} from '../../core/user/user-list/user-list.component';
 import {VisitManagementComponent} from '../../core/visit/visit-management.component';
 import {CreateVisitComponent} from '../../core/visit/create-visit/create-visit.component';
 import {DashboardComponent} from './dashboard.component';
+import {MakeVisitComponent} from "../../core/visit/make-visit/make-visit.component";
 
 
 export const dashboardRoutes: Routes = [
@@ -21,6 +22,13 @@ export const dashboardRoutes: Routes = [
           {
             path: 'create-visit',
             component: CreateVisitComponent,
+            // data: {
+            //   isOfficeUser: false
+            // }
+          },
+          {
+            path: 'make-visit',
+            component: MakeVisitComponent,
             // data: {
             //   isOfficeUser: false
             // }

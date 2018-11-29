@@ -1,0 +1,54 @@
+<div class="ui steps">
+  <div id="interview" class="step active">
+    <i class="pencil alternate icon"></i>
+    <div class="content">
+      <div class="title">Wywiad</div>
+      <div class="description">Dowiedz się co dolega pacjentowi</div>
+    </div>
+  </div>
+  <div id="diagnosis" class="step">
+    <i class="stethoscope icon"></i>
+    <div class="content">
+      <div class="title">Diagnoza</div>
+      <div class="description">Zdiagnozuj przypadłość</div>
+    </div>
+  </div>
+  <div id="recommendation" class="step">
+    <i class="pills icon"></i>
+    <div class="content">
+      <div class="title">Zalecenie</div>
+      <div class="description">Podaj sposób leczenia</div>
+    </div>
+  </div>
+</div>
+<ng-container>
+  <ng-template [ngIf]="step === 'interview'">
+    <form class="ui form">
+      <div class="field">
+        <label>Wywiad</label>
+        <textarea rows="3" placeholder="Przeprowadź wywiad pacjentem i zanotuj"></textarea>
+      </div>
+      <button (click)="goFromTo('interview', 'diagnosis')" class="ui right floated blue button">Dalej</button>
+    </form>
+  </ng-template>
+  <ng-template [ngIf]="step === 'diagnosis'">
+    <form class="ui form">
+      <div class="field">
+        <label>Diagnoza opisowa</label>
+        <textarea rows="3" placeholder="Opisz słownie diagnozę pacjenta"></textarea>
+      </div>
+      <button (click)="goFromTo('diagnosis', 'interview')" class="ui left floated blue button">Wróć</button>
+      <button (click)="goFromTo('diagnosis', 'recommendation')" class="ui right floated blue button">Dalej</button>
+    </form>
+  </ng-template>
+  <ng-template [ngIf]="step === 'recommendation'">
+    <form class="ui form">
+      <div class="field">
+        <label>Zalecenia</label>
+        <textarea rows="3" placeholder="Zapisz zalecenia dla pacjenta"></textarea>
+      </div>
+      <button (click)="goFromTo('recommendation', 'diagnosis')" class="ui left floated blue button">Wróć</button>
+      <button  class="ui right floated green button">Zakończ</button>
+    </form>
+  </ng-template>
+</ng-container>
