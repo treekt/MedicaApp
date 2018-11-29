@@ -45,7 +45,7 @@ public class UserDetailsServiceImpl implements UserDetailsService {
 
                 List<GrantedAuthority> grantedAuthorities = AuthorityUtils
                         .commaSeparatedStringToAuthorityList(
-                                creds.getUserId().equals("admin") ? "admin, user" : fetchRoleNameByUserId(creds.getUserId())
+                                creds.getUserId().equals("admin") ? creds.getUserId() : fetchRoleNameByUserId(creds.getUserId())
                         );
 
                 // The "Credentials" class is provided by Spring and represents a model class for user to be returned by UserDetailsService
@@ -60,7 +60,7 @@ public class UserDetailsServiceImpl implements UserDetailsService {
 
 
     private String fetchRoleNameByUserId(String userId) {
-        return restTemplate.getForObject("http://user-service/role/name/user/" + userId, String.class);
+        return restTemplate.getForObject("http://user-service/roleName/" + userId, String.class);
     }
 
     private List<Credentials> getSpecialCredentials(){

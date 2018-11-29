@@ -61,6 +61,11 @@ public class UserController {
     }
 
 
+    @GetMapping("/roleName/{userId}")
+    public String getRoleNameForUser(@PathVariable String userId){
+        return userRepository.findUserById(userId).getRoleName();
+    }
+
 
 
 }

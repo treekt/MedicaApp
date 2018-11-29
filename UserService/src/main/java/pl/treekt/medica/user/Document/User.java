@@ -21,5 +21,5 @@ public class User {
     private OfficeDetails officeDetails;
     private UserDetails userDetails;
     private Address address;
-    private String roleId;
+    private String roleName;
 }

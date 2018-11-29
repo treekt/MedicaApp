@@ -31,8 +31,12 @@ export class RoleRestService {
     return this.http.post(this.endpoint, JSON.stringify(role), this.httpOptions);
   }
 
-  deleteRole(id: string): Observable<any> {
-    return this.http.delete(this.endpoint + '/' + id);
+  deleteRole(name: string): Observable<any> {
+    return this.http.delete(this.endpoint + '/' + name);
+  }
+
+  getPermissionsOfRole(name: string): Observable<any> {
+    return this.http.get(this.endpoint + '/permissions/' + name);
   }
 
 

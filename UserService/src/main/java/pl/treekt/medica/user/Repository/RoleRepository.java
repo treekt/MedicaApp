@@ -9,8 +9,8 @@ import java.util.List;
 @Repository
 public interface RoleRepository extends MongoRepository<Role, String> {
 
-    Role getRoleById(String id);
-    void deleteById(String id);
-    boolean existsById(String id);
+    Role getRoleByName(String name);
+    void deleteByName(String name);
+    boolean existsByName(String name);
 
 }

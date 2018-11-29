@@ -24,7 +24,7 @@ export class RoleListComponent implements OnInit {
   }
 
   delete(role: Role) {
-    this.roleRestService.deleteRole(role.id).subscribe(success => console.log(success));
+    this.roleRestService.deleteRole(role.name).subscribe(success => console.log(success));
     const roleIndex = this.roles.indexOf(role);
     this.roles.splice(roleIndex, 1);
   }
