@@ -8,11 +8,10 @@ import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {LoginComponent} from './auth/login/login.component';
 import {TokenInterceptor} from './interceptors/token.interceptor';
 import {CoreComponent} from './core/core.component';
-import {SemanticDropdownDirective} from './directives/semantic-dropdown.directive';
-import {SemanticCalendarDirective} from './directives/semantic-calendar.directive';
 import {AuthGuard} from './services/guards/auth-guard.service';
 import {AuthService} from './services/auth.service';
 import {FullCalendarModule} from 'ng-fullcalendar';
+import {DirectiveModule} from './directives/directive.module';
 
 @NgModule({
   imports: [
@@ -22,13 +21,12 @@ import {FullCalendarModule} from 'ng-fullcalendar';
     ReactiveFormsModule,
     AppRoutingModule,
     FullCalendarModule,
+    DirectiveModule
   ],
   declarations: [
     AppComponent,
     LoginComponent,
-    CoreComponent,
-    SemanticDropdownDirective,
-    SemanticCalendarDirective
+    CoreComponent
   ],
   providers: [
     AuthGuard,
