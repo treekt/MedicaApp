@@ -1,6 +1,6 @@
 import {NgModule} from '@angular/core';
 import {RouterModule, Routes} from '@angular/router';
-import {LoginComponent} from './auth/login/login.component';
+import {LoginComponent} from './core/login/login.component';
 import {CoreComponent} from './core/core.component';
 import {AuthGuard} from './services/guards/auth-guard.service';
 
@@ -22,11 +22,16 @@ export const routes: Routes = [
       },
       {
         path: 'dashboard',
-        loadChildren: './dashboard/dashboard.module#DashboardModule'
+        loadChildren: './web/dashboard/dashboard.module#DashboardModule'
       },
       {
         path: 'profile',
-        loadChildren: './profile/profile.module#ProfileModule'
+        loadChildren: './web/profile/profile.module#ProfileModule'
+      }
+      ,
+      {
+        path: 'administration',
+        loadChildren: './web/administration/administration.module#AdministrationModule'
       }
     ]
   },

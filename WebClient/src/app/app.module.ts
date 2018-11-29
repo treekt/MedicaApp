@@ -5,13 +5,13 @@ import {AppRoutingModule} from './app-routing.module';
 import {AppComponent} from './app.component';
 import {HTTP_INTERCEPTORS, HttpClientModule} from '@angular/common/http';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
-import {LoginComponent} from './auth/login/login.component';
+import {LoginComponent} from './core/login/login.component';
 import {TokenInterceptor} from './interceptors/token.interceptor';
 import {CoreComponent} from './core/core.component';
 import {AuthGuard} from './services/guards/auth-guard.service';
 import {AuthService} from './services/auth.service';
 import {FullCalendarModule} from 'ng-fullcalendar';
-import {DirectiveModule} from './directives/directive.module';
+import {DirectiveModule} from './modules/directive.module';
 
 @NgModule({
   imports: [

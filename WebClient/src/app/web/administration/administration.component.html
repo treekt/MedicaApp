@@ -1,0 +1,28 @@
+<div class="ui container">
+  <div class="ui grid">
+    <div class="three wide column">
+      <div class="ui vertical menu">
+        <div class="header">
+          Panel administratora
+        </div>
+        <div class="item">
+          <div class="header">
+            <i class="user icon"></i>
+            Konto
+          </div>
+          <div class="menu">
+            <a class="item">
+              <i class="address card icon" routerLink="office-user-list" routerLinkActive="active"></i>
+              Lista pracowników
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="thirteen wide stretched column">
+      <div class="ui segment">
+        <router-outlet></router-outlet>
+      </div>
+    </div>
+  </div>
+</div>

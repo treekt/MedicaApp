@@ -4,7 +4,7 @@ export class User {
   officeDetails: OfficeDetails;
   userDetails: UserDetails;
   address: Address;
-  roleId: string;
+  roleName: string;
 
   constructor() {
     this.userDetails = new UserDetails();

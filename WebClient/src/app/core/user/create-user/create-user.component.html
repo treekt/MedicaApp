@@ -8,9 +8,9 @@
     </div>
     <div *ngIf="isOfficeUser" class="field" >
       <label>Rola</label>
-      <select class="ui fluid dropdown" title="Rola" name="role" [(ngModel)]="user.roleId" semanticDropdown>
+      <select class="ui fluid dropdown" title="Rola" name="role" [(ngModel)]="user.roleName" semanticDropdown>
         <option value="">Rola</option>
-        <option *ngFor="let role of roles" [value]="role.id" >{{role.name}}</option>
+        <option *ngFor="let role of roles" [value]="role.namee" >{{role.name}}</option>
       </select>
     </div>
   </div>
