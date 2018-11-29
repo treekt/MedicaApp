@@ -12,11 +12,11 @@
     </div>
   </form>
 </div>
-<ng-container *ngIf="officeDetails">
+<ng-container *ngIf="officeUser">
   <div class="ui segment">
-    <app-create-event [schedulerOwner]="officeDetails"></app-create-event>
+    <app-create-event [schedulerOwner]="officeUser"></app-create-event>
   </div>
   <div class="ui segment">
-    <app-calendar [schedulerOwner]="officeDetails"></app-calendar>
+    <app-calendar [schedulerOwner]="officeUser"></app-calendar>
   </div>
 </ng-container>

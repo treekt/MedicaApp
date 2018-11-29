@@ -1,12 +1,14 @@
 <div class="column">
   <div class="ui card">
-    <div class="content">
-      <div *ngIf="title" class="header">
-        {{title}}
-      </div>
-      <div *ngIf="description" class="description">
-        {{description}}
-      </div>
+    <div class="content center aligned">
+      <i class="{{iconClasses}} blue huge icon"></i>
+      <!--<div class="huge">-->
+        <!--{{title}}-->
+      <!--</div>-->
+      <!--<div  class="description">-->
+        <!--<i class="users massive green icon"></i>-->
+        <!--{{description}}-->
+      <!--</div>-->
     </div>
     <div routerLink="{{routeAddress}}" class="ui bottom attached buttons">
       <div class="ui button">

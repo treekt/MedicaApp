@@ -7,7 +7,7 @@ import {Component, Input, OnInit} from '@angular/core';
 export class SelectCardComponent implements OnInit {
 
   @Input()
-  image;
+  iconClasses;
   @Input()
   title;
   @Input()

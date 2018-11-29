@@ -21,7 +21,9 @@
     </div>
   </div>
 </div>
+
 <ng-container>
+
   <ng-template [ngIf]="step === 'interview'">
     <form class="ui form">
       <div class="field">
@@ -31,6 +33,7 @@
       <button (click)="goFromTo('interview', 'diagnosis')" class="ui right floated blue button">Dalej</button>
     </form>
   </ng-template>
+
   <ng-template [ngIf]="step === 'diagnosis'">
     <form class="ui form">
       <div class="field">
@@ -41,6 +44,7 @@
       <button (click)="goFromTo('diagnosis', 'recommendation')" class="ui right floated blue button">Dalej</button>
     </form>
   </ng-template>
+
   <ng-template [ngIf]="step === 'recommendation'">
     <form class="ui form">
       <div class="field">
@@ -51,4 +55,5 @@
       <button  class="ui right floated green button">Zakończ</button>
     </form>
   </ng-template>
+  
 </ng-container>
