@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import {SemanticDropdownDirective} from '../directives/semantic-dropdown.directive';
 import {SemanticCalendarDirective} from '../directives/semantic-calendar.directive';
+import { ShowPrivilegedDirective } from '../directives/show-privileged.directive';
 
 @NgModule({
   imports: [
@@ -9,11 +10,14 @@ import {SemanticCalendarDirective} from '../directives/semantic-calendar.directi
   ],
   declarations: [
     SemanticDropdownDirective,
-    SemanticCalendarDirective
+    SemanticCalendarDirective,
+    ShowPrivilegedDirective
   ],
   exports: [
     SemanticDropdownDirective,
-    SemanticCalendarDirective
-  ]
+    SemanticCalendarDirective,
+    ShowPrivilegedDirective
+  ],
+
 })
 export class DirectiveModule { }

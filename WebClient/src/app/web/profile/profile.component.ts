@@ -3,8 +3,7 @@ import {AuthService} from '../../services/auth.service';
 
 @Component({
   selector: 'app-profile',
-  templateUrl: './profile.component.html',
-  styleUrls: ['./profile.component.css']
+  templateUrl: './profile.component.html'
 })
 export class ProfileComponent implements OnInit {
 
@@ -14,7 +13,7 @@ export class ProfileComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.email = 'mock@gmail.com';
+    this.email = this.authService.isAdministrator() ? 'Aministrator' : this.authService.getEmailOfAuthenticatedUser();
   }
 
 }

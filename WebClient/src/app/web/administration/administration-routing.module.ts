@@ -2,6 +2,9 @@ import {NgModule} from '@angular/core';
 import {RouterModule, Routes} from '@angular/router';
 import {AdministrationComponent} from './administration.component';
 import {UserListComponent} from '../../core/user/user-list/user-list.component';
+import {CreateUserComponent} from '../../core/user/create-user/create-user.component';
+import {CreateRoleComponent} from '../../core/role/create-role/create-role.component';
+import {RoleListComponent} from '../../core/role/role-list/role-list.component';
 
 export const administrationRoutes: Routes = [
   {
@@ -16,6 +19,21 @@ export const administrationRoutes: Routes = [
           userType: 'office'
         }
       },
+      {
+        path: 'create-office-user',
+        component: CreateUserComponent,
+        data: {
+          isOfficeUser: true
+        }
+      },
+      {
+        path: 'create-role',
+        component: CreateRoleComponent
+      },
+      {
+        path: 'role-list',
+        component: RoleListComponent
+      }
     ]
   }
 ];
