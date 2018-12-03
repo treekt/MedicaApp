@@ -1,14 +1,15 @@
 export class Visit {
   id: string;
   date: Date;
-  dateRequest: DateRequest;
+  // dateRequest: DateRequest;
   status: string;
   visitDetails: VisitDetails;
   userId: string;
   officeUserId: string;
 
   constructor() {
-    this.dateRequest = new DateRequest();
+    this.visitDetails = new VisitDetails();
+    // this.dateRequest = new DateRequest();
   }
 }
 
@@ -17,7 +18,25 @@ export class VisitDetails {
   diagnosis: string;
   recommendation: string;
   deseases: number[];
-  medicines: string[];
+  medicines: VisitMedicine[];
+
+  constructor() {
+    this.medicines = [];
+
+  }
+
+
+}
+
+export class VisitMedicine {
+  medicineId: string;
+  packageId: string;
+
+  constructor(medicineId: string, packageId) {
+    this.medicineId = medicineId;
+    this.packageId = packageId;
+  }
+
 }
 
 export class DateRequest {

@@ -15,14 +15,9 @@ public class Medicine {
     private String id;
     private String productName;
     private String productType;
-    private String commonlyUsedName;
     private String power;
     private String form;
     private String entityResponsible;
-    private String procedureType;
-    private String licenseNumber;
-    private String licenseValidity;
-    private String codeATC;
     private List<String> activeSubstances;
     private List<Package> packages;
 }

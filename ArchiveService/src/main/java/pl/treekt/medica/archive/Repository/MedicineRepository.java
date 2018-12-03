@@ -9,6 +9,5 @@ import java.util.List;
 @Repository
 public interface MedicineRepository extends MongoRepository<Medicine, String> {
 
-    List<Medicine> getAllByProductType(String productType);
-    List<Medicine> getAllByProductNameAndProductType(String productName, String productType);
-}
+    List<Medicine> findAllByProductNameContainingAndProductType(String productName, String productType);
+ }

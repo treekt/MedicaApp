@@ -21,8 +21,9 @@ public class MedicineController {
         this.medicineRepository = medicineRepository;
     }
 
-    @GetMapping("/name/{productName}")
-    public List<Medicine> getMedicineByName(@PathVariable String productName){
-        return medicineRepository.getAllByProductNameAndProductType(productName, "ludzki");
+    @GetMapping("/all/{productName}")
+    public List<Medicine> getAllMedicineContainsName(@PathVariable String productName){
+        return medicineRepository.findAllByProductNameContainingAndProductType(productName, "ludzki");
     }
+
 }

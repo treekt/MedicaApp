@@ -6,4 +6,4 @@ należy w katalogu zawierającym pliki **(deseases.json, medicines.json)** wykon
 
 `mongoimport --db archivedb --collection deseaseCategories --type json --file deseaseCategories.json --jsonArray`
 
-`mongoimport --db archivedb --collection medicines --type json --file medicalProducts.json --jsonArray`
+`mongoimport --db archivedb --collection medicines --type json --file medicines.json --jsonArray`

@@ -3,7 +3,6 @@ package pl.treekt.medica.visit.Controller;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import pl.treekt.medica.visit.Document.Visit;
-import pl.treekt.medica.visit.Enums.VisitStatus;
 import pl.treekt.medica.visit.Repository.VisitRepository;
 
 @RestController
@@ -19,6 +18,7 @@ public class VisitController {
 
     @PostMapping()
     public void saveVisit(@RequestBody Visit visit) {
+        System.out.println("saveVisit");
         this.visitRepo.save(visit);
     }
 

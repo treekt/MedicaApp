@@ -13,9 +13,4 @@ public class Package {
     private String id;
     private String size;
     private String unitSize;
-    private String codeEAN;
-    private String accessibilityCategory;
-    private String deleted;
-    private String numberEU;
-    private String parallelDistributor;
 }
