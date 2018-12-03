@@ -1,4 +1,4 @@
-package pl.treekt.medica.visit.Document;
+package pl.treekt.medica.visit.Document.Embedded;
 
 import lombok.Data;
 import org.springframework.data.annotation.Id;
@@ -6,15 +6,13 @@ import org.springframework.data.mongodb.core.mapping.Document;
 
 import java.util.List;
 
-@Data
-@Document(collection = "visitDetails")
 public class VisitDetails {
 
-    @Id
-    private Long id;
+
     private String interview;
-    private String opinion;
-    private List<Long> diagnosis;
-    private List<Long> recommendation;
+    private String diagnosis;
+    private String recommendation;
+    private List<Integer> deseases;
+    private List<String> medicines;
 
 }

@@ -12,4 +12,5 @@ public interface DeseaseRepository extends MongoRepository<Desease, String> {
 
     List<Desease> findAllByNameContaining(String name);
     List<Desease> findAllByCodeContaining(String code);
+    List<Desease> findAllByCodeContainingOrNameContaining(String code, String name);
 }

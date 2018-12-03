@@ -1,4 +1,7 @@
 import {Component, OnInit} from '@angular/core';
+import {ArchiveRestService} from '../../../services/rest/archive-rest.service';
+import {Desease} from "../../../models/archive";
+import {Subject} from "rxjs";
 
 declare var $: any;
 
@@ -11,7 +14,15 @@ export class MakeVisitComponent implements OnInit {
 
   step = 'interview';
 
-  constructor() {
+
+  searchTerm$ = new Subject<string>();
+  deseases: Desease[];
+
+  constructor(private archiveRest: ArchiveRestService) {
+    this.archiveRest.search(this.searchTerm$)
+      .subscribe(results => {
+        this.deseases = results;
+      });
   }
 
   ngOnInit() {

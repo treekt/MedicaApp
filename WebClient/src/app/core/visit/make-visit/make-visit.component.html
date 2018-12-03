@@ -40,6 +40,18 @@
         <label>Diagnoza opisowa</label>
         <textarea rows="3" placeholder="Opisz słownie diagnozę pacjenta"></textarea>
       </div>
+      <div class="field">
+        <label>Zdiagnozowane choroby</label>
+        <label>
+          <input type="text" (keyup)="searchTerm$.next($event.target.value)"/>
+        </label>
+        <select class="ui fluid search dropdown" multiple="" semanticDropdown>
+          <option value="">Choroba</option>
+          <option *ngFor="let desease of deseases" [value]="desease.id" >{{desease.code}} - {{desease.name}}</option>
+        </select>
+      </div>
+
+
       <button (click)="goFromTo('diagnosis', 'interview')" class="ui left floated blue button">Wróć</button>
       <button (click)="goFromTo('diagnosis', 'recommendation')" class="ui right floated blue button">Dalej</button>
     </form>

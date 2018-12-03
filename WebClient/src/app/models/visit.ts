@@ -1,13 +1,11 @@
-import {Address, UserDetails} from "./user";
-
 export class Visit {
   id: string;
   date: Date;
   dateRequest: DateRequest;
-  userId: string;
-  officeUserId: string;
   status: string;
   visitDetails: VisitDetails;
+  userId: string;
+  officeUserId: string;
 
   constructor() {
     this.dateRequest = new DateRequest();
@@ -16,9 +14,10 @@ export class Visit {
 
 export class VisitDetails {
   interview: string;
-  opinion: string;
-  diagnosis: number[];
-  recommendation: number[];
+  diagnosis: string;
+  recommendation: string;
+  deseases: number[];
+  medicines: string[];
 }
 
 export class DateRequest {

@@ -21,6 +21,7 @@ public class DiseaseController {
         this.deseaseRepository = deseaseRepository;
     }
 
+
     @GetMapping("/all/name/{name}")
     public List<Desease> getAllContainsName(@PathVariable String name){
         return deseaseRepository.findAllByNameContaining(name);
@@ -29,6 +30,11 @@ public class DiseaseController {
     @GetMapping("/all/code/{code}")
     public List<Desease> getAllContainsCode(@PathVariable String code){
         return deseaseRepository.findAllByCodeContaining(code);
+    }
+
+    @GetMapping("/all/{codeOrName}")
+    public List<Desease> getAllContainsCodeOrName(@PathVariable String codeOrName) {
+        return deseaseRepository.findAllByCodeContainingOrNameContaining(codeOrName, codeOrName);
     }
 
 }
