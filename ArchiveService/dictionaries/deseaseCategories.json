@@ -1,0 +1,1400 @@
+[
+  {
+    "_id": 1,
+    "code": "A00B99",
+    "name": "Niektóre choroby zakaźne i pasożytnicze",
+    "description": "-"
+  },
+  {
+    "_id": 2,
+    "code": "C00D48",
+    "name": "Nowotwory",
+    "description": "-"
+  },
+  {
+    "_id": 3,
+    "code": "D50D89",
+    "name": "Choroby krwi i narządów krwiotwórczych oraz niektóre choroby przebiegające z udziałem mechanizmów autoimmunologicznych",
+    "description": "-"
+  },
+  {
+    "_id": 4,
+    "code": "E00E90",
+    "name": "Zaburzenia wydzielania wewnętrznego, stanu odżywienia i przemiany metabolicznej",
+    "description": "-"
+  },
+  {
+    "_id": 5,
+    "code": "F00F99",
+    "name": "Zaburzenia psychiczne i zaburzenia zachowania",
+    "description": "-"
+  },
+  {
+    "_id": 6,
+    "code": "G00G99",
+    "name": "Choroby układu nerwowego",
+    "description": "-"
+  },
+  {
+    "_id": 7,
+    "code": "H00H59",
+    "name": "Choroby oka i przydatków oka",
+    "description": "-"
+  },
+  {
+    "_id": 8,
+    "code": "H60H95",
+    "name": "Choroby ucha i wyrostka sutkowatego",
+    "description": "-"
+  },
+  {
+    "_id": 9,
+    "code": "I00I99",
+    "name": "Choroby układu krążenia",
+    "description": "-"
+  },
+  {
+    "_id": 10,
+    "code": "J00J99",
+    "name": "Choroby układu oddechowego",
+    "description": "-"
+  },
+  {
+    "_id": 11,
+    "code": "K00K93",
+    "name": "Choroby układu trawiennego",
+    "description": "-"
+  },
+  {
+    "_id": 12,
+    "code": "L00L99",
+    "name": "Choroby skóry i tkanki podskórnej",
+    "description": "-"
+  },
+  {
+    "_id": 13,
+    "code": "M00M99",
+    "name": "Choroby układu kostno-mięśniowego i tkanki łącznej",
+    "description": "-"
+  },
+  {
+    "_id": 14,
+    "code": "N00N99",
+    "name": "Choroby układu moczowo-płciowego",
+    "description": "-"
+  },
+  {
+    "_id": 15,
+    "code": "O00O99",
+    "name": "Ciąża, poród i połóg",
+    "description": "-"
+  },
+  {
+    "_id": 16,
+    "code": "P00P96",
+    "name": "Niektóre stany rozpoczynające się w okresie okołoporodowym",
+    "description": "-"
+  },
+  {
+    "_id": 17,
+    "code": "Q00Q99",
+    "name": "Wady rozwojowe wrodzone, zniekształcenia i aberracje chromosomowe",
+    "description": "-"
+  },
+  {
+    "_id": 18,
+    "code": "R00R99",
+    "name": "Objawy, cechy chorobowe oraz nieprawidłowe wyniki badań klinicznych laboratoryjnych gdzie indziej niesklasyfikowane",
+    "description": "-"
+  },
+  {
+    "_id": 19,
+    "code": "S00T98",
+    "name": "Urazy, zatrucia i inne określone skutki działania czynników zewnętrznych",
+    "description": "-"
+  },
+  {
+    "_id": 20,
+    "code": "V01Y98",
+    "name": "Zewnętrzne przyczyny zachowania i zgonu",
+    "description": "-"
+  },
+  {
+    "_id": 21,
+    "code": "Z00Z99",
+    "name": "Czynniki spływające na stan zdrowia i kontakt ze slużbą zdrowia",
+    "description": "-"
+  },
+  {
+    "_id": 22,
+    "code": "A00A09",
+    "name": "Choroby zakaźne przewodu pokarmowego",
+    "description": "-"
+  },
+  {
+    "_id": 23,
+    "code": "A15A19",
+    "name": "Gruźlica",
+    "description": "-"
+  },
+  {
+    "_id": 24,
+    "code": "A20A28",
+    "name": "Niektóre bakteryjne choroby odzwierzęce",
+    "description": "-"
+  },
+  {
+    "_id": 25,
+    "code": "A30A49",
+    "name": "Inne choroby bakteryjne",
+    "description": "-"
+  },
+  {
+    "_id": 26,
+    "code": "A50A64",
+    "name": "Zakażenia przenoszone głównie drogą płciową",
+    "description": "-"
+  },
+  {
+    "_id": 27,
+    "code": "A65A69",
+    "name": "Inne choroby wywołane przez krętki Spirochetaceae",
+    "description": "-"
+  },
+  {
+    "_id": 28,
+    "code": "A70A74",
+    "name": "Inne choroby wywołane przez Chlamydie",
+    "description": "-"
+  },
+  {
+    "_id": 29,
+    "code": "A75A79",
+    "name": "Riketsjozy",
+    "description": "-"
+  },
+  {
+    "_id": 30,
+    "code": "A80A89",
+    "name": "Wirusowe zakażenia ośrodkowego układu nerwowego",
+    "description": "-"
+  },
+  {
+    "_id": 31,
+    "code": "A90A99",
+    "name": "Gorączki wirusowe oraz krwotoczne gorączki wirusowe przenoszone przez stawonogi",
+    "description": "-"
+  },
+  {
+    "_id": 32,
+    "code": "B00B09",
+    "name": "Zakażenia wirusowe charakteryzujące się uszkodzeniem skóry i błony śluzowej",
+    "description": "-"
+  },
+  {
+    "_id": 33,
+    "code": "B15B19",
+    "name": "Wirusowe zapalenie wątroby",
+    "description": "-"
+  },
+  {
+    "_id": 34,
+    "code": "B20B24",
+    "name": "Choroba wywołana przez ludzki wirus upośledzenia odporności (HIV)",
+    "description": "-"
+  },
+  {
+    "_id": 35,
+    "code": "B25B34",
+    "name": "Inne choroby wirusowe",
+    "description": "-"
+  },
+  {
+    "_id": 36,
+    "code": "B35B49",
+    "name": "Grzybice",
+    "description": "-"
+  },
+  {
+    "_id": 37,
+    "code": "B50B64",
+    "name": "Choroby pierwotniakowe",
+    "description": "-"
+  },
+  {
+    "_id": 38,
+    "code": "B65B83",
+    "name": "Robaczyce",
+    "description": "-"
+  },
+  {
+    "_id": 39,
+    "code": "B85B89",
+    "name": "Wszawica, akarioza i inne inwazje pasożytnicze",
+    "description": "-"
+  },
+  {
+    "_id": 40,
+    "code": "B90B94",
+    "name": "Następstwa chorób zakaźnych i pasożytniczych",
+    "description": "-"
+  },
+  {
+    "_id": 41,
+    "code": "B95B97",
+    "name": "Bakteryjne, wirusowe i inne czynniki zakaźne",
+    "description": "-"
+  },
+  {
+    "_id": 42,
+    "code": "B99B99",
+    "name": "Inne choroby wirusowe",
+    "description": "-"
+  },
+  {
+    "_id": 43,
+    "code": "C00C75",
+    "name": "Nowotwory złośliwe o określonym umiejscowieniu uznane lub podejrzane jako pierwotne, za wyjątkiem nowotworów tkanki limfatycznej, krwiotwórczej i tkanek pokrewnych:",
+    "description": "-"
+  },
+  {
+    "_id": 44,
+    "code": "C76C80",
+    "name": "Nowotwory złośliwe o niedokładnie określonym, wtórnym i nieokreślonym umiejscowieniu",
+    "description": "-"
+  },
+  {
+    "_id": 45,
+    "code": "C81C96",
+    "name": "Nowotwory złośliwe uznane lub podejrzane jako pierwotne tkanki limfatycznej, krwiotwórczej i tkanek pokrewnych",
+    "description": "-"
+  },
+  {
+    "_id": 46,
+    "code": "C97C97",
+    "name": "Nowotwory złośliwe niezależnych (pierwotnych) mnogich umiejscowień",
+    "description": "-"
+  },
+  {
+    "_id": 47,
+    "code": "D00D09",
+    "name": "Nowotwory in situ",
+    "description": "-"
+  },
+  {
+    "_id": 48,
+    "code": "D10D36",
+    "name": "Nowotwory niezłośliwe",
+    "description": "-"
+  },
+  {
+    "_id": 49,
+    "code": "D37D48",
+    "name": "Nowotwory o niepewnym lub nieznanym charakterze (patrz uwaga na stronie 233)",
+    "description": "-"
+  },
+  {
+    "_id": 50,
+    "code": "D50D53",
+    "name": "Niedokrwistości z niedoborów pokarmowych",
+    "description": "-"
+  },
+  {
+    "_id": 51,
+    "code": "D55D59",
+    "name": "Niedokrwistości hemolityczne",
+    "description": "-"
+  },
+  {
+    "_id": 52,
+    "code": "D60D64",
+    "name": "Niedokrwistości aplastyczne i inne",
+    "description": "-"
+  },
+  {
+    "_id": 53,
+    "code": "D65D69",
+    "name": "Zaburzenia krzepnięcia, plamice oraz inne skazy krwotoczne",
+    "description": "-"
+  },
+  {
+    "_id": 54,
+    "code": "D70D77",
+    "name": "Inne choroby krwi i narządów krwiotwórczych",
+    "description": "-"
+  },
+  {
+    "_id": 55,
+    "code": "D80D89",
+    "name": "Niektóre choroby przebiegające z udziałem mechanizmów immunologicznych",
+    "description": "-"
+  },
+  {
+    "_id": 56,
+    "code": "E00E07",
+    "name": "Choroby tarczycy",
+    "description": "-"
+  },
+  {
+    "_id": 57,
+    "code": "E08E14",
+    "name": "Cukrzyca",
+    "description": "-"
+  },
+  {
+    "_id": 58,
+    "code": "E15E16",
+    "name": "Inne zaburzenia regulacji poziomu glukozy oraz zaburzenia wydzielania wewnętrznego trzustki",
+    "description": "-"
+  },
+  {
+    "_id": 59,
+    "code": "E17E35",
+    "name": "Choroby innych gruczołów wydzielania wewnętrznego",
+    "description": "-"
+  },
+  {
+    "_id": 60,
+    "code": "E36E46",
+    "name": "Niedożywienie",
+    "description": "-"
+  },
+  {
+    "_id": 61,
+    "code": "E50E64",
+    "name": "Inne niedobory pokarmowe",
+    "description": "-"
+  },
+  {
+    "_id": 62,
+    "code": "E65E68",
+    "name": "Otyłość i inne rodzaje hiperalimentacji",
+    "description": "-"
+  },
+  {
+    "_id": 63,
+    "code": "E70E90",
+    "name": "Choroby metaboliczne",
+    "description": "-"
+  },
+  {
+    "_id": 64,
+    "code": "F00F09",
+    "name": "Zaburzenia psychiczne organiczne, włącznie z zespołami objawowymi",
+    "description": "-"
+  },
+  {
+    "_id": 65,
+    "code": "F10F19",
+    "name": "Zaburzenia psychiczne i zachowania spowodowane używaniem środków [substancji] psychoaktywnych",
+    "description": "-"
+  },
+  {
+    "_id": 66,
+    "code": "F20F29",
+    "name": "Schizofrenia, zaburzenia typu schizofrenii [schizotypowe] i urojeniowe",
+    "description": "-"
+  },
+  {
+    "_id": 67,
+    "code": "F30F39",
+    "name": "Zaburzenia nastroju [afektywne]",
+    "description": "-"
+  },
+  {
+    "_id": 68,
+    "code": "F40F48",
+    "name": "Zaburzenia nerwicowe, związane ze stresem i pod postacią somatyczną",
+    "description": "-"
+  },
+  {
+    "_id": 69,
+    "code": "F50F59",
+    "name": "Zespoły behawioralne związane z zaburzeniami fizjologicznymi i czynnikami fizycznymi",
+    "description": "-"
+  },
+  {
+    "_id": 70,
+    "code": "F60F69",
+    "name": "Zaburzenia osobowości i zachowania dorosłych",
+    "description": "-"
+  },
+  {
+    "_id": 71,
+    "code": "F70F79",
+    "name": "Upośledzenie umysłowe",
+    "description": "-"
+  },
+  {
+    "_id": 72,
+    "code": "F80F89",
+    "name": "Zaburzenia rozwoju psychicznego (psychologicznego)1",
+    "description": "-"
+  },
+  {
+    "_id": 73,
+    "code": "F90F98",
+    "name": "Zaburzenia zachowania i emocji rozpoczynające się zwykle w dzieciństwie i w wieku młodzieńczym",
+    "description": "-"
+  },
+  {
+    "_id": 74,
+    "code": "F99F99",
+    "name": "Zaburzenia psychiczne bliżej nieokreślone (BNO)",
+    "description": "-"
+  },
+  {
+    "_id": 75,
+    "code": "G00G09",
+    "name": "Choroby zapalne ośrodkowego układu nerwowego",
+    "description": "-"
+  },
+  {
+    "_id": 76,
+    "code": "G10G13",
+    "name": "Układowe zaniki pierwotnie zajmujące ośrodkowy układ nerwowy",
+    "description": "-"
+  },
+  {
+    "_id": 77,
+    "code": "G20G26",
+    "name": "Zaburzenia pozapiramidowe i zaburzenia czynności ruchowych",
+    "description": "-"
+  },
+  {
+    "_id": 78,
+    "code": "G30G32",
+    "name": "Inne choroby zwyrodnieniowe układu nerwowego",
+    "description": "-"
+  },
+  {
+    "_id": 79,
+    "code": "G35G37",
+    "name": "Choroby demielinizacyjne ośrodkowego układu nerwowego",
+    "description": "-"
+  },
+  {
+    "_id": 80,
+    "code": "G40G47",
+    "name": "Zaburzenia okresowe i napadowe",
+    "description": "-"
+  },
+  {
+    "_id": 81,
+    "code": "G50G59",
+    "name": "Zaburzenia obejmujące nerwy, korzenie nerwów rdzeniowych i sploty nerwowe",
+    "description": "-"
+  },
+  {
+    "_id": 82,
+    "code": "G60G64",
+    "name": "Polineuropatie i inne zaburzenia obwodowego układu nerwowego",
+    "description": "-"
+  },
+  {
+    "_id": 83,
+    "code": "G70G73",
+    "name": "Choroby połączeń nerwowo-mięśniowych i mięśni",
+    "description": "-"
+  },
+  {
+    "_id": 84,
+    "code": "G80G83",
+    "name": "Porażenie mózgowe i inne zespoły porażenne",
+    "description": "-"
+  },
+  {
+    "_id": 85,
+    "code": "G90G99",
+    "name": "Inne zaburzenia układu nerwowego",
+    "description": "-"
+  },
+  {
+    "_id": 86,
+    "code": "H00H06",
+    "name": "Zaburzenia powiek, narządu łzowego i oczodołu",
+    "description": "-"
+  },
+  {
+    "_id": 87,
+    "code": "H10H13",
+    "name": "Zaburzenia spojówek",
+    "description": "-"
+  },
+  {
+    "_id": 88,
+    "code": "H15H22",
+    "name": "Zaburzenia twardówki, rogówki, tęczówki i ciała rzęskowego",
+    "description": "-"
+  },
+  {
+    "_id": 89,
+    "code": "H25H28",
+    "name": "Zaburzenia soczewki",
+    "description": "-"
+  },
+  {
+    "_id": 90,
+    "code": "H30H36",
+    "name": "Zaburzenia błony naczyniowej i siatkówki",
+    "description": "-"
+  },
+  {
+    "_id": 91,
+    "code": "H40H42",
+    "name": "Jaskra",
+    "description": "-"
+  },
+  {
+    "_id": 92,
+    "code": "H43H45",
+    "name": "Zaburzenia ciała szklistego i gałki ocznej",
+    "description": "-"
+  },
+  {
+    "_id": 93,
+    "code": "H46H48",
+    "name": "Zaburzenia nerwu wzrokowego i drogi wzrokowej",
+    "description": "-"
+  },
+  {
+    "_id": 94,
+    "code": "H49H52",
+    "name": "Zaburzenia mięśni gałki ocznej, obuocznej motoryki,",
+    "description": "-"
+  },
+  {
+    "_id": 95,
+    "code": "H53H54",
+    "name": "Upośledzenie widzenia i ślepota",
+    "description": "-"
+  },
+  {
+    "_id": 96,
+    "code": "H55H59",
+    "name": "Inne zaburzenia oka i jego przydatków",
+    "description": "-"
+  },
+  {
+    "_id": 97,
+    "code": "H60H62",
+    "name": "Choroby ucha zewnętrznego",
+    "description": "-"
+  },
+  {
+    "_id": 98,
+    "code": "H65H75",
+    "name": "Choroby ucha środkowego i wyrostka sutkowatego",
+    "description": "-"
+  },
+  {
+    "_id": 99,
+    "code": "H80H83",
+    "name": "Choroby ucha wewnętrznego",
+    "description": "-"
+  },
+  {
+    "_id": 100,
+    "code": "H90H95",
+    "name": "Inne choroby ucha",
+    "description": "-"
+  },
+  {
+    "_id": 101,
+    "code": "I00I02",
+    "name": "Ostra choroba reumatyczna",
+    "description": "-"
+  },
+  {
+    "_id": 102,
+    "code": "I05I09",
+    "name": "Przewlekła choroba reumatyczna serca",
+    "description": "-"
+  },
+  {
+    "_id": 103,
+    "code": "I10I15",
+    "name": "Choroby nadciśnieniowe",
+    "description": "-"
+  },
+  {
+    "_id": 104,
+    "code": "I20I25",
+    "name": "Choroby niedokrwienne serca",
+    "description": "-"
+  },
+  {
+    "_id": 105,
+    "code": "I26I28",
+    "name": "Zespół sercowo-płucny i choroby krążenia płucnego",
+    "description": "-"
+  },
+  {
+    "_id": 106,
+    "code": "I30I52",
+    "name": "Inne choroby serca",
+    "description": "-"
+  },
+  {
+    "_id": 107,
+    "code": "I60I69",
+    "name": "Choroby naczyń mózgowych",
+    "description": "-"
+  },
+  {
+    "_id": 108,
+    "code": "I70I79",
+    "name": "Choroby tętnic, tętniczek i naczyń włosowatych",
+    "description": "-"
+  },
+  {
+    "_id": 109,
+    "code": "I80I89",
+    "name": "Choroby żył, naczyń limfatycznych i węzłów chłonnych, nie sklasyfikowane gdzie indziej",
+    "description": "-"
+  },
+  {
+    "_id": 110,
+    "code": "I95I99",
+    "name": "Inne i nie określone zaburzenia układu krążenia",
+    "description": "-"
+  },
+  {
+    "_id": 111,
+    "code": "J00J06",
+    "name": "Ostre zakażenie górnych dróg oddechowych",
+    "description": "-"
+  },
+  {
+    "_id": 112,
+    "code": "J10J18",
+    "name": "Grypa i zapalenie płuc",
+    "description": "-"
+  },
+  {
+    "_id": 113,
+    "code": "J20J22",
+    "name": "Inne ostre zakażenie dolnych dróg oddechowych",
+    "description": "-"
+  },
+  {
+    "_id": 114,
+    "code": "J30J39",
+    "name": "Inne choroby górnych dróg oddechowych",
+    "description": "-"
+  },
+  {
+    "_id": 115,
+    "code": "J40J47",
+    "name": "Przewlekłe choroby dolnych dróg oddechowych",
+    "description": "-"
+  },
+  {
+    "_id": 116,
+    "code": "J60J70",
+    "name": "Choroby płuc wywołane czynnikami zewnętrznymi",
+    "description": "-"
+  },
+  {
+    "_id": 117,
+    "code": "J80J84",
+    "name": "Inne choroby układu oddechowego dotyczące przede wszystkim tkanki śródmiąższowej",
+    "description": "-"
+  },
+  {
+    "_id": 118,
+    "code": "J85J86",
+    "name": "Stany ropne i martwicze dolnych dróg oddechowych",
+    "description": "-"
+  },
+  {
+    "_id": 119,
+    "code": "J90J94",
+    "name": "Inne choroby opłucnej",
+    "description": "-"
+  },
+  {
+    "_id": 120,
+    "code": "J95J99",
+    "name": "Inne choroby układu oddechowego",
+    "description": "-"
+  },
+  {
+    "_id": 121,
+    "code": "K00K14",
+    "name": "Choroba jamy ustnej, gruczołów ślinowych, żuchwy i szczęk",
+    "description": "-"
+  },
+  {
+    "_id": 122,
+    "code": "K20K31",
+    "name": "Choroby przełyku, żołądka i dwunastnicy",
+    "description": "-"
+  },
+  {
+    "_id": 123,
+    "code": "K35K38",
+    "name": "Choroby wyrostka robaczkowego",
+    "description": "-"
+  },
+  {
+    "_id": 124,
+    "code": "K40K46",
+    "name": "Przepuklina",
+    "description": "-"
+  },
+  {
+    "_id": 125,
+    "code": "K50K52",
+    "name": "Niezakaźne zapalenie jelita cienkiego i grubego",
+    "description": "-"
+  },
+  {
+    "_id": 126,
+    "code": "K55K63",
+    "name": "Inne choroby jelit",
+    "description": "-"
+  },
+  {
+    "_id": 127,
+    "code": "K65K67",
+    "name": "Choroby otrzewnej",
+    "description": "-"
+  },
+  {
+    "_id": 128,
+    "code": "K70K77",
+    "name": "Choroby wątroby",
+    "description": "-"
+  },
+  {
+    "_id": 129,
+    "code": "K80K87",
+    "name": "Schorzenia pęcherzyka żółciowego, dróg żółciowych i trzustki",
+    "description": "-"
+  },
+  {
+    "_id": 130,
+    "code": "K90K93",
+    "name": "Inne choroby układu pokarmowego",
+    "description": "-"
+  },
+  {
+    "_id": 131,
+    "code": "L00L08",
+    "name": "Zakażenia skóry i tkanki podskórnej",
+    "description": "-"
+  },
+  {
+    "_id": 132,
+    "code": "L10L14",
+    "name": "Choroby pęcherzowe",
+    "description": "-"
+  },
+  {
+    "_id": 133,
+    "code": "L20L30",
+    "name": "Zapalenie skóry i inne postacie wyprysku",
+    "description": "-"
+  },
+  {
+    "_id": 134,
+    "code": "L40L45",
+    "name": "Choroby grudkowo-złuszczające",
+    "description": "-"
+  },
+  {
+    "_id": 135,
+    "code": "L50L54",
+    "name": "Pokrzywka i rumień",
+    "description": "-"
+  },
+  {
+    "_id": 136,
+    "code": "L55L59",
+    "name": "Choroby skóry i tkanki podskórnej związane z napromieniowaniem",
+    "description": "-"
+  },
+  {
+    "_id": 137,
+    "code": "L60L75",
+    "name": "Choroby przydatków skóry",
+    "description": "-"
+  },
+  {
+    "_id": 138,
+    "code": "L80L99",
+    "name": "Inne choroby skóry i tkanki podskórnej",
+    "description": "-"
+  },
+  {
+    "_id": 139,
+    "code": "M00M25",
+    "name": "Artropatie",
+    "description": "-"
+  },
+  {
+    "_id": 140,
+    "code": "M30M36",
+    "name": "Uogólnione choroby tkanki łącznej",
+    "description": "-"
+  },
+  {
+    "_id": 141,
+    "code": "M40M54",
+    "name": "Choroby grzbietu",
+    "description": "-"
+  },
+  {
+    "_id": 142,
+    "code": "M60M79",
+    "name": "Choroby tkanek miękkich",
+    "description": "-"
+  },
+  {
+    "_id": 143,
+    "code": "M80M94",
+    "name": "Choroby tkanki kostnej i chrzęstnej",
+    "description": "-"
+  },
+  {
+    "_id": 144,
+    "code": "M95M99",
+    "name": "Inne choroby układu kostno-mięśniowego i tkanki łącznej",
+    "description": "-"
+  },
+  {
+    "_id": 145,
+    "code": "N00N08",
+    "name": "Choroby kłębuszków nerkowych",
+    "description": "-"
+  },
+  {
+    "_id": 146,
+    "code": "N10N16",
+    "name": "Choroby cewkowo-śródmiąższowe nerek",
+    "description": "-"
+  },
+  {
+    "_id": 147,
+    "code": "N17N19",
+    "name": "Niewydolność nerek",
+    "description": "-"
+  },
+  {
+    "_id": 148,
+    "code": "N20N23",
+    "name": "Kamica moczowa",
+    "description": "-"
+  },
+  {
+    "_id": 149,
+    "code": "N25N29",
+    "name": "Inne zaburzenia nerki i moczowodu",
+    "description": "-"
+  },
+  {
+    "_id": 150,
+    "code": "N30N39",
+    "name": "Inne choroby układu moczowego",
+    "description": "-"
+  },
+  {
+    "_id": 151,
+    "code": "N40N51",
+    "name": "Choroby męskich narządów płciowych",
+    "description": "-"
+  },
+  {
+    "_id": 152,
+    "code": "N60N64",
+    "name": "Zaburzenia gruczołu sutkowego",
+    "description": "-"
+  },
+  {
+    "_id": 153,
+    "code": "N70N77",
+    "name": "Choroby zapalne narządów miednicy u kobiet",
+    "description": "-"
+  },
+  {
+    "_id": 154,
+    "code": "N80N98",
+    "name": "Niezapalne zaburzenia żeńskiego narządu rodnego",
+    "description": "-"
+  },
+  {
+    "_id": 155,
+    "code": "N99N99",
+    "name": "Inne zaburzenia układu moczowo-płciowego",
+    "description": "-"
+  },
+  {
+    "_id": 156,
+    "code": "O00O08",
+    "name": "Ciąża zakończona poronieniem",
+    "description": "-"
+  },
+  {
+    "_id": 157,
+    "code": "O10O16",
+    "name": "EPH gestoza podczas ciąży, porodu i połogu",
+    "description": "-"
+  },
+  {
+    "_id": 158,
+    "code": "O20O29",
+    "name": "Inne zaburzenia u matki głównie związane z ciążą",
+    "description": "-"
+  },
+  {
+    "_id": 159,
+    "code": "O30O48",
+    "name": "Opieka położnicza nad kobietą ciężarną dotycząca",
+    "description": "-"
+  },
+  {
+    "_id": 160,
+    "code": "O60O75",
+    "name": "Powikłania akcji porodowej i porodu",
+    "description": "-"
+  },
+  {
+    "_id": 161,
+    "code": "O80O84",
+    "name": "Sposób rozwiązania i ukończenia porodu",
+    "description": "-"
+  },
+  {
+    "_id": 162,
+    "code": "O85O92",
+    "name": "Powikłania związane głównie z połogiem",
+    "description": "-"
+  },
+  {
+    "_id": 163,
+    "code": "O95O99",
+    "name": "Inne stany położnicze niesklasyfikowane gdzie indziej",
+    "description": "-"
+  },
+  {
+    "_id": 164,
+    "code": "P00P04",
+    "name": "Stan płodu lub noworodka spowodowany czynnikami matczynymi oraz powikłaniami ciąży, czynności porodowej i porodu",
+    "description": "-"
+  },
+  {
+    "_id": 165,
+    "code": "P05P08",
+    "name": "Zaburzenia związane z czasem trwania ciąży i rozwojem płodu",
+    "description": "-"
+  },
+  {
+    "_id": 166,
+    "code": "P10P15",
+    "name": "Uraz okołoporodowy",
+    "description": "-"
+  },
+  {
+    "_id": 167,
+    "code": "P20P29",
+    "name": "Zaburzenia oddechowe i sercowo-naczyniowe swoiste dla okresu okołoporodowego",
+    "description": "-"
+  },
+  {
+    "_id": 168,
+    "code": "P30P39",
+    "name": "Zakażenia swoiste dla okresu okołoporodowego",
+    "description": "-"
+  },
+  {
+    "_id": 169,
+    "code": "P50P61",
+    "name": "Zaburzenia krwotoczne i choroby krwi płodu i noworodka",
+    "description": "-"
+  },
+  {
+    "_id": 170,
+    "code": "P70P74",
+    "name": "Przemijające zaburzenia wewnątrzywdzielnicze oraz metaboliczne swoiste dla płodu i noworodka",
+    "description": "-"
+  },
+  {
+    "_id": 171,
+    "code": "P75P78",
+    "name": "Zaburzenia układu pokarmowego u płodu i noworodka",
+    "description": "-"
+  },
+  {
+    "_id": 172,
+    "code": "P80P83",
+    "name": "Stany dotyczące powłok ciała i termoregulacji u płodu i noworodka",
+    "description": "-"
+  },
+  {
+    "_id": 173,
+    "code": "P90P96",
+    "name": "Inne zaburzenia rozpoczynające się w okresie okołoporodowym",
+    "description": "-"
+  },
+  {
+    "_id": 174,
+    "code": "Q00Q07",
+    "name": "Wrodzone wady rozwojowe układu nerwowego",
+    "description": "-"
+  },
+  {
+    "_id": 175,
+    "code": "Q10Q18",
+    "name": "Wrodzone wady rozwojowe oka, ucha, twarzy i szyi",
+    "description": "-"
+  },
+  {
+    "_id": 176,
+    "code": "Q20Q28",
+    "name": "Wrodzone wady rozwojowe układu krążenia",
+    "description": "-"
+  },
+  {
+    "_id": 177,
+    "code": "Q30Q34",
+    "name": "Wrodzone wady rozwojowe układu oddechowego",
+    "description": "-"
+  },
+  {
+    "_id": 178,
+    "code": "Q35Q37",
+    "name": "Rozszczep wargi i rozszczep podniebienia",
+    "description": "-"
+  },
+  {
+    "_id": 179,
+    "code": "Q38Q45",
+    "name": "Inne wrodzone wady rozwojowe układu pokarmowego",
+    "description": "-"
+  },
+  {
+    "_id": 180,
+    "code": "Q50Q56",
+    "name": "Wrodzone wady rozwojowe narządów płciowych",
+    "description": "-"
+  },
+  {
+    "_id": 181,
+    "code": "Q60Q64",
+    "name": "Wrodzone wady rozwojowe układu moczowego",
+    "description": "-"
+  },
+  {
+    "_id": 182,
+    "code": "Q65Q79",
+    "name": "Wrodzone wady rozwojowe i zniekształcenia układu mięśniowo-szkieletowego",
+    "description": "-"
+  },
+  {
+    "_id": 183,
+    "code": "Q80Q89",
+    "name": "Inne wrodzone wady rozwojowe",
+    "description": "-"
+  },
+  {
+    "_id": 184,
+    "code": "Q90Q99",
+    "name": "Aberracje chromosomowe, niesklasyfikowane gdzie indziej",
+    "description": "-"
+  },
+  {
+    "_id": 185,
+    "code": "R00R09",
+    "name": "Objawy i cechy chorobowe dotyczące układu krążenia i układu oddechowego",
+    "description": "-"
+  },
+  {
+    "_id": 186,
+    "code": "R10R19",
+    "name": "Objawy i cechy chorobowe dotyczące układu pokarmowego i jamy brzusznej",
+    "description": "-"
+  },
+  {
+    "_id": 187,
+    "code": "R20R23",
+    "name": "Objawy i cechy chorobowe dotyczące skóry i tkanki podskórnej",
+    "description": "-"
+  },
+  {
+    "_id": 188,
+    "code": "R25R29",
+    "name": "Objawy i cechy chorobowe dotyczące układu nerwowego i mięśniowo-kostnego",
+    "description": "-"
+  },
+  {
+    "_id": 189,
+    "code": "R30R39",
+    "name": "Objawy i cechy chorobowe dotyczące układu moczowego",
+    "description": "-"
+  },
+  {
+    "_id": 190,
+    "code": "R40R46",
+    "name": "Objawy i cechy chorobowe dotyczące poznawania, postrzegania, stanu emocjonalnego i zachowania",
+    "description": "-"
+  },
+  {
+    "_id": 191,
+    "code": "R47R49",
+    "name": "Objawy i cechy chorobowe dotyczące mowy i głosu",
+    "description": "-"
+  },
+  {
+    "_id": 192,
+    "code": "R50R69",
+    "name": "Objawy i cechy chorobowe ogólne",
+    "description": "-"
+  },
+  {
+    "_id": 193,
+    "code": "R70R79",
+    "name": "Nieprawidłowe wyniki badań krwi, bez rozpoznania",
+    "description": "-"
+  },
+  {
+    "_id": 194,
+    "code": "R80R82",
+    "name": "Nieprawidłowe wyniki badań moczu, bez rozpoznania",
+    "description": "-"
+  },
+  {
+    "_id": 195,
+    "code": "R83R89",
+    "name": "Nieprawidłowe wyniki badań innych płynów ustroju, substacji, tkanek, bez rozpoznania",
+    "description": "-"
+  },
+  {
+    "_id": 196,
+    "code": "R90R94",
+    "name": "Nieprawidłowe wyniki badań obrazowych i czynnościowych, bez rozpoznania",
+    "description": "-"
+  },
+  {
+    "_id": 197,
+    "code": "R95R99",
+    "name": "Nie w pełni zdiagnozowane stany chorobowe i nieznane przyczyny zgonu",
+    "description": "-"
+  },
+  {
+    "_id": 198,
+    "code": "S00S09",
+    "name": "Urazy głowy",
+    "description": "-"
+  },
+  {
+    "_id": 199,
+    "code": "S10S19",
+    "name": "Urazy szyi",
+    "description": "-"
+  },
+  {
+    "_id": 200,
+    "code": "S20S29",
+    "name": "Urazy klatki piersiowej",
+    "description": "-"
+  },
+  {
+    "_id": 201,
+    "code": "S30S39",
+    "name": "Urazy brzucha, dolnej części grzbietu, kręgosłupa lędźwiowego i miednicy",
+    "description": "-"
+  },
+  {
+    "_id": 202,
+    "code": "S40S49",
+    "name": "Urazy barku i ramienia",
+    "description": "-"
+  },
+  {
+    "_id": 203,
+    "code": "S50S59",
+    "name": "Urazy łokcia i przedramienia",
+    "description": "-"
+  },
+  {
+    "_id": 204,
+    "code": "S60S69",
+    "name": "Urazy nadgarstka i ręki",
+    "description": "-"
+  },
+  {
+    "_id": 205,
+    "code": "S70S79",
+    "name": "Urazy biodra i uda",
+    "description": "-"
+  },
+  {
+    "_id": 206,
+    "code": "S80S89",
+    "name": "Urazy kolana i podudzia",
+    "description": "-"
+  },
+  {
+    "_id": 207,
+    "code": "S90S99",
+    "name": "Urazy stawu skokowego i stopy",
+    "description": "-"
+  },
+  {
+    "_id": 208,
+    "code": "T00T07",
+    "name": "Urazy obejmujące liczne okolice ciała",
+    "description": "-"
+  },
+  {
+    "_id": 209,
+    "code": "T08T14",
+    "name": "Urazy nieokreślonej części tułowia, kończyny i okolic ciała",
+    "description": "-"
+  },
+  {
+    "_id": 210,
+    "code": "T15T19",
+    "name": "Skutki działania ciała obcego wnikającego drogą naturalnych otworów ciała",
+    "description": "-"
+  },
+  {
+    "_id": 211,
+    "code": "T20T32",
+    "name": "Oparzenia termiczne i chemiczne",
+    "description": "-"
+  },
+  {
+    "_id": 212,
+    "code": "T33T35",
+    "name": "Odmrożenie",
+    "description": "-"
+  },
+  {
+    "_id": 213,
+    "code": "T36T50",
+    "name": "Zatrucie lekami, preparatami farmakologicznymi i substancjami biologicznymi",
+    "description": "-"
+  },
+  {
+    "_id": 214,
+    "code": "T51T65",
+    "name": "Toksyczne skutki substancji, zazwyczaj nie stosowanych w celach leczniczych",
+    "description": "-"
+  },
+  {
+    "_id": 215,
+    "code": "T66T78",
+    "name": "Inne i nieokreślone skutki działania czynników zewnętrznych",
+    "description": "-"
+  },
+  {
+    "_id": 216,
+    "code": "T79T79",
+    "name": "Określone wczesne powikłania urazu",
+    "description": "-"
+  },
+  {
+    "_id": 217,
+    "code": "T80T88",
+    "name": "Powikłania opieki chirurgicznej i medycznej niesklasyfikowane gdzie indziej",
+    "description": "-"
+  },
+  {
+    "_id": 218,
+    "code": "T90T98",
+    "name": "Następstwa urazów, zatruć i innych skutków działania czynników zewnętrznych",
+    "description": "-"
+  },
+  {
+    "_id": 219,
+    "code": "V01X59",
+    "name": "Wypadki",
+    "description": "-"
+  },
+  {
+    "_id": 220,
+    "code": "X60X84",
+    "name": "Zamierzone samouszkodzenie",
+    "description": "-"
+  },
+  {
+    "_id": 221,
+    "code": "X85Y09",
+    "name": "Przestępstwo",
+    "description": "-"
+  },
+  {
+    "_id": 222,
+    "code": "Y10Y34",
+    "name": "Zdarzenie o nieokreślonym zamiarze",
+    "description": "-"
+  },
+  {
+    "_id": 223,
+    "code": "Y35Y36",
+    "name": "Uznana interwencja prawna i działania wojenne",
+    "description": "-"
+  },
+  {
+    "_id": 224,
+    "code": "Y40Y84",
+    "name": "Powikłanie opieki chirurgicznej i medycznej",
+    "description": "-"
+  },
+  {
+    "_id": 225,
+    "code": "Y85Y89",
+    "name": "Następstwo przyczyny zewnętrznej powodujące zachorowanie i zgon",
+    "description": "-"
+  },
+  {
+    "_id": 226,
+    "code": "Y90Y98",
+    "name": "Dodatkowe czynniki związane z przyczynami zachorowania i zgonu sklasyfikowane gdzie indziej",
+    "description": "-"
+  },
+  {
+    "_id": 227,
+    "code": "Z00Z13",
+    "name": "Osoby stykające się ze służbą zdrowia w związku z badaniami",
+    "description": "-"
+  },
+  {
+    "_id": 228,
+    "code": "Z20Z29",
+    "name": "Osoby z potencjalnym zagrożeniem zdrowia związanym z chorobami zakaźnymi",
+    "description": "-"
+  },
+  {
+    "_id": 229,
+    "code": "Z30Z39",
+    "name": "Osoby wymagające opieki służby zdrowia w okolicznościach związanych z rozrodem",
+    "description": "-"
+  },
+  {
+    "_id": 230,
+    "code": "Z40Z54",
+    "name": "Osoby stykające się ze służbą zdrowia w celu specjalnych zabiegów i pielęgnacji",
+    "description": "-"
+  },
+  {
+    "_id": 231,
+    "code": "Z55Z65",
+    "name": "Osoby z potencjalnym zagrożeniem zdrowia warunkami socjoekonomicznymi i psychosocjalnymi",
+    "description": "-"
+  },
+  {
+    "_id": 232,
+    "code": "Z70Z76",
+    "name": "Osoby wymagające świadczeń służby zdrowia w innych okolicznościach",
+    "description": "-"
+  },
+  {
+    "_id": 233,
+    "code": "Z80Z99",
+    "name": "Osoby z potencjalnym zagrożeniem zdrowia przeszłością osobistą i rodzinną oraz pewnymi problemami wpływającymi na stan zdrowia",
+    "description": "-"
+  }
+]

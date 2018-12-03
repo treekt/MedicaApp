@@ -8,7 +8,7 @@ import pl.treekt.medica.archive.Document.Embedded.Package;
 import java.util.List;
 
 @Data
-@Document(collection = "medicalProducts")
+@Document(collection = "medicines")
 public class Medicine {
 
     @Id

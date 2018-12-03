@@ -21,14 +21,14 @@ public class DiseaseController {
         this.deseaseRepository = deseaseRepository;
     }
 
-    @GetMapping("/categoryCode/{categoryCode}")
-    public List<Desease> getAllByCategoryCode(@PathVariable String categoryCode) {
-        return deseaseRepository.getAllByCategoryCode(categoryCode);
+    @GetMapping("/all/name/{name}")
+    public List<Desease> getAllContainsName(@PathVariable String name){
+        return deseaseRepository.findAllByNameContaining(name);
     }
 
-    @GetMapping("/subcategoryCode/{subcategoryCode}")
-    public Desease getDeseaseBySubcategoryCode(@PathVariable String subcategoryCode){
-        return deseaseRepository.getDeseaseBySubcategoryCode(subcategoryCode);
+    @GetMapping("/all/code/{code}")
+    public List<Desease> getAllContainsCode(@PathVariable String code){
+        return deseaseRepository.findAllByCodeContaining(code);
     }
 
 }
