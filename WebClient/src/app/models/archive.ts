@@ -15,15 +15,6 @@ export class Medicine {
   activeSubstances: string[];
   packages: Package[];
 
-  constructor() {
-  }
-
-  constructor(medicine: Medicine) {
-    this.productName = medicine.productName;
-    this.productType = medicine.productType;
-    this.power = medicine.power;
-    this.form = medicine.form;
-  }
 }
 
 export class Package {
