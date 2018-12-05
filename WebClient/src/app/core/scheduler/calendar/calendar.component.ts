@@ -1,7 +1,6 @@
 import {Component, Input, OnInit, ViewChild} from '@angular/core';
 import {Options} from 'fullcalendar';
-import {User} from '../../../models/user';
-import {UserRestService} from '../../../services/rest/user-rest.service';
+import {Schedule} from '../../../models/schedule';
 
 @Component({
   selector: 'app-calendar',
@@ -11,17 +10,58 @@ import {UserRestService} from '../../../services/rest/user-rest.service';
 export class CalendarComponent implements OnInit {
 
   @Input()
-  schedulerOwner: User;
+  schedules: Schedule[];
 
   calendarOptions: Options;
   displayEvent: any;
-  schedules = null;
   @ViewChild(CalendarComponent) ucCalendar: CalendarComponent;
 
-  constructor(private userRest: UserRestService) {
+  constructor() {
   }
 
   ngOnInit() {
+    this.initCalendarOptions();
+  }
+
+  clickButton(model: any) {
+    this.displayEvent = model;
+  }
+
+  dayClick(model: any) {
+    console.log(model);
+  }
+
+  eventClick(model: any) {
+    model = {
+      event: {
+        id: model.event.id,
+        start: model.event.start,
+        end: model.event.end,
+        title: model.event.title,
+        // other params
+      },
+      duration: {}
+    };
+    this.displayEvent = model;
+  }
+
+  updateEvent(model: any) {
+    model = {
+      event: {
+        id: model.event.id,
+        start: model.event.start,
+        end: model.event.end,
+        title: model.event.title
+        // other params
+      },
+      duration: {
+        _data: model.duration._data
+      }
+    };
+    this.displayEvent = model;
+  }
+
+  initCalendarOptions() {
     this.calendarOptions = {
       editable: true,
       eventLimit: false,
@@ -53,56 +93,8 @@ export class CalendarComponent implements OnInit {
       ],
       dayNamesShort: [
         'Nie', 'Pon', 'Wt', 'Śr', 'Czw', 'Pt', 'Sob'
-      ]
+      ],
     };
-
-    this.loadSchedules();
-  }
-
-  loadSchedules() {
-    this.userRest.getAllSchedulesByUserId(this.schedulerOwner.id)
-      .subscribe(data => {
-        this.schedules = data;
-      });
-  }
-
-  clickButton(model: any) {
-    this.displayEvent = model;
-  }
-
-  dayClick(model: any) {
-    console.log(model);
-  }
-
-  eventClick(model: any) {
-    model = {
-      event: {
-        id: model.event.id,
-        start: model.event.start,
-        end: model.event.end,
-        title: model.event.title,
-        allDay: model.event.allDay
-        // other params
-      },
-      duration: {}
-    };
-    this.displayEvent = model;
-  }
-
-  updateEvent(model: any) {
-    model = {
-      event: {
-        id: model.event.id,
-        start: model.event.start,
-        end: model.event.end,
-        title: model.event.title
-        // other params
-      },
-      duration: {
-        _data: model.duration._data
-      }
-    };
-    this.displayEvent = model;
   }
 
 }

@@ -2,11 +2,11 @@
   <h4 class="ui dividing header">Zdarzenie</h4>
   <div class="field">
     <label>Nazwa</label>
-    <input type="text" placeholder="Nazwa zdarzenia" name="eventName">
+    <input type="text" placeholder="Tytuł zdarzenia" name="scheduleName" [(ngModel)]="schedule.title">
   </div>
   <div class="field">
     <label>Rodzaj</label>
-    <select class="ui fluid dropdown" title="Rola" name="role" semanticDropdown>
+    <select class="ui fluid dropdown" title="Rola" name="role" [(ngModel)]="schedule.type" semanticDropdown>
       <option value="">Rodzaj</option>
       <option value="0">Dzień pracujący</option>
       <option value="1">Urlop</option>
@@ -16,10 +16,10 @@
   <div class="two fields">
     <div class="field">
       <label>Data od</label>
-      <div class="ui calendar" semanticCalendar calendarType="datetime">
+      <div class="ui calendar" semanticCalendar calendarType="datetime" >
         <div class="ui input left icon">
           <i class="calendar icon"></i>
-          <input type="text" placeholder="Data od" name="dateFrom">
+          <input type="text" placeholder="Data od" name="dateFrom" [(ngModel)]="schedule.start">
         </div>
       </div>
     </div>
@@ -28,7 +28,7 @@
       <div class="ui calendar" semanticCalendar calendarType="datetime">
         <div class="ui input left icon">
           <i class="calendar icon"></i>
-          <input type="text" placeholder="Data do" name="dateTo">
+          <input type="text" placeholder="Data do" name="dateTo" [(ngModel)]="schedule.end">
         </div>
       </div>
     </div>

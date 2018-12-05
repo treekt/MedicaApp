@@ -7,14 +7,14 @@ import org.springframework.data.mongodb.core.mapping.Document;
 import java.util.Date;
 
 @Data
-@Document(collection = "workScheduler")
-public class WorkScheduler {
+@Document(collection = "schedules")
+public class Schedule {
 
     @Id
     private String id;
     private String title;
     private Integer type;
-    private Date start;
-    private Date end;
+    private String start;
+    private String end;
     private String userId;
 }

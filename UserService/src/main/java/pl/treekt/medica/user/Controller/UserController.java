@@ -28,10 +28,8 @@ public class UserController {
 
 
     @PostMapping("/")
-    public Map saveUser(@RequestBody User user) {
-        user.setId(UUID.randomUUID().toString());
-        userRepository.save(user);
-        return Collections.singletonMap("id", user.getId());
+    public User saveUser(@RequestBody User user) {
+        return userRepository.save(user);
     }
 
     @GetMapping("/{id}")
@@ -41,7 +39,7 @@ public class UserController {
 
     @GetMapping("/email/{email}")
     public User getUserByEmail(@PathVariable() String email) {
-        String userId = restTemplate.getForObject("http://auth-service/credentials/userId/" + email, String.class);
+        String userId = restTemplate.getForObject("http://auth-service/auth/credentials/userId/" + email, String.class);
         return userRepository.findUserById(userId);
     }
 

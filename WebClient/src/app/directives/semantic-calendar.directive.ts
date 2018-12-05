@@ -29,7 +29,23 @@ export class SemanticCalendarDirective implements AfterViewInit {
           am: 'AM',
           pm: 'PM'
         },
-        type: this.calendarType
+        ampm: false,
+        type: this.calendarType,
+        formatter: {
+          date: function (date) {
+            if (!date) { return ''; }
+            let day = date.getDate() + '';
+            if (day.length < 2) {
+              day = '0' + day;
+            }
+            let month = (date.getMonth() + 1) + '';
+            if (month.length < 2) {
+              month = '0' + month;
+            }
+            const year = date.getFullYear();
+            return year + '-' + month + '-' + day;
+          }
+        }
       }
     );
   }

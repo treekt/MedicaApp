@@ -48,10 +48,9 @@ export class CreateUserComponent implements OnInit {
   }
 
   saveOfficeUser() {
-    this.userRestService.saveUser(this.user).subscribe(response => {
-      this.credentials.userId = response.id;
-      this.credsRestService.saveCredentials(this.credentials).subscribe(() => {
-      });
+    this.userRestService.saveUser(this.user).subscribe(userResult => {
+      this.credentials.userId = userResult.id;
+      this.credsRestService.saveCredentials(this.credentials).subscribe(() => {});
     });
 
   }
