@@ -1,6 +1,7 @@
 import {Component, Input, OnInit, ViewChild} from '@angular/core';
 import {Options} from 'fullcalendar';
 import {Schedule} from '../../../models/schedule';
+import {EventService} from '../../../services/event.service';
 
 @Component({
   selector: 'app-calendar',
@@ -12,15 +13,19 @@ export class CalendarComponent implements OnInit {
   @Input()
   schedules: Schedule[];
 
+  events: any;
+
   calendarOptions: Options;
   displayEvent: any;
+
   @ViewChild(CalendarComponent) ucCalendar: CalendarComponent;
 
-  constructor() {
+  constructor(private eventService: EventService) {
   }
 
   ngOnInit() {
     this.initCalendarOptions();
+    this.eventService.getEvents().subscribe(result => this.events = result);
   }
 
   clickButton(model: any) {
@@ -70,7 +75,6 @@ export class CalendarComponent implements OnInit {
         center: 'title',
         right: 'month,agendaWeek,agendaDay'
       },
-      events: [],
       allDaySlot: false,
       firstDay: 1,
       buttonText: {

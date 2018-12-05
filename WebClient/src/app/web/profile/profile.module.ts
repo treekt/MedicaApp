@@ -9,6 +9,7 @@ import {UserDetailsComponent} from '../../core/user/user-details/user-details.co
 import {DirectiveModule} from '../../modules/directive.module';
 import {FormsModule} from '@angular/forms';
 import {CreateScheduleComponent} from '../../core/scheduler/create-event/create-schedule.component';
+import {EventService} from '../../services/event.service';
 
 @NgModule({
   imports: [
@@ -25,7 +26,7 @@ import {CreateScheduleComponent} from '../../core/scheduler/create-event/create-
     CreateScheduleComponent,
     CalendarComponent,
   ],
-  providers: []
+  providers: [EventService]
 })
 export class ProfileModule {
 }
