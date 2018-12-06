@@ -713,7 +713,7 @@ i.icon.rv.hookup:before { content: '\e642'}
 i.icon.satellite:before { content: '\e562'}
 i.icon.save:before { content: '\e161'}
 i.icon.scanner:before { content: '\e329'}
-i.icon.schedule:before { content: '\e8b5'}
+i.icon.schedulerEvent:before { content: '\e8b5'}
 i.icon.school:before { content: '\e80c'}
 i.icon.screen.lock.landscape:before { content: '\e1be'}
 i.icon.screen.lock.portrait:before { content: '\e1bf'}

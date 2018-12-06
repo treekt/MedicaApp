@@ -1,9 +1,0 @@
-<!--<a (click)="loadevents()"> loadevents</a>-->
-<!--<p>Display event : {{displayEvent | json}}</p>-->
-<p>{{events | json}}</p>
-<div *ngIf="calendarOptions">
-  <ng-fullcalendar #ucCalendar [options]="calendarOptions" (eventClick)="eventClick($event.detail)"
-                   (eventDrop)="updateEvent($event.detail)"
-                   (eventResize)="updateEvent($event.detail)" (dayClick)="dayClick($event.detail)"
-                   (clickButton)="clickButton($event.detail)" [(eventsModel)]="schedule"></ng-fullcalendar>
-</div>

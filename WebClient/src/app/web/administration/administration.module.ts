@@ -8,7 +8,7 @@ import {RoleRestService} from '../../services/rest/role-rest.service';
 import {UserAdminComponentsModule} from '../../modules/user-admin-components.module';
 import {CreateRoleComponent} from '../../core/role/create-role/create-role.component';
 import {RoleListComponent} from '../../core/role/role-list/role-list.component';
-import {FormsModule} from "@angular/forms";
+import {FormsModule} from '@angular/forms';
 
 @NgModule({
   imports: [
@@ -21,7 +21,8 @@ import {FormsModule} from "@angular/forms";
   declarations: [
     AdministrationComponent,
     CreateRoleComponent,
-    RoleListComponent, ],
+    RoleListComponent
+  ],
   providers: [UserRestService, RoleRestService]
 })
 export class AdministrationModule {

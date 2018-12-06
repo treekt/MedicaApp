@@ -5,6 +5,7 @@ import {UserListComponent} from '../../core/user/user-list/user-list.component';
 import {CreateUserComponent} from '../../core/user/create-user/create-user.component';
 import {CreateRoleComponent} from '../../core/role/create-role/create-role.component';
 import {RoleListComponent} from '../../core/role/role-list/role-list.component';
+import {SchedulerComponent} from '../../core/scheduler/scheduler.component';
 
 export const administrationRoutes: Routes = [
   {
@@ -24,6 +25,13 @@ export const administrationRoutes: Routes = [
         component: CreateUserComponent,
         data: {
           isOfficeUser: true
+        }
+      },
+      {
+        path: 'office-user-scheduler',
+        component: SchedulerComponent,
+        data: {
+          forAdministration: true
         }
       },
       {

@@ -4,7 +4,7 @@ import {Observable} from 'rxjs';
 import {User} from '../../models/user';
 import {debounceTime, distinctUntilChanged, switchMap} from 'rxjs/operators';
 import {AuthService} from '../auth.service';
-import {Schedule} from '../../models/schedule';
+import {SchedulerEvent} from '../../models/scheduler';
 
 @Injectable({
   providedIn: 'root'
@@ -54,15 +54,5 @@ export class UserRestService {
     return this.http.get(this.endpoint + '/office/all');
   }
 
-  saveSchedule(schedule: Schedule): Observable<any> {
-    return this.http.post(this.endpoint + '/schedule', JSON.stringify(schedule), this.httpOptions);
-  }
 
-  getAllSchedulesByUserId(userId: string): Observable<any> {
-    return this.http.get(this.endpoint + '/schedule/all/' + userId);
-  }
-
-  getAllSchedulesByUserIdAndType(userId: string, type: number): Observable<any> {
-    return this.http.get(this.endpoint + '/schedule/all/' + userId + '/' + type);
-  }
 }

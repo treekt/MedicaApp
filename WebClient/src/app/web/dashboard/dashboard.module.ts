@@ -27,7 +27,7 @@ import { MakeVisitComponent } from '../../core/visit/make-visit/make-visit.compo
     UserManagementComponent,
     VisitManagementComponent,
     CreateVisitComponent,
-    MakeVisitComponent
+    MakeVisitComponent,
   ],
   providers: [RoleGuard, UserRestService, RoleRestService]
 })

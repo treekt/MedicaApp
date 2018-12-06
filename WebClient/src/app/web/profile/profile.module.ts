@@ -4,29 +4,25 @@ import {ProfileRoutingModule} from './profile-routing.module';
 import {ProfileComponent} from './profile.component';
 import {FullCalendarModule} from 'ng-fullcalendar';
 import {SchedulerComponent} from '../../core/scheduler/scheduler.component';
-import {CalendarComponent} from '../../core/scheduler/calendar/calendar.component';
 import {UserDetailsComponent} from '../../core/user/user-details/user-details.component';
 import {DirectiveModule} from '../../modules/directive.module';
 import {FormsModule} from '@angular/forms';
-import {CreateScheduleComponent} from '../../core/scheduler/create-event/create-schedule.component';
-import {EventService} from '../../services/event.service';
+import {ScheduleRestService} from '../../services/rest/schedule-rest.service';
+import {UserAdminComponentsModule} from '../../modules/user-admin-components.module';
 
 @NgModule({
   imports: [
     CommonModule,
     FormsModule,
     ProfileRoutingModule,
-    FullCalendarModule,
-    DirectiveModule
+    DirectiveModule,
+    UserAdminComponentsModule
   ],
   declarations: [
     ProfileComponent,
-    UserDetailsComponent,
-    SchedulerComponent,
-    CreateScheduleComponent,
-    CalendarComponent,
+    UserDetailsComponent
   ],
-  providers: [EventService]
+  providers: [ScheduleRestService]
 })
 export class ProfileModule {
 }

@@ -2,8 +2,8 @@ package pl.treekt.medica.user.Controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
-import pl.treekt.medica.user.Document.Schedule;
-import pl.treekt.medica.user.Repository.ScheduleRepository;
+import pl.treekt.medica.user.Document.SchedulerEvent;
+import pl.treekt.medica.user.Repository.SchedulerEventRepository;
 
 import java.util.List;
 
@@ -11,25 +11,35 @@ import java.util.List;
 @RequestMapping("/schedule")
 public class ScheduleController {
 
-    private final ScheduleRepository scheduleRepository;
+    private final SchedulerEventRepository schedulerEventRepository;
 
     @Autowired
-    public ScheduleController(ScheduleRepository scheduleRepository) {
-        this.scheduleRepository = scheduleRepository;
+    public ScheduleController(SchedulerEventRepository schedulerEventRepository) {
+        this.schedulerEventRepository = schedulerEventRepository;
     }
 
     @PostMapping
-    public Schedule saveEvent(@RequestBody Schedule schedule){
-         return scheduleRepository.save(schedule);
+    public SchedulerEvent saveEvent(@RequestBody SchedulerEvent schedulerEvent) {
+        return schedulerEventRepository.save(schedulerEvent);
+    }
+
+    @DeleteMapping("/{id}")
+    public void deleteEvent(@PathVariable String id){
+        schedulerEventRepository.deleteSchedulerEventById(id);
+    }
+
+    @GetMapping("/all")
+    public List<SchedulerEvent> getAllSchedules() {
+        return schedulerEventRepository.findAll();
     }
 
     @GetMapping("/all/{userId}")
-    public List<Schedule> getAllSchedulesByUserId(@PathVariable() String userId){
-        return scheduleRepository.getAllByUserId(userId);
+    public List<SchedulerEvent> getAllSchedulesByUserId(@PathVariable() String userId) {
+        return schedulerEventRepository.getAllByUserId(userId);
     }
 
     @GetMapping("/all/{userId}/{type}")
-    public List<Schedule> getAllSchedulesByUserIdAndType(@PathVariable() String userId, @PathVariable() Integer type){
-        return scheduleRepository.getAllByUserIdAndType(userId, type);
+    public List<SchedulerEvent> getAllSchedulesByUserIdAndType(@PathVariable() String userId, @PathVariable() Integer type) {
+        return schedulerEventRepository.getAllByUserIdAndType(userId, type);
     }
 }

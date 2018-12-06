@@ -10,7 +10,13 @@ export const profileRoutes: Routes = [
     component: ProfileComponent,
     children: [
       {path: '', redirectTo: 'scheduler', pathMatch: 'full'},
-      {path: 'scheduler', component: SchedulerComponent},
+      {
+        path: 'scheduler',
+        component: SchedulerComponent,
+        data: {
+          forAdministration: false
+        }
+      },
       {path: 'details', component: UserDetailsComponent}
     ]
   }

@@ -8,13 +8,15 @@ import java.util.Date;
 
 @Data
 @Document(collection = "schedules")
-public class Schedule {
+public class SchedulerEvent {
 
     @Id
     private String id;
     private String title;
+    private String description;
     private Integer type;
     private String start;
     private String end;
+    private String color;
     private String userId;
 }

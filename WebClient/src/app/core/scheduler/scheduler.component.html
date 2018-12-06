@@ -1,22 +1,78 @@
-<a class="ui orange ribbon label">Harmonogram pracy</a>
-<div class="ui segment" *ngIf="isAdmin">
-  <form class="ui form">
-    <div class="field">
-      <label>Pracownik</label>
-      <select class="ui fluid dropdown" title="officeDetails" name="officeDetails" semanticDropdown>
-        <option value="">Pracownik</option>
-        <option *ngFor="let user of officeUsers" [value]="user.id">{{user.userDetails.firstName}}
-          {{user.userDetails.lastName}} ({{user.userDetails.pesel}})
-        </option>
-      </select>
-    </div>
-  </form>
-</div>
+<ng-container *ngIf="forAdministration">
+  <div class="ui segment">
+    <form class="ui form">
+      <div class="field">
+        <label>Wybierz pracownika</label>
+        <select class="ui dropdown" title="officeUsers" name="officeUsers"
+                (change)="onSelectOfficeUser($event.target.value)" semanticDropdown>
+          <option value="">Pracownik</option>
+          <option [value]="user.id" *ngFor="let user of officeUsers">
+            {{user.userDetails.firstName}} {{user.userDetails.lastName}} ({{user.userDetails.pesel}})
+          </option>
+        </select>
+      </div>
+    </form>
+  </div>
+</ng-container>
 <ng-container *ngIf="officeUser">
-  <div class="ui segment">
-    <app-create-schedule [schedulerOwner]="officeUser" (scheduleCreated)="onCreateSchedule($event)"></app-create-schedule>
+  <div *ngIf="calendarOptions">
+    <div class="ui segment" *ngIf="selectedEvent">
+      <table class="ui very basic table">
+        <thead>
+        <tr>
+          <th class="four wide">Tytuł</th>
+          <th class="five wide">Od</th>
+          <th class="five wide">Do</th>
+          <th class="two wide"></th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr>
+          <td>{{selectedEvent.event.title}}</td>
+          <td>{{formatDate(selectedEvent.event.start)}}</td>
+          <td>{{formatDate(selectedEvent.event.end)}}</td>
+          <td>
+            <button (click)="deleteEvent()" class="ui red right floated button">Usuń</button>
+          </td>
+        </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <ng-fullcalendar #ucCalendar [options]="calendarOptions"
+                     (eventResize)="updateEvent($event.detail)"
+                     (eventDrop)="updateEvent($event.detail)"
+                     (select)="onSelectedTime($event.detail)"
+                     (eventClick)="clickEvent($event.detail)"
+                     [(eventsModel)]="events"
+    ></ng-fullcalendar>
   </div>
-  <div class="ui segment">
-    <app-calendar [schedules]="schedules"></app-calendar>
+
+  <div class="ui modal">
+    <div class="header">
+      Wydarzenie
+    </div>
+    <div class="content">
+      <form class="ui form" *ngIf="event">
+        <div class="field">
+          <label>Opis</label>
+          <input type="text" placeholder="Opis zdarzenia (opcjonalnie)" name="scheduleName"
+                 [(ngModel)]="event.description">
+        </div>
+        <div class="field">
+          <label>Rodzaj</label>
+          <select class="ui fluid dropdown" title="Rola" name="role" [(ngModel)]="event.type" semanticDropdown>
+            <option value="">Rodzaj</option>
+            <option [value]="0">Praca</option>
+            <option [value]="1">Urlop</option>
+            <option [value]="2">Nagły przypadek</option>
+          </select>
+        </div>
+      </form>
+    </div>
+    <div class="actions">
+      <div (click)="createEvent()" class="ui green button">Stwórz</div>
+    </div>
   </div>
+
 </ng-container>

@@ -10,7 +10,6 @@ import {TokenInterceptor} from './interceptors/token.interceptor';
 import {CoreComponent} from './core/core.component';
 import {AuthGuard} from './services/guards/auth-guard.service';
 import {AuthService} from './services/auth.service';
-import {FullCalendarModule} from 'ng-fullcalendar';
 import {DirectiveModule} from './modules/directive.module';
 
 @NgModule({
@@ -20,7 +19,6 @@ import {DirectiveModule} from './modules/directive.module';
     BrowserModule,
     ReactiveFormsModule,
     AppRoutingModule,
-    FullCalendarModule,
     DirectiveModule
   ],
   declarations: [
