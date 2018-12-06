@@ -5,12 +5,14 @@ import {CreateUserComponent} from '../core/user/create-user/create-user.componen
 import {FormsModule} from '@angular/forms';
 import {SchedulerComponent} from '../core/scheduler/scheduler.component';
 import {FullCalendarModule} from 'ng-fullcalendar';
+import {DirectiveModule} from './directive.module';
 
 @NgModule({
   imports: [
     CommonModule,
     FormsModule,
-    FullCalendarModule
+    FullCalendarModule,
+    DirectiveModule
   ],
   declarations: [
     UserListComponent,
