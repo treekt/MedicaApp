@@ -7,6 +7,7 @@ import lombok.NoArgsConstructor;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 import pl.treekt.medica.visit.Document.Embedded.VisitDetails;
+import pl.treekt.medica.visit.Document.Embedded.VisitType;
 
 import java.util.Date;
 
@@ -21,6 +22,7 @@ public class Visit {
     @JsonFormat
     private Date date;
     private String status;
+    private VisitType type;
     private VisitDetails visitDetails;
     private String userId;
     private String officeUserId;

@@ -1,4 +1,4 @@
-package pl.treekt.medica.visit.Document;
+package pl.treekt.medica.visit.Document.Embedded;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
