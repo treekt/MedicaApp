@@ -9,6 +9,8 @@ import {UserAdminComponentsModule} from '../../modules/user-admin-components.mod
 import {CreateRoleComponent} from '../../core/role/create-role/create-role.component';
 import {RoleListComponent} from '../../core/role/role-list/role-list.component';
 import {FormsModule} from '@angular/forms';
+import { CreateVisitTypeComponent } from '../../core/visit/create-visit-type/create-visit-type.component';
+import { VisitTypeListComponent } from '../../core/visit/visit-type-list/visit-type-list.component';
 
 @NgModule({
   imports: [
@@ -21,7 +23,9 @@ import {FormsModule} from '@angular/forms';
   declarations: [
     AdministrationComponent,
     CreateRoleComponent,
-    RoleListComponent
+    RoleListComponent,
+    CreateVisitTypeComponent,
+    VisitTypeListComponent
   ],
   providers: [UserRestService, RoleRestService]
 })

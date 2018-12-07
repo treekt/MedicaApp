@@ -6,11 +6,12 @@ import org.springframework.http.HttpMethod;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.client.RestTemplate;
-import pl.treekt.medica.visit.Document.Embedded.VisitType;
+import pl.treekt.medica.visit.Document.VisitType;
 import pl.treekt.medica.visit.Document.Visit;
 import pl.treekt.medica.visit.Entity.SchedulerEvent;
-import pl.treekt.medica.visit.Entity.SearchVisitDate;
+import pl.treekt.medica.visit.Entity.SearchVisitDateRequest;
 import pl.treekt.medica.visit.Repository.VisitRepository;
+import pl.treekt.medica.visit.Repository.VisitTypeRepository;
 
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
@@ -21,12 +22,15 @@ import java.util.*;
 public class VisitController {
 
     private final VisitRepository visitRepository;
+    private final VisitTypeRepository visitTypeRepository;
+
     private final RestTemplate restTemplate;
     private DateFormat dateFormat;
 
     @Autowired
-    public VisitController(VisitRepository visitRepository, RestTemplate restTemplate) {
+    public VisitController(VisitRepository visitRepository, RestTemplate restTemplate, VisitTypeRepository visitTypeRepository) {
         this.visitRepository = visitRepository;
+        this.visitTypeRepository = visitTypeRepository;
         this.restTemplate = restTemplate;
 
         this.dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm");
@@ -34,32 +38,35 @@ public class VisitController {
     }
 
     @PostMapping()
-    public void saveVisit(@RequestBody Visit visit) {
-        System.out.println("saveVisit");
-        this.visitRepository.save(visit);
+    public Visit saveVisit(@RequestBody Visit visit) {
+        return this.visitRepository.save(visit);
     }
 
     @PostMapping("/{id}")
-    public Visit getVisit(@PathVariable("id") Long id) {
+    public Visit findVisitById(@PathVariable("id") Long id) {
         return this.visitRepository.findVisitById(id);
     }
 
-    @GetMapping("/types")
-    public List<VisitType> getAllVisitTypes() {
-        List<VisitType> visitTypes = new ArrayList<>();
+    @PostMapping("/types")
+    public VisitType saveVisitType(@RequestBody VisitType visitType) {
+        return visitTypeRepository.save(visitType);
+    }
 
-        VisitType visitType1 = new VisitType(0, "Konsultacja lekarska", 15);
-        VisitType visitType2 = new VisitType(1, "Badanie", 20);
-        visitTypes.add(visitType1);
-        visitTypes.add(visitType2);
+    @DeleteMapping("/types/{id}")
+    public void deleteVisitType(@PathVariable String id){
+        visitTypeRepository.deleteById(id);
+    }
 
-        return visitTypes;
+    @GetMapping("/types/all")
+    public List<VisitType> findAllVisitTypes() {
+        return visitTypeRepository.findAll();
     }
 
     @PostMapping("/dates/available")
-    public List<String> getAvailableVisitDates(@RequestBody SearchVisitDate searchVisitDate) {
-        List<SchedulerEvent> workEvents = getSchedulerEvents(searchVisitDate);
+    public List<String> getAvailableVisitDates(@RequestBody SearchVisitDateRequest searchVisitDateRequest) {
+        List<SchedulerEvent> workEvents = getSchedulerEvents(searchVisitDateRequest);
         Map<SchedulerEvent, List<Visit>> visitInEvents = new HashMap<>();
+        VisitType visitType = visitTypeRepository.findVisitTypeById(searchVisitDateRequest.getVisitTypeId());
 
         //Fetching all visits in these work events
         for (SchedulerEvent event : workEvents) {
@@ -89,7 +96,7 @@ public class VisitController {
                     }
                 }
                 if (!visitExistsAlready) {
-                    int minutePlusDuration = minute + searchVisitDate.getVisitType().getDuration();
+                    int minutePlusDuration = minute + visitType.getDuration();
                     if(minutePlusDuration <= minutesBetweenDates){
                         boolean canPutDate = true;
                         for(int insideMin = minute; insideMin <= minutePlusDuration; insideMin++){
@@ -102,7 +109,7 @@ public class VisitController {
                             }
                         }
                         availableDates.add(dateFormat.format(tempDate));
-                        minute += searchVisitDate.getVisitType().getDuration() - 1;
+                        minute += visitType.getDuration() - 1;
                     }else{
                         break;
                     }
@@ -113,8 +120,9 @@ public class VisitController {
     }
 
 
-    private List<SchedulerEvent> getSchedulerEvents(SearchVisitDate searchVisitDate) {
-        ResponseEntity<List<SchedulerEvent>> response = restTemplate.exchange("http://user-service/schedule/all/" + searchVisitDate.getOfficeUserId() + "/" + searchVisitDate.getVisitType().getId() + "/between/" + searchVisitDate.getDateFrom() + "/" + searchVisitDate.getDateTo(), HttpMethod.GET, null, new ParameterizedTypeReference<List<SchedulerEvent>>() {
+    private List<SchedulerEvent> getSchedulerEvents(SearchVisitDateRequest searchVisitDateRequest) {
+        VisitType visitType = visitTypeRepository.findVisitTypeById(searchVisitDateRequest.getVisitTypeId());
+        ResponseEntity<List<SchedulerEvent>> response = restTemplate.exchange("http://user-service/schedule/all/" + searchVisitDateRequest.getOfficeUserId() + "/" + visitType.getId() + "/between/" + searchVisitDateRequest.getDateFrom() + "/" + searchVisitDateRequest.getDateTo(), HttpMethod.GET, null, new ParameterizedTypeReference<List<SchedulerEvent>>() {
         });
         return response.getBody();
     }

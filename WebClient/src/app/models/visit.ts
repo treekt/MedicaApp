@@ -2,7 +2,7 @@ export class Visit {
   id: string;
   date: string;
   status: string;
-  type: number;
+  type: string;
   visitDetails: VisitDetails;
   userId: string;
   officeUserId: string;
@@ -39,13 +39,13 @@ export class VisitMedicine {
 
 export class SearchVisitDate {
   officeUserId: string;
-  visitTypeId: number;
+  visitTypeId: string;
   dateFrom: string;
   dateTo: string;
 }
 
 export class VisitType {
-  id: number;
+  id: string;
   name: string;
   duration: number;
 }

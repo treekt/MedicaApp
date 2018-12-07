@@ -1,7 +1,7 @@
 import {Injectable} from '@angular/core';
 import {HttpClient, HttpHeaders} from '@angular/common/http';
 import {Observable} from 'rxjs';
-import {SearchVisitDate, Visit} from '../../models/visit';
+import {SearchVisitDate, Visit, VisitType} from '../../models/visit';
 
 @Injectable({
   providedIn: 'root'
@@ -26,8 +26,16 @@ export class VisitRestService {
     return this.http.post(this.endpoint, JSON.stringify(visit), this.httpOptions);
   }
 
+  saveVisitType(visitType: VisitType) {
+    return this.http.post(this.endpoint + '/types', JSON.stringify(visitType), this.httpOptions);
+  }
+
   getVisitTypes(): Observable<any> {
-    return this.http.get(this.endpoint + '/types');
+    return this.http.get(this.endpoint + '/types/all');
+  }
+
+  deleteVisitType(id: string): Observable<any> {
+    return this.http.delete(this.endpoint + '/types/' + id);
   }
 
 

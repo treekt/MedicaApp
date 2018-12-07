@@ -1,0 +1,12 @@
+<form class="ui form">
+  <h4 class="ui dividing header">Rodzaj wizyty</h4>
+  <div class="field">
+    <label>Nazwa</label>
+    <input type="text" placeholder="Nazwa" name="visitTypeName" [(ngModel)]="visitType.name">
+  </div>
+  <div class="field">
+    <label>Czas trwania wizyty</label>
+    <input type="number" placeholder="Czas trwania wizyty" name="visitTypeDuration" [(ngModel)]="visitType.duration">
+  </div>
+  <button (click)="saveVisitType()" class="ui green button" type="submit">Stwórz rodzaj wizyty</button>
+</form>

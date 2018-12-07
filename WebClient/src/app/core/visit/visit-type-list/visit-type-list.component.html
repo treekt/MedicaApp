@@ -1,0 +1,18 @@
+<table class="ui table">
+  <thead>
+  <tr>
+    <th class="eight wide">Nazwa</th>
+    <th class="five wide">Czas trwania wizyty</th>
+    <th class="three wide"></th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr *ngFor="let visitType of visitTypes">
+    <td>{{visitType.name}}</td>
+    <td>{{visitType.duration}}</td>
+    <td>
+      <button (click)="deleteVisitType(visitType)" class="ui icon red right floated button"><i class="trash alternate outline align center icon"></i></button>
+    </td>
+  </tr>
+  </tbody>
+</table>

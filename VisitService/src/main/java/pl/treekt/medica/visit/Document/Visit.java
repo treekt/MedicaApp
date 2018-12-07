@@ -7,7 +7,6 @@ import lombok.NoArgsConstructor;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 import pl.treekt.medica.visit.Document.Embedded.VisitDetails;
-import pl.treekt.medica.visit.Document.Embedded.VisitType;
 
 import java.util.Date;
 

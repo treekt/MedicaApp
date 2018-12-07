@@ -6,6 +6,8 @@ import {CreateUserComponent} from '../../core/user/create-user/create-user.compo
 import {CreateRoleComponent} from '../../core/role/create-role/create-role.component';
 import {RoleListComponent} from '../../core/role/role-list/role-list.component';
 import {SchedulerComponent} from '../../core/scheduler/scheduler.component';
+import {CreateVisitTypeComponent} from '../../core/visit/create-visit-type/create-visit-type.component';
+import {VisitTypeListComponent} from '../../core/visit/visit-type-list/visit-type-list.component';
 
 export const administrationRoutes: Routes = [
   {
@@ -41,6 +43,14 @@ export const administrationRoutes: Routes = [
       {
         path: 'role-list',
         component: RoleListComponent
+      },
+      {
+        path: 'create-visit-type',
+        component: CreateVisitTypeComponent
+      },
+      {
+        path: 'visit-type-list',
+        component: VisitTypeListComponent
       }
     ]
   }

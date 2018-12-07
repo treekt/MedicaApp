@@ -9,8 +9,7 @@ declare var $: any;
 
 @Component({
   selector: 'app-make-visit',
-  templateUrl: './make-visit.component.html',
-  styleUrls: ['./make-visit.component.css']
+  templateUrl: './make-visit.component.html'
 })
 export class MakeVisitComponent implements OnInit {
 
