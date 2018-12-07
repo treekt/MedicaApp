@@ -16,9 +16,9 @@ public class SchedulerEvent {
     private String title;
     private String description;
     private Integer type;
-    @JsonFormat(shape=JsonFormat.Shape.STRING, pattern="yyyy-MM-dd hh:mm")
+    @JsonFormat
     private Date start;
-    @JsonFormat(shape=JsonFormat.Shape.STRING, pattern="yyyy-MM-dd hh:mm")
+    @JsonFormat
     private Date end;
     private String color;
     private String userId;

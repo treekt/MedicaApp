@@ -1,5 +1,6 @@
 package pl.treekt.medica.visit.Entity;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.Data;
 import org.springframework.format.annotation.DateTimeFormat;
 
@@ -12,9 +13,9 @@ public class SchedulerEvent {
     private String title;
     private String description;
     private Integer type;
-    @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm")
+    @JsonFormat
     private Date start;
-    @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm")
+    @JsonFormat
     private Date end;
     private String color;
     private String userId;

@@ -1,5 +1,6 @@
 package pl.treekt.medica.visit.Entity;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -14,8 +15,8 @@ public class SearchVisitDate {
 
     private String officeUserId;
     private Integer visitTypeId;
-    @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm")
+    @JsonFormat
     private Date dateFrom;
-    @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm")
+    @JsonFormat
     private Date dateTo;
 }

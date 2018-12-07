@@ -56,6 +56,7 @@ public class ScheduleController {
             @PathVariable @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm") Date minDate,
             @PathVariable @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm") Date maxDate) {
 
+        System.out.println(minDate.toString() + " - " + maxDate.toString());
         return schedulerEventRepository.getAllByUserIdAndTypeAndStartAfterAndEndBefore(userId, type, minDate, maxDate);
     }
 }
