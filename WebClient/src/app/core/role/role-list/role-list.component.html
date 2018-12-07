@@ -1,15 +1,21 @@
-<div class="ui relaxed list">
-  <h4 class="ui dividing header">Lista ról</h4>
-  <div class="item" *ngFor="let role of roles;">
-    {{role.name}}
-    <div style="float: right">
-      <div class="ui icon buttons">
+<a class="ui orange ribbon label">Lista ról</a>
+<table class="ui table">
+  <thead>
+  <tr>
+    <th class="thirteen wide">Nazwa</th>
+    <th class="three wide"></th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr *ngFor="let role of roles">
+    <td>{{role.name}}</td>
+    <td>
+      <div class="ui icon right floated buttons">
         <button (click)="edit(role)" class="ui button"><i class="edit outline icon align left icon"></i></button>
         <button (click)="delete(role)" class="ui red button"><i class="trash alternate outline align center icon"></i></button>
       </div>
-    </div>
-  </div>
-</div>
-
-
+    </td>
+  </tr>
+  </tbody>
+</table>
 
