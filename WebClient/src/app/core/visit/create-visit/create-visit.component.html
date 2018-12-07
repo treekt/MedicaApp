@@ -5,7 +5,7 @@
       <div class="field">
         <label>Pacjent</label>
         <select class="ui search dropdown" name="user" [(ngModel)]="visit.userId"
-                (keyup)="searchUser$.next($event.target.value)" semanticDropdown>
+                (keyup)="userTerm$.next($event.target.value)" semanticDropdown>
           <option value="">Pacjent</option>
           <option *ngFor="let user of users" [value]="user.id">
             {{user.userDetails.firstName}} {{user.userDetails.lastName }}
@@ -15,29 +15,36 @@
       <div class="field">
         <label>Pracownik</label>
         <select class="ui search dropdown" name="officeDetails" [(ngModel)]="visit.officeUserId"
-                (keyup)="searchOfficeUser$.next($event.target.value)" semanticDropdown>
+                (keyup)="officeUserTerm$.next($event.target.value)" (change)="onSelectOfficeUser()" semanticDropdown>
           <option value="">Pracownik</option>
-          <option *ngFor="let officeDetails of officeUsers" [value]="officeDetails.id">
-            {{officeDetails.userDetails.firstName}} {{officeDetails.userDetails.lastName}}
+          <option *ngFor="let officeUser of officeUsers" [value]="officeUser.id">
+            {{officeUser.userDetails.firstName}} {{officeUser.userDetails.lastName}}
           </option>
+        </select>
+      </div>
+      <div class="field">
+        <label>Typ wizyty</label>
+        <select class="ui search dropdown" name="visitType" [(ngModel)]="visit.type" semanticDropdown>
+          <option value="">Typ wizyty</option>
+          <option *ngFor="let visitType of visitTypes" [value]="visitType.id">{{visitType.name}}</option>
         </select>
       </div>
       <div class="two fields">
         <div class="field">
           <label>Data od</label>
-          <div class="ui calendar" calendarType="datetime" semanticCalendar>
+          <div class="ui calendar" calendarType="datetime" semanticCalendar [calendarType]="'date'">
             <div class="ui input left icon">
               <i class="calendar icon"></i>
-              <input type="text" placeholder="Data od" name="dateFrom" autofocus>
+              <input type="text" placeholder="Data od" name="dateFrom" [(ngModel)]="searchVisitDate.dateFrom">
             </div>
           </div>
         </div>
         <div class="field">
           <label>Data do</label>
-          <div class="ui calendar" calendarType="datetime" semanticCalendar >
+          <div class="ui calendar" calendarType="datetime" semanticCalendar [calendarType]="'date'">
             <div class="ui input left icon">
               <i class="calendar icon"></i>
-              <input type="text" placeholder="Data do" name="dateTo" autofocus>
+              <input type="text" placeholder="Data do" name="dateTo" [(ngModel)]="searchVisitDate.dateTo">
             </div>
           </div>
         </div>
@@ -58,7 +65,7 @@
     </form>
   </div>
   <div class="column">
-    <table class="ui selectable table">
+    <table class="ui selectable table" *ngIf="availableVisitDates">
       <thead>
       <tr>
         <th>Data</th>

@@ -1,8 +1,9 @@
 package pl.treekt.medica.user.Document;
-
+import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.Data;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
+import org.springframework.format.annotation.DateTimeFormat;
 
 import java.util.Date;
 
@@ -15,8 +16,10 @@ public class SchedulerEvent {
     private String title;
     private String description;
     private Integer type;
-    private String start;
-    private String end;
+    @JsonFormat(shape=JsonFormat.Shape.STRING, pattern="yyyy-MM-dd hh:mm")
+    private Date start;
+    @JsonFormat(shape=JsonFormat.Shape.STRING, pattern="yyyy-MM-dd hh:mm")
+    private Date end;
     private String color;
     private String userId;
 }

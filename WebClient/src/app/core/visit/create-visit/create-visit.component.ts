@@ -3,7 +3,7 @@ import {User} from '../../../models/user';
 import {VisitRestService} from '../../../services/rest/visit-rest.service';
 import {UserRestService} from '../../../services/rest/user-rest.service';
 import {Subject} from 'rxjs';
-import {Visit} from '../../../models/visit';
+import {SearchVisitDate, Visit, VisitType} from '../../../models/visit';
 
 declare var $: any;
 
@@ -18,33 +18,48 @@ export class CreateVisitComponent implements OnInit {
 
   users: User[];
   officeUsers: User[];
-  visitDateProps: Date[];
 
-  searchUser$ = new Subject<string>();
-  searchOfficeUser$ = new Subject<string>();
+  visitTypes: VisitType[];
+
+  searchVisitDate: SearchVisitDate;
+  availableVisitDates: string[];
+
+  userTerm$ = new Subject<string>();
+  officeUserTerm$ = new Subject<string>();
 
   constructor(private userRest: UserRestService, private visitRest: VisitRestService) {
     this.visit = new Visit();
-    this.searchUser$.asObservable().subscribe(response => console.log(response));
-    // this.userRest.search(this.searchUser$).subscribe(response => this.users = response);
-    // this.userRest.search(this.searchOfficeUser$).subscribe(response => this.officeUsers = response);
+    this.searchVisitDate = new SearchVisitDate();
+    this.userRest.search(this.userTerm$).subscribe(usersResult => this.users = usersResult);
+    this.userRest.search(this.officeUserTerm$).subscribe(officeUsersResult => this.officeUsers = officeUsersResult);
   }
 
   ngOnInit() {
+    this.initVisitTypes();
   }
 
-  searchVisitDates() {
-    this.visitRest.getAvailableVisitDates(this.visit).subscribe(
-      response => this.visitDateProps = response
-    );
+  initVisitTypes() {
+    this.visitRest.getVisitTypes().subscribe(visitTypesResult => this.visitTypes = visitTypesResult);
   }
 
-  selectDateForVisit(date: Date) {
+
+  selectDateForVisit(date: string) {
     $('#appointment').removeClass('disabled');
     this.visit.date = date;
   }
 
   makeAppointment() {
-    this.visitRest.saveVisit(this.visit).subscribe(() => {});
+    this.visitRest.saveVisit(this.visit).subscribe(() => {
+    });
+  }
+
+  searchVisitDates() {
+    this.searchVisitDate.officeUserId = this.visit.officeUserId;
+    this.searchVisitDate.visitTypeId = this.visit.type;
+    this.visitRest.getAvailableVisitDates(this.searchVisitDate).subscribe(visitDatesResult => this.availableVisitDates = visitDatesResult);
+  }
+
+  onSelectOfficeUser() {
+    this.availableVisitDates = null;
   }
 }

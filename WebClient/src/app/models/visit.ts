@@ -1,8 +1,8 @@
 export class Visit {
   id: string;
-  date: Date;
-  // dateRequest: DateRequest;
+  date: string;
   status: string;
+  type: number;
   visitDetails: VisitDetails;
   userId: string;
   officeUserId: string;
@@ -24,8 +24,6 @@ export class VisitDetails {
     this.medicines = [];
 
   }
-
-
 }
 
 export class VisitMedicine {
@@ -39,7 +37,15 @@ export class VisitMedicine {
 
 }
 
-export class DateRequest {
-  dateFrom: Date;
-  dateTo: Date;
+export class SearchVisitDate {
+  officeUserId: string;
+  visitTypeId: number;
+  dateFrom: string;
+  dateTo: string;
+}
+
+export class VisitType {
+  id: number;
+  name: string;
+  duration: number;
 }
