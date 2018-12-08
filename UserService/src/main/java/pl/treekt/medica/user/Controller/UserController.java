@@ -33,6 +33,11 @@ public class UserController {
         return userRepository.findUserById(id);
     }
 
+    @DeleteMapping("/{id}")
+    public void deleteUser(@PathVariable String id ){
+        userRepository.deleteById(id);
+    }
+
     @GetMapping("/email/{email}")
     public User getUserByEmail(@PathVariable() String email) {
         String userId = restTemplate.getForObject("http://auth-service/auth/credentials/userId/" + email, String.class);

@@ -1,17 +1,77 @@
-
-  <a class="ui ribbon blue label">Dane użytkownika</a>
-  <div><span>Id: </span> {{user.id}}</div>
-  <div><span>isOfficeUser: </span>{{user.isUserOffice}}</div>
-  <div><span>firstName: </span>{{user.userDetails.firstName}}</div>
-  <div><span>lastName: </span>{{user.userDetails.lastName}}</div>
-  <div><span>familyName: </span>{{user.userDetails.familyName}}</div>
-  <div><span>birthday:</span>{{user.userDetails.birthday}}</div>
-  <div><span>gender: </span>{{user.userDetails.gender}}</div>
-  <div><span>pesel: </span>{{user.userDetails.pesel}}</div>
-  <div><span>phone: </span>{{user.userDetails.phone}}</div>
-  <div><span>city: </span>{{user.address.city}}</div>
-  <div><span>street: </span>{{user.address.street}}</div>
-  <div><span>houseNr: </span>{{user.address.houseNr}}</div>
-  <div><span>aparmentNr: </span>{{user.address.apartmentNr}}</div>
-  <div><span>voivodeship: </span>{{user.address.voivodeship}}</div>
-  <div><span>zip: </span>{{user.address.zip}}</div>
+<a class="ui ribbon blue label">Dane użytkownika</a>
+<br/>
+<br/>
+<div class="ui grid">
+  <div class="ten wide column">
+    <div class="ui segment">
+      <div class="ui top left attached label">Dane osobowe</div>
+      <div class="ui small header">
+        <div class="content">
+          Imiona
+          <div class="sub header">{{user.userDetails.firstName}} {{user.userDetails.secondName}}</div>
+        </div>
+      </div>
+      <div class="ui small header">
+        <div class="content">
+          Nazwisko
+          <div class="sub header">{{user.userDetails.lastName}}</div>
+        </div>
+      </div>
+      <div class="ui small header">
+        <div class="content">
+          Nazwisko rodowe
+          <div class="sub header">{{user.userDetails.familyName}}</div>
+        </div>
+      </div>
+      <div class="ui small header">
+        <div class="content">
+          Pesel
+          <div class="sub header">{{user.userDetails.pesel}}</div>
+        </div>
+      </div>
+      <div class="ui small header">
+        <div class="content">
+          Płeć
+          <div class="sub header">
+            {{user.userDetails.gender}}
+          </div>
+        </div>
+      </div>
+      <div class="ui small header">
+        <div class="content">
+          Data urodzenia
+          <div class="sub header">{{user.userDetails.birthday}}</div>
+        </div>
+      </div>
+      <div class="ui small header">
+        <div class="content">
+          Numer telefonu
+          <div class="sub header">{{user.userDetails.phone}}</div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="six wide column">
+    <div class="ui segment">
+      <div class="ui top left attached label">Dane podstawowe</div>
+      <div class="ui small header">
+        <div class="content">
+          Email
+          <div class="sub header">{{userEmail}}</div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="eight wide column">
+    <div class="ui segment">
+      <div class="ui top left attached label">Adres</div>
+    </div>
+  </div>
+  <div class="eight wide column">
+    <div class="ui segment">
+      <div class="ui top left attached label">Dane zawodowe</div>
+      <br/>
+      adasd
+    </div>
+  </div>
+</div>

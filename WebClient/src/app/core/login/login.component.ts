@@ -11,6 +11,8 @@ import {AuthService} from '../../services/auth.service';
 export class LoginComponent implements OnInit {
   loginForm: FormGroup;
 
+  isLogin = false;
+
   constructor(
     private formBuilder: FormBuilder,
     private router: Router,
@@ -33,12 +35,12 @@ export class LoginComponent implements OnInit {
     if (this.loginForm.invalid) {
       return;
     }
+    this.isLogin = true;
 
     this.authService.login({email: this.f.email.value, password: this.f.password.value})
       .subscribe(
         data => {
           this.router.navigate(['/']);
-          // console.log(data);
         },
         error => {
           console.log(error);

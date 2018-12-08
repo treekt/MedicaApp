@@ -19,6 +19,7 @@ export const administrationRoutes: Routes = [
         path: 'office-user-list',
         component: UserListComponent,
         data: {
+          forAdministration: true,
           userType: 'office'
         }
       },

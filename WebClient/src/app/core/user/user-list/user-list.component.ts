@@ -9,18 +9,19 @@ import {ActivatedRoute} from '@angular/router';
 })
 export class UserListComponent implements OnInit {
 
-  userType: string;
+  forAdministration: boolean;
 
+  userType: string;
   users: User[];
 
   constructor(private userRest: UserRestService, private route: ActivatedRoute) {
     this.route.data.subscribe(data => {
+      this.forAdministration = data['forAdministration'];
       this.userType = data['userType'];
     });
   }
 
   ngOnInit() {
-    this.initUsers();
   }
 
   private initUsers() {
@@ -33,4 +34,14 @@ export class UserListComponent implements OnInit {
     }
   }
 
+  selectUserType(userType: string) {
+    this.userType = userType;
+    this.initUsers();
+  }
+
+  deleteUser(user: User) {
+    const index = this.users.indexOf(user);
+    this.users.splice(index, 1);
+    this.userRest.deleteUser(user.id);
+  }
 }

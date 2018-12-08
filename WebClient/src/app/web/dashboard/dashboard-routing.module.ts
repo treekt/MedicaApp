@@ -6,7 +6,7 @@ import {UserListComponent} from '../../core/user/user-list/user-list.component';
 import {VisitManagementComponent} from '../../core/visit/visit-management.component';
 import {CreateVisitComponent} from '../../core/visit/create-visit/create-visit.component';
 import {DashboardComponent} from './dashboard.component';
-import {MakeVisitComponent} from "../../core/visit/make-visit/make-visit.component";
+import {MakeVisitComponent} from '../../core/visit/make-visit/make-visit.component';
 
 
 export const dashboardRoutes: Routes = [
@@ -51,6 +51,7 @@ export const dashboardRoutes: Routes = [
             path: 'patient-list',
             component: UserListComponent,
             data: {
+              forAdministration: false,
               userType: 'default'
             }
           }

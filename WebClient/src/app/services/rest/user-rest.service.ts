@@ -42,6 +42,10 @@ export class UserRestService {
     return this.http.post(this.endpoint, JSON.stringify(user), this.httpOptions);
   }
 
+  deleteUser(id: string): Observable<any> {
+    return this.http.delete(this.endpoint + '/' + id);
+  }
+
   getAllUsers(): Observable<any> {
     return this.http.get(this.endpoint + '/all');
   }

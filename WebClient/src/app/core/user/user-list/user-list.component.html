@@ -1,9 +1,23 @@
-<a class="ui blue ribbon label" >Lista pracowników</a>
-<table class="ui very basic collapsing celled table">
+<ng-container *ngIf="forAdministration">
+  <a class="ui blue ribbon label">Lista użytkowników</a>
+  <br/>
+  <br/>
+</ng-container>
+<div class="three ui basic buttons" *ngIf="forAdministration">
+  <button class="ui button" (click)="selectUserType('all')">Wszyscy</button>
+  <button class="ui button" (click)="selectUserType('office')">Pracownicy</button>
+  <button class="ui button" (click)="selectUserType('default')">Pacjenci</button>
+</div>
+<table class="ui table">
   <thead>
   <tr>
     <th>Imię</th>
     <th>Nazwisko</th>
+    <th *ngIf="(userType === 'all' || userType === 'office') && forAdministration">
+      Stanowisko
+    </th>
+    <th>Pesel</th>
+    <th></th>
   </tr>
   </thead>
   <tbody>
@@ -11,8 +25,15 @@
     <td>
       {{user.userDetails.firstName}}
     </td>
-    <td>
+    <th>
       {{user.userDetails.lastName}}
+    </th>
+    <th *ngIf="(userType === 'all' || userType === 'office') && forAdministration">
+      {{user.roleName}}
+    </th>
+    <td>{{user.userDetails.pesel}}</td>
+    <td>
+      <button (click)="deleteUser(user)" class="ui red icon right floated button"><i class="trash alternate outline align center icon"></i></button>
     </td>
   </tr>
   </tbody>
