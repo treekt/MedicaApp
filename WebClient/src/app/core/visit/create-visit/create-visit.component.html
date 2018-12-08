@@ -4,23 +4,59 @@
       <h4 class="ui dividing header">Wizyta</h4>
       <div class="field">
         <label>Pacjent</label>
-        <select class="ui search dropdown" name="user" [(ngModel)]="visit.userId"
-                (keyup)="userTerm$.next($event.target.value)" semanticDropdown>
-          <option value="">Pacjent</option>
-          <option *ngFor="let user of users" [value]="user.id">
-            {{user.userDetails.firstName}} {{user.userDetails.lastName }}
-          </option>
-        </select>
+        <div class="ui left icon input">
+          <i class="search icon"></i>
+          <input type="text" placeholder="Wyszukaj pacjenta"
+                 (keyup)="userTerm$.next($event.target.value)"/>
+        </div>
+        <div class="ui segment" style="height:200px;overflow-y: scroll;" *ngIf="users">
+          <table class="ui very basic table">
+            <tbody>
+            <tr *ngFor="let user of users">
+              <td class="three wide">
+                {{user.userDetails.firstName}} {{user.userDetails.lastName}}
+              </td>
+              <td class="ten wide">
+                {{user.userDetails.pesel}}
+              </td>
+              <td class="three wide">
+                <button class="ui icon right floated button" (click)="onSelectUser(user)">
+                  <i class="check icon"></i>
+                </button>
+              </td>
+            </tr>
+            </tbody>
+          </table>
+
+        </div>
       </div>
       <div class="field">
         <label>Pracownik</label>
-        <select class="ui search dropdown" name="officeDetails" [(ngModel)]="visit.officeUserId"
-                (keyup)="officeUserTerm$.next($event.target.value)" (change)="onSelectOfficeUser()" semanticDropdown>
-          <option value="">Pracownik</option>
-          <option *ngFor="let officeUser of officeUsers" [value]="officeUser.id">
-            {{officeUser.userDetails.firstName}} {{officeUser.userDetails.lastName}}
-          </option>
-        </select>
+        <div class="ui left icon input">
+          <i class="search icon"></i>
+          <input type="text" placeholder="Wyszukaj pracownika"
+                 (keyup)="officeUserTerm$.next($event.target.value)"/>
+        </div>
+        <div class="ui segment" style="height:200px;overflow-y: scroll;" *ngIf="officeUsers">
+          <table class="ui very basic table">
+            <tbody>
+            <tr *ngFor="let officeUser of officeUsers">
+              <td class="three wide">
+                {{officeUser.userDetails.firstName}} {{officeUser.userDetails.lastName}}
+              </td>
+              <td class="ten wide">
+                {{officeUser.officeDetails.degree}}
+              </td>
+              <td class="three wide">
+                <button class="ui icon right floated button" (click)="onSelectOfficeUser(officeUser)">
+                  <i class="check icon"></i>
+                </button>
+              </td>
+            </tr>
+            </tbody>
+          </table>
+
+        </div>
       </div>
       <div class="field">
         <label>Typ wizyty</label>
@@ -65,7 +101,7 @@
     </form>
   </div>
   <div class="column">
-    <table class="ui selectable table" *ngIf="availableVisitDates">
+    <table class="ui selectable table">
       <thead>
       <tr>
         <th>Data</th>
@@ -73,11 +109,11 @@
         </th>
       </tr>
       </thead>
-      <tbody>
-      <tr *ngFor="let visitDate of visitDateProps">
-        <td>{{visitDate.date}}</td>
+      <tbody style="height:200px;overflow-y: scroll;">
+      <tr *ngFor="let date of availableVisitDates">
+        <td>{{date}}</td>
         <td class="right aligned">
-          <button class="ui blue button" (click)="selectDateForVisit(visitDate.date)">Wybierz</button>
+          <button class="ui blue button" (click)="selectDateForVisit(date)">Wybierz</button>
         </td>
       </tr>
       </tbody>

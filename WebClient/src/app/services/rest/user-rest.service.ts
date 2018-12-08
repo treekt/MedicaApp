@@ -26,16 +26,16 @@ export class UserRestService {
     return this.http.get(this.endpoint + '/email/' + email);
   }
 
-  search(terms: Observable<string>) {
+  search(terms: Observable<string>, isOfficeUser: boolean) {
     return terms.pipe(
       debounceTime(400),
       distinctUntilChanged(),
-      switchMap(term => this.searchUsers(term))
+      switchMap(term => this.getAllUsersContainsFirstNameOrLastName(term, isOfficeUser))
     );
   }
 
-  searchUsers(term): Observable<any> {
-    return this.http.get(this.endpoint + '/search/' + term);
+  getAllUsersContainsFirstNameOrLastName(firstNameOrLastName: string, isOfficeUser: boolean): Observable<any> {
+    return this.http.get(this.endpoint + '/all/' + (firstNameOrLastName === '' ? 'nothing' : firstNameOrLastName) + '/' + isOfficeUser);
   }
 
   saveUser(user: User): Observable<any> {

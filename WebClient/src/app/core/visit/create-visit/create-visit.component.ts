@@ -29,8 +29,8 @@ export class CreateVisitComponent implements OnInit {
   constructor(private userRest: UserRestService, private visitRest: VisitRestService) {
     this.visit = new Visit();
     this.searchVisitDate = new SearchVisitDate();
-    this.userRest.search(this.userTerm$).subscribe(usersResult => this.users = usersResult);
-    this.userRest.search(this.officeUserTerm$).subscribe(officeUsersResult => this.officeUsers = officeUsersResult);
+    this.userRest.search(this.userTerm$, false).subscribe(usersResult => this.users = usersResult);
+    this.userRest.search(this.officeUserTerm$, true).subscribe(officeUsersResult => this.officeUsers = officeUsersResult);
   }
 
   ngOnInit() {
@@ -55,10 +55,16 @@ export class CreateVisitComponent implements OnInit {
   searchVisitDates() {
     this.searchVisitDate.officeUserId = this.visit.officeUserId;
     this.searchVisitDate.visitTypeId = this.visit.type;
+    this.searchVisitDate.eventTypeId = 0;
     this.visitRest.getAvailableVisitDates(this.searchVisitDate).subscribe(visitDatesResult => this.availableVisitDates = visitDatesResult);
   }
 
-  onSelectOfficeUser() {
+  onSelectOfficeUser(officeUser: User) {
     this.availableVisitDates = null;
+    this.visit.officeUserId = officeUser.id;
+  }
+
+  onSelectUser(user: User) {
+    this.visit.userId = user.id;
   }
 }

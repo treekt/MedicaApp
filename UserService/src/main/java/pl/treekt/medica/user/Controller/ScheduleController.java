@@ -52,16 +52,16 @@ public class ScheduleController {
         return schedulerEventRepository.findAllByUserIdAndType(userId, type);
     }
 
-    @GetMapping("/all/{userId}/{type}/between/{minDate}/{maxDate}")
+    @GetMapping("/all/{userId}/{eventTypeId}/between/{minDate}/{maxDate}")
     public List<SchedulerEvent> findAllSchedulesByUserIdAndTypeAndBetweenDates(
             @PathVariable() String userId,
-            @PathVariable() Integer type,
+            @PathVariable() Integer eventTypeId,
             @PathVariable @DateTimeFormat(pattern = "yyyy-MM-dd") Date minDate,
             @PathVariable @DateTimeFormat(pattern = "yyyy-MM-dd") Date maxDate) {
 
         minDate = DateUtils.addHours(minDate, 1);
         maxDate = DateUtils.addHours(maxDate, 1);
         System.out.println("wyszło");
-        return schedulerEventRepository.findAllByUserIdAndTypeAndStartGreaterThanEqualAndEndLessThanEqual(userId, type, minDate, maxDate);
+        return schedulerEventRepository.findAllByUserIdAndTypeAndStartGreaterThanEqualAndEndLessThanEqual(userId, eventTypeId, minDate, maxDate);
     }
 }

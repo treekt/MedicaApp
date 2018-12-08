@@ -11,6 +11,7 @@ public class SearchVisitDateRequest {
 
     private String officeUserId;
     private String visitTypeId;
+    private Integer eventTypeId;
     private String dateFrom;
     private String dateTo;
 }

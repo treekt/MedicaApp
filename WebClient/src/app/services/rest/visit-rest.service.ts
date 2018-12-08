@@ -19,7 +19,7 @@ export class VisitRestService {
   }
 
   getAvailableVisitDates(searchVisitDate: SearchVisitDate): Observable<any> {
-    return this.http.post(this.endpoint + '/availableDates', JSON.stringify(searchVisitDate), this.httpOptions);
+    return this.http.post(this.endpoint + '/dates/available', JSON.stringify(searchVisitDate), this.httpOptions);
   }
 
   saveVisit(visit: Visit): Observable<any> {

@@ -40,6 +40,7 @@ export class VisitMedicine {
 export class SearchVisitDate {
   officeUserId: string;
   visitTypeId: string;
+  eventTypeId: number;
   dateFrom: string;
   dateTo: string;
 }
