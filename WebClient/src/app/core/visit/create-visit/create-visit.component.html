@@ -1,5 +1,6 @@
 <div class="ui two columns grid">
   <div class="column">
+    {{searchVisitDate | json}}
     <form class="ui form">
       <h4 class="ui dividing header">Wizyta</h4>
       <div class="field">
@@ -68,19 +69,19 @@
       <div class="two fields">
         <div class="field">
           <label>Data od</label>
-          <div class="ui calendar" calendarType="datetime" semanticCalendar [calendarType]="'date'">
+          <div class="ui calendar" calendarType="datetime" semanticCalendar [calendarType]="'date'" (changeDate)="searchVisitDate.dateFrom = $event">
             <div class="ui input left icon">
               <i class="calendar icon"></i>
-              <input type="text" placeholder="Data od" name="dateFrom" [(ngModel)]="searchVisitDate.dateFrom">
+              <input type="text" placeholder="Data od" name="dateFrom" (keyup)="onDateFromChange($event.target.value)">
             </div>
           </div>
         </div>
         <div class="field">
           <label>Data do</label>
-          <div class="ui calendar" calendarType="datetime" semanticCalendar [calendarType]="'date'">
+          <div class="ui calendar" calendarType="datetime" semanticCalendar [calendarType]="'date'" (changeDate)="searchVisitDate.dateTo = $event">
             <div class="ui input left icon">
               <i class="calendar icon"></i>
-              <input type="text" placeholder="Data do" name="dateTo" [(ngModel)]="searchVisitDate.dateTo">
+              <input type="text" placeholder="Data do" name="dateTo">
             </div>
           </div>
         </div>

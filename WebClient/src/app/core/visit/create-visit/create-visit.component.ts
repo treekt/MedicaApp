@@ -67,4 +67,12 @@ export class CreateVisitComponent implements OnInit {
   onSelectUser(user: User) {
     this.visit.userId = user.id;
   }
+
+  onDateFromChange(date: string) {
+    this.searchVisitDate.dateFrom = date;
+  }
+
+  onDateToChange(date: string) {
+    this.searchVisitDate.dateTo = date;
+  }
 }

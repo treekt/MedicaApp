@@ -1,4 +1,4 @@
-import {AfterViewInit, Directive, ElementRef, Input} from '@angular/core';
+import {AfterViewInit, Directive, ElementRef, EventEmitter, Input, Output} from '@angular/core';
 
 declare var $: any;
 
@@ -10,10 +10,15 @@ export class SemanticCalendarDirective implements AfterViewInit {
   @Input()
   calendarType: string;
 
+  @Output()
+  changeDate = new EventEmitter();
+
+
   constructor(private calendar: ElementRef) {
   }
 
   ngAfterViewInit(): void {
+    const self = this;
     $(this.calendar.nativeElement).calendar(
       {
         text: {
@@ -45,9 +50,14 @@ export class SemanticCalendarDirective implements AfterViewInit {
             const year = date.getFullYear();
             return year + '-' + month + '-' + day;
           }
-        }
+        },
+        onChange: function (date, text, mode) {
+          self.changeDate.emit(text);
+        },
       }
     );
   }
+
+
 
 }
