@@ -22,7 +22,7 @@ export class UserDetails {
   secondName: string;
   lastName: string;
   familyName: string;
-  birthday: Date;
+  birthday: string;
   gender: string;
   pesel: number;
   phone: number;

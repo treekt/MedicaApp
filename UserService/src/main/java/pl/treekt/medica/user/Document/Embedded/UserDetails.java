@@ -1,5 +1,6 @@
 package pl.treekt.medica.user.Document.Embedded;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -15,6 +16,7 @@ public class UserDetails {
     private String middleName;
     private String lastName;
     private String familyName;
+    @JsonFormat
     private Date birthday;
     private String gender;
     private Integer pesel;
