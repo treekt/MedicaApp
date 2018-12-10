@@ -1,0 +1,40 @@
+<ng-container>
+  <div class="ui segment">
+    <form class="ui form">
+      <div class="field">
+        <label>Status</label>
+        <select class="ui dropdown" title="officeUsers" name="visitStatus" [(ngModel)]="visitStatus"
+                (change)="initVisitsForOfficeUser()" semanticDropdown>
+          <option value="">Wybierz status wizyty</option>
+          <option value="pending">Umówiona</option>
+          <option value="during">W trakcie</option>
+          <option value="finished">Zakończona</option>
+        </select>
+      </div>
+      <div class="field" *ngIf="forOfficeUser">
+        <label>Specjalista wizyt</label>
+        <div class="ui slider checkbox">
+          <input type="checkbox" (change)="initVisitsForOfficeUser()" name="visitAll" [(ngModel)]="visitAll">
+          <label>Wszystkie/Moje</label>
+        </div>
+      </div>
+    </form>
+  </div>
+</ng-container>
+<table class="ui table" *ngIf="visits">
+  <thead>
+  <tr>
+    <th>Data</th>
+    <th *ngIf="forOfficeUser">Specjalista</th>
+    <th *ngIf="!forOfficeUser">Pacjent</th>
+    <th></th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr *ngFor="let visit of visits">
+    <td>{{visit.date}}</td>
+    <td>{{visit.officeUserId}}</td>
+    <td>{{visit.userId}}</td>
+  </tr>
+  </tbody>
+</table>
