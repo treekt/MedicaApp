@@ -1,9 +1,8 @@
 <div class="ui two columns grid">
   <div class="column">
-    {{searchVisitDate | json}}
     <form class="ui form">
       <h4 class="ui dividing header">Wizyta</h4>
-      <div class="field">
+      <div class="field" *ngIf="forOfficeUser">
         <label>Pacjent</label>
         <div class="ui left icon input">
           <i class="search icon"></i>
@@ -32,10 +31,10 @@
         </div>
       </div>
       <div class="field">
-        <label>Pracownik</label>
+        <label>Specjalista</label>
         <div class="ui left icon input">
           <i class="search icon"></i>
-          <input type="text" placeholder="Wyszukaj pracownika"
+          <input type="text" placeholder="Wyszukaj specjaliste"
                  (keyup)="officeUserTerm$.next($event.target.value)"/>
         </div>
         <div class="ui segment" style="height:200px;overflow-y: scroll;" *ngIf="officeUsers">
@@ -101,16 +100,9 @@
       </div>
     </form>
   </div>
-  <div class="column">
+  <div class="column" style="height:200px;overflow-y: scroll;">
     <table class="ui selectable table">
-      <thead>
-      <tr>
-        <th>Data</th>
-        <th class="right aligned">
-        </th>
-      </tr>
-      </thead>
-      <tbody style="height:200px;overflow-y: scroll;">
+      <tbody >
       <tr *ngFor="let date of availableVisitDates">
         <td>{{date}}</td>
         <td class="right aligned">

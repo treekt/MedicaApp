@@ -10,6 +10,9 @@ import java.util.List;
 @Repository
 public interface VisitRepository extends MongoRepository<Visit, String> {
 
-    Visit findVisitById(Long id);
+    Visit findVisitById(String id);
     List<Visit> findVisitByDateBetween(Date dateFrom, Date dateTo);
+    List<Visit> findAllByUserIdAndStatus(String userId, String status);
+    List<Visit> findAllByStatus(String status);
+    List<Visit> findAllByOfficeUserIdAndStatus(String officeUserId, String status);
 }

@@ -16,9 +16,9 @@ public class UserDetails {
     private String middleName;
     private String lastName;
     private String familyName;
-    @JsonFormat
+    @JsonFormat(pattern = "yyyy-MM-dd")
     private Date birthday;
     private String gender;
-    private Integer pesel;
+    private Long pesel;
     private Integer phone;
 }

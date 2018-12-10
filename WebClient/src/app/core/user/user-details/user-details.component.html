@@ -2,13 +2,19 @@
 <br/>
 <br/>
 <div class="ui grid">
-  <div class="ten wide column">
+  <div class="eight wide column">
     <div class="ui segment">
       <div class="ui top left attached label">Dane osobowe</div>
       <div class="ui small header">
         <div class="content">
+          Email
+          <div class="sub header">{{userEmail}}</div>
+        </div>
+      </div>
+      <div class="ui small header">
+        <div class="content">
           Imiona
-          <div class="sub header">{{user.userDetails.firstName}} {{user.userDetails.secondName}}</div>
+          <div class="sub header">{{user.userDetails.firstName}} {{user.userDetails.middleName}}</div>
         </div>
       </div>
       <div class="ui small header">
@@ -51,27 +57,69 @@
       </div>
     </div>
   </div>
-  <div class="six wide column">
+  <div class="eight wide column">
     <div class="ui segment">
-      <div class="ui top left attached label">Dane podstawowe</div>
+      <div class="ui top left attached label">Adres</div>
       <div class="ui small header">
         <div class="content">
-          Email
-          <div class="sub header">{{userEmail}}</div>
+          Ulica
+          <div class="sub header">{{user.address.street}}</div>
+        </div>
+      </div>
+      <div class="ui small header">
+        <div class="content">
+          Numer domu
+          <div class="sub header">{{user.address.houseNumber}}</div>
+        </div>
+      </div>
+      <div class="ui small header">
+        <div class="content">
+          Numer mieszkania
+          <div class="sub header">{{user.address.apartmentNumber}}</div>
+        </div>
+      </div>
+      <div class="ui small header">
+        <div class="content">
+          Miasto
+          <div class="sub header">{{user.address.city}}</div>
+        </div>
+      </div>
+      <div class="ui small header">
+        <div class="content">
+          Kod pocztowy
+          <div class="sub header">{{user.address.zip}}</div>
+        </div>
+      </div>
+      <div class="ui small header">
+        <div class="content">
+          Województwo
+          <div class="sub header">{{user.address.voivodeship}}</div>
         </div>
       </div>
     </div>
   </div>
   <div class="eight wide column">
-    <div class="ui segment">
-      <div class="ui top left attached label">Adres</div>
-    </div>
-  </div>
-  <div class="eight wide column">
-    <div class="ui segment">
+    <div class="ui segment" *ngIf="user.isOfficeUser">
       <div class="ui top left attached label">Dane zawodowe</div>
       <br/>
-      adasd
+      <div class="ui small header">
+        <div class="content">
+          Stanowisko
+          <div class="sub header">{{user.roleName}}</div>
+        </div>
+      </div>
+      <div class="ui small header">
+        <div class="content">
+          Stopień naukowy
+          <div class="sub header">{{user.officeDetails.degree}}</div>
+        </div>
+      </div>
+      <div class="ui small header">
+        <div class="content">
+          PWZ
+          <div class="sub header">{{user.officeDetails.pwz}}</div>
+        </div>
+      </div>
     </div>
   </div>
 </div>

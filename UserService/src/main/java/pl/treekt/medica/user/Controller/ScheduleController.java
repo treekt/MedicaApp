@@ -59,9 +59,12 @@ public class ScheduleController {
             @PathVariable @DateTimeFormat(pattern = "yyyy-MM-dd") Date minDate,
             @PathVariable @DateTimeFormat(pattern = "yyyy-MM-dd") Date maxDate) {
 
+        if(minDate.getTime() == maxDate.getTime()){
+            maxDate = DateUtils.addDays(maxDate, 1);
+        }
+
         minDate = DateUtils.addHours(minDate, 1);
         maxDate = DateUtils.addHours(maxDate, 1);
-        System.out.println("wyszło");
         return schedulerEventRepository.findAllByUserIdAndTypeAndStartGreaterThanEqualAndEndLessThanEqual(userId, eventTypeId, minDate, maxDate);
     }
 }

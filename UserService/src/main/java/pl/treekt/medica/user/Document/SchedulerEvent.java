@@ -16,9 +16,9 @@ public class SchedulerEvent {
     private String title;
     private String description;
     private Integer type;
-    @JsonFormat
+    @JsonFormat(pattern = "yyyy-MM-dd HH:mm")
     private Date start;
-    @JsonFormat
+    @JsonFormat(pattern = "yyyy-MM-dd HH:mm")
     private Date end;
     private String color;
     private String userId;

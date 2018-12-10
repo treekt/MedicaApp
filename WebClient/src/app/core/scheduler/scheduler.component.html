@@ -10,7 +10,17 @@
                 (change)="onSelectOfficeUser($event.target.value)" semanticDropdown>
           <option value="">Pracownik</option>
           <option [value]="user.id" *ngFor="let user of officeUsers">
-            {{user.userDetails.firstName}} {{user.userDetails.lastName}} ({{user.userDetails.pesel}})
+            <div class="ui grid">
+              <div class="five wide column">
+                {{user.userDetails.firstName}} {{user.userDetails.lastName}}
+              </div>
+              <div class="five wide column">
+                {{user.roleName}}
+              </div>
+              <div class="six wide column">
+                ({{user.userDetails.pesel}})
+              </div>
+            </div>
           </option>
         </select>
       </div>

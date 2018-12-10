@@ -46,12 +46,12 @@ public class UserController {
 
     @GetMapping("/all/{firstNameOrLastName}/{isOfficeUser}")
     public List<User> getAllUsersContainsFirstNameOrLastName(@PathVariable String firstNameOrLastName, @PathVariable Boolean isOfficeUser) {
-        return userRepository.findAllByUserDetails_FirstNameContainsOrUserDetails_LastNameContainsAndIsOfficeUser(firstNameOrLastName, firstNameOrLastName, isOfficeUser);
+        return administratorAccountFilter(userRepository.findAllByUserDetails_FirstNameContainsOrUserDetails_LastNameContainsAndIsOfficeUser(firstNameOrLastName, firstNameOrLastName, isOfficeUser));
     }
 
     @GetMapping("/all")
     public List<User> getAllUsers() {
-        return userRepository.findAll();
+        return administratorAccountFilter(userRepository.findAll());
     }
 
     @GetMapping("/default/all")
@@ -61,13 +61,22 @@ public class UserController {
 
     @GetMapping("/office/all")
     public List<User> getAllOfficeUsers() {
-        return userRepository.findAllByIsOfficeUser(true);
+        return administratorAccountFilter(userRepository.findAllByIsOfficeUser(true));
     }
 
 
     @GetMapping("/roleName/{userId}")
     public String getRoleNameForUser(@PathVariable String userId) {
         return userRepository.findUserById(userId).getRoleName();
+    }
+
+    private List<User> administratorAccountFilter(List<User> users){
+        for(User user : users) {
+            if(user.getId().equals("admin")){
+                users.remove(user);
+            }
+        }
+        return users;
     }
 
 

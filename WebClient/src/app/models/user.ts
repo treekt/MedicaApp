@@ -19,7 +19,7 @@ export class OfficeDetails {
 
 export class UserDetails {
   firstName: string;
-  secondName: string;
+  middleName: string;
   lastName: string;
   familyName: string;
   birthday: string;
@@ -31,8 +31,8 @@ export class UserDetails {
 export class Address {
   city: string;
   street: string;
-  houseNr: number;
-  apartmentNr: number;
+  houseNumber: number;
+  apartmentNumber: number;
   voivodeship: string;
   zip: string;
 }

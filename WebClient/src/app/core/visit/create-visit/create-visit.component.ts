@@ -4,6 +4,7 @@ import {VisitRestService} from '../../../services/rest/visit-rest.service';
 import {UserRestService} from '../../../services/rest/user-rest.service';
 import {Subject} from 'rxjs';
 import {SearchVisitDate, Visit, VisitType} from '../../../models/visit';
+import {ActivatedRoute} from '@angular/router';
 
 declare var $: any;
 
@@ -12,6 +13,8 @@ declare var $: any;
   templateUrl: './create-visit.component.html'
 })
 export class CreateVisitComponent implements OnInit {
+
+  forOfficeUser: boolean;
 
   visit: Visit;
 
@@ -26,7 +29,12 @@ export class CreateVisitComponent implements OnInit {
   userTerm$ = new Subject<string>();
   officeUserTerm$ = new Subject<string>();
 
-  constructor(private userRest: UserRestService, private visitRest: VisitRestService) {
+  constructor(private userRest: UserRestService, private visitRest: VisitRestService, private route: ActivatedRoute) {
+
+    this.route.data.subscribe(data => {
+      this.forOfficeUser = data['forOfficeUser'];
+    });
+
     this.visit = new Visit();
     this.searchVisitDate = new SearchVisitDate();
     this.userRest.search(this.userTerm$, false).subscribe(usersResult => this.users = usersResult);
@@ -35,6 +43,9 @@ export class CreateVisitComponent implements OnInit {
 
   ngOnInit() {
     this.initVisitTypes();
+    if (!this.forOfficeUser) {
+      this.userRest.getAuthenticatedUser().subscribe(userResult => this.visit.userId = userResult.id);
+    }
   }
 
   initVisitTypes() {

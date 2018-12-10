@@ -1,0 +1,33 @@
+[
+  {
+    "_id": "admin",
+    "isOfficeUser": true,
+    "officeDetails": {
+      "degree": "Mgr.",
+      "pwz": 876531237
+    },
+    "userDetails": {
+      "firstName": "Hugo",
+      "middleName": "Wiktor",
+      "lastName": "Dobrzański",
+      "familyName": "Dobrzańskii",
+      "birthday": {
+        "$date": {
+          "$numberLong": "363736800000"
+        }
+      },
+      "gender": "M",
+      "pesel": 810712023484,
+      "phone": 781672312
+    },
+    "address": {
+      "street": "Aleje Ujazdowskie",
+      "houseNumber": "6",
+      "apartmentNumber": "12",
+      "city": "Warszawa",
+      "voivodeship": "Mazowieckie",
+      "zip": "00-540"
+    },
+    "roleName": "Administrator"
+  }
+]

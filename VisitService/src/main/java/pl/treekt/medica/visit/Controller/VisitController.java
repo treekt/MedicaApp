@@ -6,8 +6,8 @@ import org.springframework.http.HttpMethod;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.client.RestTemplate;
-import pl.treekt.medica.visit.Document.VisitType;
 import pl.treekt.medica.visit.Document.Visit;
+import pl.treekt.medica.visit.Document.VisitType;
 import pl.treekt.medica.visit.Entity.SchedulerEvent;
 import pl.treekt.medica.visit.Entity.SearchVisitDateRequest;
 import pl.treekt.medica.visit.Repository.VisitRepository;
@@ -43,8 +43,21 @@ public class VisitController {
     }
 
     @PostMapping("/{id}")
-    public Visit findVisitById(@PathVariable("id") Long id) {
+    public Visit findVisitById(@PathVariable String id) {
         return this.visitRepository.findVisitById(id);
+    }
+
+    @GetMapping("/all/office/{officeUserId}/{status}/{visitAll}")
+    public List<Visit> getAllVisitsByOfficeUserIdAndStatusAndVisitAll(@PathVariable String officeUserId, @PathVariable String status, @PathVariable Boolean visitAll) {
+        if(!visitAll){
+            return visitRepository.findAllByOfficeUserIdAndStatus(officeUserId, status);
+        }
+        return visitRepository.findAllByStatus(status);
+    }
+
+    @GetMapping("/all/default/{userId}/{status}")
+    public List<Visit> getAllVisitsByUserIdAndStatus(@PathVariable String userId, @PathVariable String status) {
+        return visitRepository.findAllByUserIdAndStatus(userId, status);
     }
 
     @PostMapping("/types")
@@ -53,7 +66,7 @@ public class VisitController {
     }
 
     @DeleteMapping("/types/{id}")
-    public void deleteVisitType(@PathVariable String id){
+    public void deleteVisitType(@PathVariable String id) {
         visitTypeRepository.deleteById(id);
     }
 
@@ -90,16 +103,16 @@ public class VisitController {
                 for (Visit visit : visits) {
                     if (visit.getDate().getTime() == tempDate.getTime()) {
                         visitExistsAlready = true;
-                        minute += visit.getType().getDuration() -1;
+                        minute += visit.getType().getDuration() - 1;
                         visits.remove(visit);
                         break;
                     }
                 }
                 if (!visitExistsAlready) {
                     int minutePlusDuration = minute + visitType.getDuration();
-                    if(minutePlusDuration <= minutesBetweenDates){
+                    if (minutePlusDuration <= minutesBetweenDates) {
                         boolean canPutDate = true;
-                        for(int insideMin = minute; insideMin <= minutePlusDuration; insideMin++){
+                        for (int insideMin = minute; insideMin <= minutePlusDuration; insideMin++) {
                             for (Visit visit : visits) {
                                 if (visit.getDate().getTime() == tempDate.getTime()) {
                                     canPutDate = false;
@@ -110,7 +123,7 @@ public class VisitController {
                         }
                         availableDates.add(dateFormat.format(tempDate));
                         minute += visitType.getDuration() - 1;
-                    }else{
+                    } else {
                         break;
                     }
                 }

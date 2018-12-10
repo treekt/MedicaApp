@@ -26,6 +26,14 @@ export class VisitRestService {
     return this.http.post(this.endpoint, JSON.stringify(visit), this.httpOptions);
   }
 
+  getAllVisitByOfficeUserIdAndStatusAndVisitAll(officeUserId: string, status: string, visitAll: boolean): Observable<any> {
+    return this.http.get(this.endpoint + '/all/office/' + officeUserId + '/' + status + '/' + visitAll);
+  }
+
+  getAllVisitByUserIdAndStatus(userId: string, status: string): Observable<any> {
+    return this.http.get(this.endpoint + '/all/default/' + userId + '/' + status);
+  }
+
   saveVisitType(visitType: VisitType) {
     return this.http.post(this.endpoint + '/types', JSON.stringify(visitType), this.httpOptions);
   }
@@ -37,6 +45,7 @@ export class VisitRestService {
   deleteVisitType(id: string): Observable<any> {
     return this.http.delete(this.endpoint + '/types/' + id);
   }
+
 
 
 

@@ -13,6 +13,7 @@ import {DashboardComponent} from './dashboard.component';
 import {DirectiveModule} from '../../modules/directive.module';
 import {UserAdminComponentsModule} from '../../modules/user-admin-components.module';
 import { MakeVisitComponent } from '../../core/visit/make-visit/make-visit.component';
+import { VisitListComponent } from '../../core/visit/visit-list/visit-list.component';
 @NgModule({
   imports: [
     CommonModule,
@@ -28,6 +29,7 @@ import { MakeVisitComponent } from '../../core/visit/make-visit/make-visit.compo
     VisitManagementComponent,
     CreateVisitComponent,
     MakeVisitComponent,
+    VisitListComponent,
   ],
   providers: [RoleGuard, UserRestService, RoleRestService]
 })

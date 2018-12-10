@@ -37,7 +37,13 @@ public class RoleController {
 
     @GetMapping("/all")
     public List<Role> getAllRoles(){
-        return roleRepository.findAll();
+        List<Role> roles = roleRepository.findAll();
+        for(Role role : roles) {
+            if(role.getName().equals("Administrator")) {
+                roles.remove(role);
+            }
+        }
+        return roles;
     }
 
 

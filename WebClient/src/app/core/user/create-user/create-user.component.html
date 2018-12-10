@@ -1,6 +1,8 @@
-<a class="ui blue ribbon label" *ngIf="isOfficeUser">Kreator pracownika</a>
-<br/>
-<br/>
+<ng-container *ngIf="isOfficeUser">
+  <a class="ui blue ribbon label" >Kreator konta specjalisty</a>
+  <br/>
+  <br/>
+</ng-container>
 <form  class="ui form" (ngSubmit)="saveOfficeUser()">
   <!--Dane podstawowe-->
   <h4 class="ui dividing header">Dane podstawowe</h4>
@@ -53,7 +55,7 @@
     </div>
     <div class="field">
       <label>Drugie imie</label>
-      <input type="text" placeholder="Drugie imię" name="secondName" [(ngModel)]="user.userDetails.secondName">
+      <input type="text" placeholder="Drugie imię" name="secondName" [(ngModel)]="user.userDetails.middleName">
     </div>
   </div>
   <div class="two fields">
@@ -105,11 +107,11 @@
     </div>
     <div class="field">
       <label>Numer domu</label>
-      <input type="number" placeholder="Numer domu" name="houseNr" [(ngModel)]="user.address.houseNr">
+      <input type="number" placeholder="Numer domu" name="houseNr" [(ngModel)]="user.address.houseNumber">
     </div>
     <div class="field">
       <label>Numer mieszkania</label>
-      <input type="text" placeholder="Numer mieszkania" name="apartmentNr" [(ngModel)]="user.address.apartmentNr">
+      <input type="text" placeholder="Numer mieszkania" name="apartmentNr" [(ngModel)]="user.address.apartmentNumber">
     </div>
   </div>
   <div class="three fields">
@@ -147,9 +149,9 @@
   </div>
 
   <button class="ui green button" type="submit">
-    Zarejestruj
+    Stwórz konto
     <ng-container *ngIf="isOfficeUser; else defaultUser">
-      pracownika
+      specjalisty
     </ng-container>
     <ng-template #defaultUser>pacjenta</ng-template>
   </button>
