@@ -75,6 +75,35 @@ public class VisitController {
         return visitRepository.findAllByOfficeUserIdAndStatusOrStatusAndDateBetween(officeUserId, "planned", "during", thisDay, nextDay);
     }
 
+    @GetMapping("/count/finished")
+    public Integer countFinishedVisits() {
+        return visitRepository.countVisitsByStatus("finished");
+    }
+
+    @GetMapping("/count/medicines/prescribed")
+    public Integer countPrescribedMedicines() {
+        int counter = 0;
+        List<Visit> visits = visitRepository.findAll();
+        for(Visit visit : visits){
+            if(visit.getVisitDetails().getMedicines() != null) {
+                counter += visit.getVisitDetails().getMedicines().size();
+            }
+        }
+        return counter;
+    }
+
+    @GetMapping("/count/deseases/diagnosed")
+    public Integer countDiagnosedDeseases() {
+        int counter = 0;
+        List<Visit> visits = visitRepository.findAll();
+        for(Visit visit : visits){
+            if(visit.getVisitDetails().getDeseases() != null) {
+                counter += visit.getVisitDetails().getDeseases().size();
+            }
+        }
+        return counter;
+    }
+
     @PostMapping("/types")
     public VisitType saveVisitType(@RequestBody VisitType visitType) {
         return visitTypeRepository.save(visitType);

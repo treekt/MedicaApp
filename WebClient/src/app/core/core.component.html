@@ -9,12 +9,9 @@
       <i class="wrench icon"></i>
       Administracja
     </a>
-    <div class="ui dropdown item" semanticDropdown>
+    <div class="ui dropdown item" routerLink="/profile" semanticDropdown>
       <i class="user circle icon"></i>
-      Konto <i class="dropdown icon"></i>
-      <div class="menu">
-        <a class="item" routerLink="/profile" routerLinkActive="active">Zarządzanie profilem</a>
-      </div>
+      Konto
     </div>
     <div class="item">
       <div class="ui primary button" (click)="logout()">Wyloguj się</div>

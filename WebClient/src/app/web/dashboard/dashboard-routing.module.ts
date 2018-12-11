@@ -39,7 +39,7 @@ export const dashboardRoutes: Routes = [
         path: 'visit-management',
         component: VisitManagementComponent,
         children: [
-          {path: '', redirectTo: 'create-visit', pathMatch: 'full'},
+          {path: '', redirectTo: 'visit-list', pathMatch: 'full'},
           {
             path: 'create-visit',
             component: CreateVisitComponent,
@@ -60,7 +60,7 @@ export const dashboardRoutes: Routes = [
         path: 'user-management',
         component: UserManagementComponent,
         children: [
-          {path: '', redirectTo: 'user-list', pathMatch: 'full'},
+          {path: '', redirectTo: 'patient-list', pathMatch: 'full'},
           {
             path: 'create-user',
             component: CreateUserComponent,

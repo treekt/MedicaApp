@@ -4,7 +4,6 @@ import {Observable} from 'rxjs';
 import {User} from '../../models/user';
 import {debounceTime, distinctUntilChanged, switchMap} from 'rxjs/operators';
 import {AuthService} from '../auth.service';
-import {SchedulerEvent} from '../../models/scheduler';
 
 @Injectable({
   providedIn: 'root'
@@ -62,5 +61,8 @@ export class UserRestService {
     return this.http.get(this.endpoint + '/office/all');
   }
 
+  countOfficeUsers(): Observable<any> {
+    return this.http.get(this.endpoint + '/count/all/office');
+  }
 
 }

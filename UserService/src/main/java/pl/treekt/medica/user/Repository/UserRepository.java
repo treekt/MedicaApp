@@ -12,5 +12,6 @@ public interface UserRepository extends MongoRepository<User, String> {
     User findUserById(String id);
     List<User> findAllByIsOfficeUser(boolean isOfficeUser);
     List<User> findAllByUserDetails_FirstNameContainsOrUserDetails_LastNameContainsAndIsOfficeUser(String userDetails_firstName, String userDetails_lastName, Boolean isOfficeUser);
+    Integer countUsersByIsOfficeUser(Boolean isOfficeUser);
 
 }

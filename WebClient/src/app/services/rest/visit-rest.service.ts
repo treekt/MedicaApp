@@ -64,5 +64,16 @@ export class VisitRestService {
     return this.http.delete(this.endpoint + '/types/' + id);
   }
 
+  countFinishedVisits(): Observable<any> {
+    return this.http.get(this.endpoint + '/count/finished');
+  }
+
+  countPrescribedMedicines(): Observable<any> {
+    return this.http.get(this.endpoint + '/count/medicines/prescribed');
+  }
+
+  countDiagnosedDeseases(): Observable<any> {
+    return this.http.get(this.endpoint + '/count/deseases/diagnosed');
+  }
 
 }

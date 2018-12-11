@@ -18,13 +18,13 @@ export class CreateVisitComponent implements OnInit {
 
   visit: Visit;
 
-  users: User[];
-  officeUsers: User[];
+  users: User[] = [];
+  officeUsers: User[] = [];
 
   visitTypes: VisitType[];
 
   searchVisitDate: SearchVisitDate;
-  availableVisitDates: string[];
+  availableVisitDates: string[] = [];
 
   userTerm$ = new Subject<string>();
   officeUserTerm$ = new Subject<string>();

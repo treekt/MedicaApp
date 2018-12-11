@@ -30,6 +30,70 @@
     </div>
   </div>
 
+  <div class="ui segment" *ngIf="officeUser && user && visitType && visit">
+    <div class="ui top left attached label">Dane wizyty</div>
+    <div class="ui grid">
+      <div class="six wide column">
+        <div class="ui small header">
+          <div class="content">
+            Data
+            <div class="sub header">{{visit.date}}</div>
+          </div>
+        </div>
+        <div class="ui small header">
+          <div class="content">
+            Rodzaj wizyty
+            <div class="sub header">{{visitType.name}}</div>
+          </div>
+        </div>
+        <div class="ui small header">
+          <div class="content">
+            Przybliżony czas trwania wizyty
+            <div class="sub header">{{visitType.duration}} minut</div>
+          </div>
+        </div>
+      </div>
+      <div class="five wide column">
+        <div class="ui small header">
+          <div class="content">
+            Pacjent
+            <div class="sub header">{{user.userDetails.firstName}} {{user.userDetails.middleName}}
+              {{user.userDetails.lastName}}
+            </div>
+          </div>
+        </div>
+        <div class="ui small header">
+          <div class="content">
+            Data urodzenia
+            <div class="sub header">{{user.userDetails.birthday}}</div>
+          </div>
+        </div>
+        <div class="ui small header">
+          <div class="content">
+            Pesel
+            <div class="sub header">{{user.userDetails.pesel}}</div>
+          </div>
+        </div>
+      </div>
+      <div class="five wide column">
+        <div class="ui small header">
+          <div class="content">
+            Lekarz
+            <div class="sub header">{{officeUser.userDetails.firstName}} {{officeUser.userDetails.middleName}}
+              {{officeUser.userDetails.lastName}}
+            </div>
+          </div>
+        </div>
+        <div class="ui small header">
+          <div class="content">
+            PWZ
+            <div class="sub header">{{officeUser.officeDetails.pwz}}</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
   <ng-template [ngIf]="step === 'interview'">
     <form class="ui form">
       <div class="field">
@@ -210,7 +274,78 @@
     </form>
   </ng-template>
   <ng-template [ngIf]="step === 'summary'">
-      <button (click)="goFromTo('summary', 'recommendation')" class="ui left floated blue button">Wróć</button>
-      <button (click)="finishVisit()" class="ui right floated green button">Zakończ wizytę</button>
+    <div class="ui segment">
+      <div class="ui top left attached label">Przeprowadzona wizyta</div>
+      <div class="ui grid">
+        <div class="sixteen wide column">
+          <div class="ui small header">
+            <div class="content">
+              Wywiad
+              <div class="sub header">{{visit.visitDetails.interview}}</div>
+            </div>
+          </div>
+        </div>
+        <div class="eight wide column">
+          <div class="ui small header">
+            <div class="content">
+              Diagnoza
+              <div class="sub header">{{visit.visitDetails.diagnosis}}</div>
+            </div>
+          </div>
+          <div class="ui small header">
+            Zdiagnozowane choroby
+          </div>
+          <div class="ui segment" style="height:120px; overflow-y: scroll;" *ngIf="diagnosedDeseases.length > 0">
+            <table class="ui very basic table">
+              <tbody>
+              <tr *ngFor="let desease of diagnosedDeseases">
+                <td class="three wide">
+                  {{desease.code}}
+                </td>
+                <td class="thirteen wide">
+                  {{desease.name}}
+                </td>
+              </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+        <div class="eight wide column">
+          <div class="ui small header">
+            <div class="content">
+              Zalecenia
+              <div class="sub header">{{visit.visitDetails.recommendation}}</div>
+            </div>
+          </div>
+          <div class="ui small header">
+            Zapisane leki
+          </div>
+          <div class="ui segment" style="height:120px; overflow-y: scroll;" *ngIf="prescribedMedicines.length > 0">
+            <table class="ui very basic table">
+              <tbody>
+              <tr *ngFor="let medicine of prescribedMedicines">
+                <td class="six wide">
+                  {{medicine.productName}}
+                </td>
+                <td class="three wide">
+                  {{medicine.power}}
+                </td>
+                <td class="three wide">
+                  {{medicine.form}}
+                </td>
+                <td class="seven wide">
+                  {{medicine.packages[0].size}} {{medicine.packages[0].unitSize}}
+                </td>
+              </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <button (click)="goFromTo('summary', 'recommendation')" class="ui left floated blue button">Wróć</button>
+    <button (click)="finishVisit()" class="ui right floated green button">Zakończ wizytę</button>
   </ng-template>
 </div>

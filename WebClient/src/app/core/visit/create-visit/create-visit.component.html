@@ -1,115 +1,116 @@
-<div class="ui two columns grid">
-  <div class="column">
-    <form class="ui form">
-      <h4 class="ui dividing header">Wizyta</h4>
-      <div class="field">
-        <label>Pacjent</label>
-        <div class="ui left icon input">
-          <i class="search icon"></i>
-          <input type="text" placeholder="Wyszukaj pacjenta"
-                 (keyup)="userTerm$.next($event.target.value)"/>
-        </div>
-        <div class="ui segment" style="height:200px;overflow-y: scroll;" *ngIf="users">
-          <table class="ui very basic table">
-            <tbody>
-            <tr *ngFor="let user of users">
-              <td class="three wide">
-                {{user.userDetails.firstName}} {{user.userDetails.lastName}}
-              </td>
-              <td class="ten wide">
-                {{user.userDetails.pesel}}
-              </td>
-              <td class="three wide">
-                <button class="ui icon right floated button" (click)="onSelectUser(user)">
-                  <i class="check icon"></i>
-                </button>
-              </td>
-            </tr>
-            </tbody>
-          </table>
+<form class="ui form">
+  <h4 class="ui dividing header">Wizyta</h4>
+  <div class="field">
+    <label>Pacjent</label>
+    <div class="ui left icon input">
+      <i class="search icon"></i>
+      <input type="text" placeholder="Wyszukaj pacjenta"
+             (keyup)="userTerm$.next($event.target.value)"/>
+    </div>
+    <div class="ui segment" style="height:150px;overflow-y: scroll;" *ngIf="users.length > 0">
+      <table class="ui very basic table">
+        <tbody>
+        <tr *ngFor="let user of users">
+          <td class="three wide">
+            {{user.userDetails.firstName}} {{user.userDetails.lastName}}
+          </td>
+          <td class="ten wide">
+            {{user.userDetails.pesel}}
+          </td>
+          <td class="three wide">
+            <button class="ui icon right floated button" (click)="onSelectUser(user)">
+              <i class="check icon"></i>
+            </button>
+          </td>
+        </tr>
+        </tbody>
+      </table>
 
-        </div>
-      </div>
-      <div class="field">
-        <label>Specjalista</label>
-        <div class="ui left icon input">
-          <i class="search icon"></i>
-          <input type="text" placeholder="Wyszukaj specjaliste"
-                 (keyup)="officeUserTerm$.next($event.target.value)"/>
-        </div>
-        <div class="ui segment" style="height:200px;overflow-y: scroll;" *ngIf="officeUsers">
-          <table class="ui very basic table">
-            <tbody>
-            <tr *ngFor="let officeUser of officeUsers">
-              <td class="three wide">
-                {{officeUser.userDetails.firstName}} {{officeUser.userDetails.lastName}}
-              </td>
-              <td class="ten wide">
-                {{officeUser.officeDetails.degree}}
-              </td>
-              <td class="three wide">
-                <button class="ui icon right floated button" (click)="onSelectOfficeUser(officeUser)">
-                  <i class="check icon"></i>
-                </button>
-              </td>
-            </tr>
-            </tbody>
-          </table>
-
-        </div>
-      </div>
-      <div class="field">
-        <label>Typ wizyty</label>
-        <select class="ui search dropdown" name="visitType" [(ngModel)]="visit.visitTypeId" semanticDropdown>
-          <option value="">Typ wizyty</option>
-          <option *ngFor="let visitType of visitTypes" [value]="visitType.id">{{visitType.name}}</option>
-        </select>
-      </div>
-      <div class="two fields">
-        <div class="field">
-          <label>Data od</label>
-          <div class="ui calendar" calendarType="datetime" semanticCalendar [calendarType]="'date'" (changeDate)="searchVisitDate.dateFrom = $event">
-            <div class="ui input left icon">
-              <i class="calendar icon"></i>
-              <input type="text" placeholder="Data od" name="dateFrom" (keyup)="onDateFromChange($event.target.value)">
-            </div>
-          </div>
-        </div>
-        <div class="field">
-          <label>Data do</label>
-          <div class="ui calendar" calendarType="datetime" semanticCalendar [calendarType]="'date'" (changeDate)="searchVisitDate.dateTo = $event">
-            <div class="ui input left icon">
-              <i class="calendar icon"></i>
-              <input type="text" placeholder="Data do" name="dateTo">
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <div class="ui two column grid">
-        <div class="column">
-          <button class="ui blue button" type="submit" (click)="searchVisitDates()">
-            Wyszukaj terminy
-          </button>
-        </div>
-        <div class="right aligned column">
-          <button #appointment id="appointment" class="ui green button disabled" type="submit" (click)="makeAppointment()">
-            Umów wizytę
-          </button>
-        </div>
-      </div>
-    </form>
+    </div>
   </div>
-  <div class="column" style="height:800px;overflow-y: scroll;">
-    <table class="ui selectable table">
-      <tbody >
-      <tr *ngFor="let date of availableVisitDates">
-        <td>{{date}}</td>
-        <td class="right aligned">
-          <button class="ui blue button" (click)="selectDateForVisit(date)">Wybierz</button>
-        </td>
-      </tr>
-      </tbody>
-    </table>
+  <div class="field">
+    <label>Specjalista</label>
+    <div class="ui left icon input">
+      <i class="search icon"></i>
+      <input type="text" placeholder="Wyszukaj specjaliste"
+             (keyup)="officeUserTerm$.next($event.target.value)"/>
+    </div>
+    <div class="ui segment" style="height:150px;overflow-y: scroll;" *ngIf="officeUsers.length > 0">
+      <table class="ui very basic table">
+        <tbody>
+        <tr *ngFor="let officeUser of officeUsers">
+          <td class="three wide">
+            {{officeUser.userDetails.firstName}} {{officeUser.userDetails.lastName}}
+          </td>
+          <td class="ten wide">
+            {{officeUser.officeDetails.degree}}
+          </td>
+          <td class="three wide">
+            <button class="ui icon right floated button" (click)="onSelectOfficeUser(officeUser)">
+              <i class="check icon"></i>
+            </button>
+          </td>
+        </tr>
+        </tbody>
+      </table>
+
+    </div>
   </div>
-</div>
+  <div class="field">
+    <label>Typ wizyty</label>
+    <select class="ui search dropdown" name="visitType" [(ngModel)]="visit.visitTypeId" semanticDropdown>
+      <option value="">Typ wizyty</option>
+      <option *ngFor="let visitType of visitTypes" [value]="visitType.id">{{visitType.name}}</option>
+    </select>
+  </div>
+  <div class="two fields">
+    <div class="field">
+      <label>Data od</label>
+      <div class="ui calendar" calendarType="datetime" semanticCalendar [calendarType]="'date'"
+           (changeDate)="searchVisitDate.dateFrom = $event">
+        <div class="ui input left icon">
+          <i class="calendar icon"></i>
+          <input type="text" placeholder="Data od" name="dateFrom" (keyup)="onDateFromChange($event.target.value)">
+        </div>
+      </div>
+    </div>
+    <div class="field">
+      <label>Data do</label>
+      <div class="ui calendar" calendarType="datetime" semanticCalendar [calendarType]="'date'"
+           (changeDate)="searchVisitDate.dateTo = $event">
+        <div class="ui input left icon">
+          <i class="calendar icon"></i>
+          <input type="text" placeholder="Data do" name="dateTo">
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="field" *ngIf="availableVisitDates.length > 0">
+    <label>Wolne terminy</label>
+    <div class="ui segment" style="height:200px;overflow-y: scroll;">
+      <table class="ui very basic table" style="height:200px;overflow-y: scroll;">
+        <tbody >
+        <tr *ngFor="let date of availableVisitDates">
+          <td>{{date}}</td>
+          <td class="right aligned">
+            <button class="ui blue button" (click)="selectDateForVisit(date)">Wybierz</button>
+          </td>
+        </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <div class="ui two column grid">
+    <div class="column">
+      <button class="ui blue button" type="submit" (click)="searchVisitDates()">
+        Wyszukaj terminy
+      </button>
+    </div>
+    <div class="right aligned column">
+      <button #appointment id="appointment" class="ui green button disabled" type="submit" (click)="makeAppointment()">
+        Umów wizytę
+      </button>
+    </div>
+  </div>
+</form>

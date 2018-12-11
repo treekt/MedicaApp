@@ -65,6 +65,11 @@ public class UserController {
         return administratorAccountFilter(userRepository.findAllByIsOfficeUser(true));
     }
 
+    @GetMapping("/count/all/office")
+    public Integer countOfficeUsers() {
+        return userRepository.countUsersByIsOfficeUser(true);
+    }
+
 
     @GetMapping("/roleName/{userId}")
     public String getRoleNameForUser(@PathVariable String userId) {
