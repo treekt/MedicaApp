@@ -1,6 +1,6 @@
 import {Directive, Input, OnInit, TemplateRef, ViewContainerRef} from '@angular/core';
-import {AuthService} from '../services/auth.service';
-import {Permission} from '../models/permissions';
+import {Permission} from '../../models/permissions';
+import {AuthService} from '../../services/auth.service';
 
 @Directive({
   selector: '[showPrivileged]'
