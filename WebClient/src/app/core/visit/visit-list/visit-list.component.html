@@ -40,7 +40,7 @@
     <td>
       <div class="ui icon right floated buttons">
         <button class="ui button" *ngIf="(visitStatus !== 'finished') && user.isOfficeUser" [routerLink]="['/dashboard/make-visit', visit.id]"><i class="stethoscope icon"></i></button>
-        <button class="ui button" *ngIf="visitStatus === 'finished'"><i class="eye icon"></i></button>
+        <button class="ui button" *ngIf="visitStatus === 'finished'" [routerLink]="['/dashboard/visit-details', visit.id]"><i class="eye icon"></i></button>
         <button class="ui button" *ngIf="user.isOfficeUser"><i class="trash alternate outline width icon"></i></button>
       </div>
     </td>

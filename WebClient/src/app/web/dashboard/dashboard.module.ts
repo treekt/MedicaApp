@@ -17,6 +17,7 @@ import { VisitListComponent } from '../../core/visit/visit-list/visit-list.compo
 import { HomeComponent } from '../../core/home/home.component';
 import { DeseaseListComponent } from '../../core/archive/desease-list/desease-list.component';
 import { MedicinesListComponent } from '../../core/archive/medicines-list/medicines-list.component';
+import { VisitDetailsComponent } from '../../core/visit/visit-details/visit-details.component';
 @NgModule({
   imports: [
     CommonModule,
@@ -36,6 +37,7 @@ import { MedicinesListComponent } from '../../core/archive/medicines-list/medici
     HomeComponent,
     DeseaseListComponent,
     MedicinesListComponent,
+    VisitDetailsComponent,
   ],
   providers: [RoleGuard, UserRestService, RoleRestService, UserRestService]
 })

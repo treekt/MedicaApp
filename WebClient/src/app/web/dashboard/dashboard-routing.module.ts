@@ -11,6 +11,7 @@ import {VisitListComponent} from '../../core/visit/visit-list/visit-list.compone
 import {HomeComponent} from '../../core/home/home.component';
 import {DeseaseListComponent} from '../../core/archive/desease-list/desease-list.component';
 import {MedicinesListComponent} from '../../core/archive/medicines-list/medicines-list.component';
+import {VisitDetailsComponent} from '../../core/visit/visit-details/visit-details.component';
 
 
 export const dashboardRoutes: Routes = [
@@ -34,6 +35,10 @@ export const dashboardRoutes: Routes = [
       {
         path: 'make-visit/:id',
         component: MakeVisitComponent,
+      },
+      {
+        path: 'visit-details/:id',
+        component: VisitDetailsComponent,
       },
       {
         path: 'visit-management',
