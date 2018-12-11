@@ -71,7 +71,6 @@ export class CreateVisitComponent implements OnInit {
   }
 
   onSelectOfficeUser(officeUser: User) {
-    this.availableVisitDates = null;
     this.visit.officeUserId = officeUser.id;
   }
 
