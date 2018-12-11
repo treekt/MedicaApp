@@ -19,27 +19,27 @@ export class CreateUserComponent implements OnInit {
   credentials: Credentials;
   confirmPassword: string;
 
-  isOfficeUser: boolean;
 
   constructor(private roleRestService: RoleRestService,
               private userRestService: UserRestService,
               private credsRestService: AuthRestService,
               private route: ActivatedRoute) {
 
-    this.route.data.subscribe(data => {
-      this.isOfficeUser = data['isOfficeUser'];
-    });
   }
 
   ngOnInit() {
     this.user = new User();
-    if (this.isOfficeUser) {
+    if (this.user.isOfficeUser) {
       this.user.officeDetails = new OfficeDetails();
-      this.user.isOfficeUser = this.isOfficeUser;
     } else {
       // TODO: Ustaw dla uzytkowika role 'Pacjent'
     }
     this.credentials = new Credentials();
+
+    this.route.data.subscribe(data => {
+      this.user.isOfficeUser = data['isOfficeUser'];
+    });
+
     this.initAvailableRoles();
   }
 
@@ -50,7 +50,8 @@ export class CreateUserComponent implements OnInit {
   saveOfficeUser() {
     this.userRestService.saveUser(this.user).subscribe(userResult => {
       this.credentials.userId = userResult.id;
-      this.credsRestService.saveCredentials(this.credentials).subscribe(() => {});
+      this.credsRestService.saveCredentials(this.credentials).subscribe(() => {
+      });
     });
 
   }

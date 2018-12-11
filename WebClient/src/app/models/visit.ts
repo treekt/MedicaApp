@@ -1,3 +1,5 @@
+import {User} from './user';
+
 export class Visit {
   id: string;
   date: string;
@@ -49,4 +51,14 @@ export class VisitType {
   id: string;
   name: string;
   duration: number;
+}
+
+export class VisitCompact {
+  id: string;
+  date: string;
+  status: string;
+  visitDetails: VisitDetails;
+  visitType: VisitType;
+  user: User;
+  officeUser: User;
 }

@@ -3,6 +3,7 @@ package pl.treekt.medica.user.Controller;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import pl.treekt.medica.user.Document.Role;
+import pl.treekt.medica.user.Document.User;
 import pl.treekt.medica.user.Repository.RoleRepository;
 
 import java.util.List;
@@ -37,19 +38,18 @@ public class RoleController {
 
     @GetMapping("/all")
     public List<Role> getAllRoles(){
-        List<Role> roles = roleRepository.findAll();
-        for(Role role : roles) {
-            if(role.getName().equals("Administrator")) {
-                roles.remove(role);
-            }
-        }
-        return roles;
+        return administratorRoleFilter(roleRepository.findAll());
     }
 
 
     @GetMapping("/permissions/{name}")
     public List<Integer> getAllPermissions(@PathVariable() String name) {
         return roleRepository.getRoleByName(name).getPermissions();
+    }
+
+    private List<Role> administratorRoleFilter(List<Role> roles){
+        roles.removeIf(role -> role.getName().equals("Administrator"));
+        return roles;
     }
 
 

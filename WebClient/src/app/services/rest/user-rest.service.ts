@@ -53,11 +53,11 @@ export class UserRestService {
     return this.http.get(this.endpoint + '/all');
   }
 
-  getAllUserIfDefaultUser(): Observable<any> {
+  getAllDefaultUsers(): Observable<any> {
     return this.http.get(this.endpoint + '/default/all');
   }
 
-  getAllUsersIfOfficeUser(): Observable<any> {
+  getAllOfficeUsers(): Observable<any> {
     return this.http.get(this.endpoint + '/office/all');
   }
 

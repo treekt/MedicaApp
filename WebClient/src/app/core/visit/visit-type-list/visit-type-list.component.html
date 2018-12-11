@@ -10,9 +10,9 @@
   <tbody>
   <tr *ngFor="let visitType of visitTypes">
     <td>{{visitType.name}}</td>
-    <td>{{visitType.duration}}</td>
+    <td>{{visitType.duration}} minut</td>
     <td>
-      <button (click)="deleteVisitType(visitType)" class="ui icon red right floated button"><i class="trash alternate outline align center icon"></i></button>
+      <button (click)="showModalToDelete(visitType)" class="ui icon red right floated button"><i class="trash alternate outline align center icon"></i></button>
     </td>
   </tr>
   </tbody>
@@ -21,4 +21,25 @@
   <div class="content">
     <i class="info icon"></i>
     Nie znaleziono żadnych typów wizyt!</div>
+</div>
+
+
+<div class="ui basic modal" *ngIf="visitTypeToDelete">
+  <div class="ui icon header">
+    <i class="trash icon"></i>
+    Usuwanie rodzaju wizyty
+  </div>
+  <div class="content">
+    <p>Jesteś pewien, że chcesz ostatecznie usunąć rodzaj wizyty o nazwie {{visitTypeToDelete.name}}?</p>
+  </div>
+  <div class="actions">
+    <div class="ui red basic cancel inverted button">
+      <i class="remove icon"></i>
+      Nie
+    </div>
+    <div class="ui green ok inverted button" (click)="deleteVisitType(visitTypeToDelete)">
+      <i class="checkmark icon"></i>
+      Tak
+    </div>
+  </div>
 </div>

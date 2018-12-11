@@ -1,9 +1,11 @@
 import {Component, Input, OnInit} from '@angular/core';
 import {ActivatedRoute} from '@angular/router';
 import {VisitRestService} from '../../../services/rest/visit-rest.service';
-import {Visit} from '../../../models/visit';
+import {VisitCompact} from '../../../models/visit';
 import {User} from '../../../models/user';
 import {UserRestService} from '../../../services/rest/user-rest.service';
+
+declare var $: any;
 
 @Component({
   selector: 'app-visit-list',
@@ -16,12 +18,14 @@ export class VisitListComponent implements OnInit {
 
   forOfficeUser: boolean;
 
-  visits: Visit[] = [];
+  visits: VisitCompact[] = [];
 
   visitStatus = 'planned';
   visitAll = false;
 
   user: User;
+
+  visitToDelete: VisitCompact;
 
   constructor(private userRest: UserRestService, private visitRest: VisitRestService, private route: ActivatedRoute) {
     this.route.data.subscribe(data => {
@@ -57,4 +61,15 @@ export class VisitListComponent implements OnInit {
     }
   }
 
+  showModalToDelete(visit: VisitCompact) {
+    this.visitToDelete = visit;
+    $('.ui.basic.modal').modal('show');
+  }
+
+  deleteVisit(visit: VisitCompact) {
+    const index = this.visits.indexOf(visit);
+    this.visits.splice(index, 1);
+    this.visitRest.deleteVisit(visit.id).subscribe(() => {
+    });
+  }
 }

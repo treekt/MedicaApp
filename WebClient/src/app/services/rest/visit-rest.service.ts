@@ -26,6 +26,10 @@ export class VisitRestService {
     return this.http.post(this.endpoint, JSON.stringify(visit), this.httpOptions);
   }
 
+  deleteVisit(id: string): Observable<any> {
+    return this.http.delete(this.endpoint + '/' + id);
+  }
+
   getVisitById(id: string): Observable<any> {
     return this.http.get(this.endpoint + '/' + id);
   }

@@ -51,7 +51,7 @@ export class SchedulerComponent implements OnInit {
 
   initSchedulerOwner() {
     if (this.forAdministration) {
-      this.userRest.getAllUsersIfOfficeUser().subscribe(officeUsersResult => this.officeUsers = officeUsersResult);
+      this.userRest.getAllOfficeUsers().subscribe(officeUsersResult => this.officeUsers = officeUsersResult);
     } else {
       this.userRest.getAuthenticatedUser().subscribe(userResult => {
         this.officeUser = userResult;

@@ -11,7 +11,7 @@
       <label>Email</label>
       <input type="text" placeholder="Email" name="email" [(ngModel)]="credentials.email">
     </div>
-    <div *ngIf="isOfficeUser" class="field" >
+    <div *ngIf="user.isOfficeUser" class="field" >
       <label>Rola</label>
       <select class="ui dropdown" name="role" [(ngModel)]="user.roleName" semanticDropdown>
         <option value="">Rola</option>
@@ -150,7 +150,7 @@
 
   <button class="ui green button" type="submit">
     Stwórz konto
-    <ng-container *ngIf="isOfficeUser; else defaultUser">
+    <ng-container *ngIf="user.isOfficeUser; else defaultUser">
       specjalisty
     </ng-container>
     <ng-template #defaultUser>pacjenta</ng-template>

@@ -11,8 +11,8 @@
     <td>{{role.name}}</td>
     <td>
       <div class="ui icon right floated buttons">
-        <button (click)="edit(role)" class="ui button"><i class="edit outline icon align left icon"></i></button>
-        <button (click)="delete(role)" class="ui red button"><i class="trash alternate outline align center icon"></i></button>
+        <button  class="ui button"><i class="edit outline icon align left icon"></i></button>
+        <button (click)="showModalToDelete(role)" class="ui red button"><i class="trash alternate outline align center icon"></i></button>
       </div>
     </td>
   </tr>
@@ -22,4 +22,25 @@
   <div class="content">
     <i class="info icon"></i>
     Nie znaleziono żadnych ról!</div>
+</div>
+
+
+<div class="ui basic modal" *ngIf="roleToDelete">
+  <div class="ui icon header">
+    <i class="trash icon"></i>
+    Usuwanie roli
+  </div>
+  <div class="content">
+    <p>Jesteś pewien, że chcesz ostatecznie usunąć role o nazwie {{roleToDelete.name}}?</p>
+  </div>
+  <div class="actions">
+    <div class="ui red basic cancel inverted button">
+      <i class="remove icon"></i>
+      Nie
+    </div>
+    <div class="ui green ok inverted button" (click)="deleteRole(roleToDelete)">
+      <i class="checkmark icon"></i>
+      Tak
+    </div>
+  </div>
 </div>

@@ -33,7 +33,7 @@
     </td>
     <td>{{user.userDetails.pesel}}</td>
     <td>
-      <button (click)="deleteUser(user)" class="ui red icon right floated button"><i class="trash alternate outline align center icon"></i></button>
+      <button (click)="showModalToDelete(user)" class="ui red icon right floated button"><i class="trash alternate outline align center icon"></i></button>
     </td>
   </tr>
   </tbody>
@@ -42,4 +42,25 @@
   <div class="content">
     <i class="info icon"></i>
     Nie znaleziono żadnych danych!</div>
+</div>
+
+
+<div class="ui basic modal" *ngIf="userToDelete">
+  <div class="ui icon header">
+    <i class="trash icon"></i>
+    Usuwanie użytkownika
+  </div>
+  <div class="content">
+    <p>Jesteś pewien, że chcesz ostatecznie usunąć użytkownika {{userToDelete.userDetails.firstName}} {{userToDelete.userDetails.lastName}}?</p>
+  </div>
+  <div class="actions">
+    <div class="ui red basic cancel inverted button">
+      <i class="remove icon"></i>
+      Nie
+    </div>
+    <div class="ui green ok inverted button" (click)="deleteUser(userToDelete)">
+      <i class="checkmark icon"></i>
+      Tak
+    </div>
+  </div>
 </div>

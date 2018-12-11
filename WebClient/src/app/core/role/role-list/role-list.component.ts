@@ -10,7 +10,9 @@ declare var $: any;
   templateUrl: './role-list.component.html'
 })
 export class RoleListComponent implements OnInit {
+
   roles: Role[] = [];
+  roleToDelete: Role;
 
   constructor(private roleRestService: RoleRestService) {
   }
@@ -23,17 +25,17 @@ export class RoleListComponent implements OnInit {
     this.roleRestService.getAllRoles().subscribe(success => this.roles = success);
   }
 
-  delete(role: Role) {
+  deleteRole(role: Role) {
     this.roleRestService.deleteRole(role.name).subscribe(success => console.log(success));
     const roleIndex = this.roles.indexOf(role);
     this.roles.splice(roleIndex, 1);
   }
 
-  openModal() {
+  showModalToDelete(role: Role) {
+    this.roleToDelete = role;
     $('.ui.basic.modal').modal('show');
   }
 
-  edit(role: Role) {
-  }
+
 
 }

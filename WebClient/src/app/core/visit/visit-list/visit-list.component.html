@@ -25,8 +25,8 @@
   <thead>
   <tr>
     <th>Data</th>
-    <th *ngIf="user.isOfficeUser">Specjalista</th>
-    <th *ngIf="!user.isOfficeUser">Pacjent</th>
+    <th *ngIf="!user.isOfficeUser">Specjalista</th>
+    <th *ngIf="user.isOfficeUser">Pacjent</th>
     <th>Rodzaj wizyty</th>
     <th></th>
   </tr>
@@ -34,14 +34,14 @@
   <tbody>
   <tr *ngFor="let visit of visits">
     <td>{{visit.date}}</td>
-    <td *ngIf="user.isOfficeUser">{{visit.officeUserId}}</td>
-    <td *ngIf="!user.isOfficeUser">{{visit.userId}}</td>
-    <td>{{visit.visitTypeId}}</td>
+    <td *ngIf="!user.isOfficeUser">{{visit.officeUser.userDetails.firstName}} {{visit.officeUser.userDetails.lastName}}</td>
+    <td *ngIf="user.isOfficeUser">{{visit.user.userDetails.firstName}} {{visit.user.userDetails.lastName}}  ({{visit.user.userDetails.pesel}})</td>
+    <td>{{visit.visitType.name}}</td>
     <td>
       <div class="ui icon right floated buttons">
         <button class="ui button" *ngIf="(visitStatus !== 'finished') && user.isOfficeUser" [routerLink]="['/dashboard/make-visit', visit.id]"><i class="stethoscope icon"></i></button>
-        <button class="ui button" *ngIf="visitStatus === 'finished'" [routerLink]="['/dashboard/visit-details', visit.id]"><i class="eye icon"></i></button>
-        <button class="ui button" *ngIf="user.isOfficeUser"><i class="trash alternate outline width icon"></i></button>
+        <button class="ui button" *ngIf="visitStatus === 'finished'"><i class="eye icon"></i></button>
+        <button class="ui red button" *ngIf="user.isOfficeUser" (click)="showModalToDelete(visit)"><i class="close icon"></i></button>
       </div>
     </td>
   </tr>
@@ -51,4 +51,26 @@
   <div class="content">
     <i class="info icon"></i>
     Nie znaleziono żadnych wizyt!</div>
+</div>
+
+
+
+<div class="ui basic modal" *ngIf="visitToDelete">
+  <div class="ui icon header">
+    <i class="close icon"></i>
+    Odoływanie wizyty
+  </div>
+  <div class="content">
+    <p>Jesteś pewien, że chcesz odwołać wizytę w terminie {{visitToDelete.date}} u specjalisty {{visitToDelete.officeUser.userDetails.firstName}} {{visitToDelete.officeUser.userDetails.lastName}}?</p>
+  </div>
+  <div class="actions">
+    <div class="ui red basic cancel inverted button">
+      <i class="remove icon"></i>
+      Nie
+    </div>
+    <div class="ui green ok inverted button" (click)="deleteVisit(visitToDelete)">
+      <i class="checkmark icon"></i>
+      Tak
+    </div>
+  </div>
 </div>

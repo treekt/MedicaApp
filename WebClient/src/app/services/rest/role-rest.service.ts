@@ -18,13 +18,8 @@ export class RoleRestService {
   constructor(private http: HttpClient) {
   }
 
-  // private extractData(res: Response) {
-  //   const body = res;
-  //   return body || {};
-  // }
-
   getAllRoles(): Observable<any> {
-    return this.http.get<Role[]>(this.endpoint + '/all');
+    return this.http.get(this.endpoint + '/all');
   }
 
   saveRole(role: Role): Observable<any> {

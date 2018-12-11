@@ -10,6 +10,7 @@ import pl.treekt.medica.visit.Document.Visit;
 import pl.treekt.medica.visit.Document.VisitType;
 import pl.treekt.medica.visit.Entity.SchedulerEvent;
 import pl.treekt.medica.visit.Entity.SearchVisitDateRequest;
+import pl.treekt.medica.visit.Entity.VisitCompact;
 import pl.treekt.medica.visit.Repository.VisitRepository;
 import pl.treekt.medica.visit.Repository.VisitTypeRepository;
 
@@ -47,6 +48,11 @@ public class VisitController {
         return this.visitRepository.findVisitById(id);
     }
 
+    @DeleteMapping("/{id}")
+    public void deleteVisitById(@PathVariable String id){
+        visitRepository.deleteById(id);
+    }
+
     @PostMapping("/status/during/{id}")
     public Visit setDuringStatusOfVisit(@PathVariable String id){
         Visit visit = findVisitById(id);
@@ -55,24 +61,24 @@ public class VisitController {
     }
 
     @GetMapping("/all/office/{officeUserId}/{status}/{visitAll}")
-    public List<Visit> getAllVisitsByOfficeUserIdAndStatusAndVisitAll(@PathVariable String officeUserId, @PathVariable String status, @PathVariable Boolean visitAll) {
+    public List<VisitCompact> getAllVisitsByOfficeUserIdAndStatusAndVisitAll(@PathVariable String officeUserId, @PathVariable String status, @PathVariable Boolean visitAll) {
         if(!visitAll){
-            return visitRepository.findAllByStatus(status);
+            return transformToVisitCompact(visitRepository.findAllByStatus(status));
         }
-        return visitRepository.findAllByOfficeUserIdAndStatus(officeUserId, status);
+        return transformToVisitCompact(visitRepository.findAllByOfficeUserIdAndStatus(officeUserId, status));
     }
 
     @GetMapping("/all/default/{userId}/{status}")
-    public List<Visit> getAllVisitsByUserIdAndStatus(@PathVariable String userId, @PathVariable String status) {
-        return visitRepository.findAllByUserIdAndStatus(userId, status);
+    public List<VisitCompact> getAllVisitsByUserIdAndStatus(@PathVariable String userId, @PathVariable String status) {
+        return transformToVisitCompact(visitRepository.findAllByUserIdAndStatus(userId, status));
     }
 
     @GetMapping("/all/office/today/{officeUserId}")
-    public List<Visit> getAllPlannedAndDuringVisitsToday(@PathVariable String officeUserId) {
+    public List<VisitCompact> getAllPlannedAndDuringVisitsToday(@PathVariable String officeUserId) {
         Long time = new Date().getTime();
         Date thisDay = new Date(time - time % (24 * 60 * 60 * 1000));
         Date nextDay = new Date(thisDay.getTime() + 24 * 60 * 60 * 1000);
-        return visitRepository.findAllByOfficeUserIdAndStatusOrStatusAndDateBetween(officeUserId, "planned", "during", thisDay, nextDay);
+        return transformToVisitCompact(visitRepository.findAllByOfficeUserIdAndStatusOrStatusAndDateBetween(officeUserId, "planned", "during", thisDay, nextDay));
     }
 
     @GetMapping("/count/finished")
@@ -189,4 +195,23 @@ public class VisitController {
         return response.getBody();
     }
 
+    private List<VisitCompact> transformToVisitCompact(List<Visit> visits) {
+        List<VisitCompact> visitsCompact = new ArrayList<>();
+        for(Visit visit : visits){
+            VisitCompact visitCompact = new VisitCompact();
+            visitCompact.setId(visit.getId());
+            visitCompact.setDate(visit.getDate());
+            visitCompact.setStatus(visit.getStatus());
+            visitCompact.setVisitDetails(visit.getVisitDetails());
+            visitCompact.setVisitType(getVisitTypeById(visit.getVisitTypeId()));
+            Object user = restTemplate.getForObject("http://user-service/" + visit.getUserId(), Object.class);
+            visitCompact.setUser(user);
+            Object officeUser = restTemplate.getForObject("http://user-service/" + visit.getOfficeUserId(), Object.class);
+            visitCompact.setOfficeUser(officeUser);
+
+            visitsCompact.add(visitCompact);
+        }
+
+        return visitsCompact;
+    }
 }
