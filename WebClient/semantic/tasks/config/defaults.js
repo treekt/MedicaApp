@@ -40,7 +40,7 @@ module.exports = {
     clean : 'dist/'
   },
 
-  // components to include in package
+  // components to include in pack
   components: [
 
     // global

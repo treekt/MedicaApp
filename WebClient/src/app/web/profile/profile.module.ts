@@ -2,13 +2,11 @@ import {NgModule} from '@angular/core';
 import {CommonModule} from '@angular/common';
 import {ProfileRoutingModule} from './profile-routing.module';
 import {ProfileComponent} from './profile.component';
-import {FullCalendarModule} from 'ng-fullcalendar';
-import {SchedulerComponent} from '../../core/scheduler/scheduler.component';
 import {UserDetailsComponent} from '../../core/user/user-details/user-details.component';
-import {DirectiveModule} from '../../modules/directive.module';
+import {DirectiveModule} from '../../shared/modules/directive.module';
 import {FormsModule} from '@angular/forms';
 import {ScheduleRestService} from '../../services/rest/schedule-rest.service';
-import {UserAdminComponentsModule} from '../../modules/user-admin-components.module';
+import {UserAdminComponentsModule} from '../../shared/modules/user-admin-components.module';
 
 @NgModule({
   imports: [

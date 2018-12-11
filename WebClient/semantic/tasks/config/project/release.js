@@ -21,17 +21,17 @@ catch(error) {}
 
 
 try {
-  npmPackage = require('../../../package.json');
+  npmPackage = require('../../../pack.json');
 }
 catch(error) {
-  // generate fake package
+  // generate fake pack
   npmPackage = {
     name: 'Unknown',
     version: 'x.x'
   };
 }
 
-// looks for version in config or package.json (whichever is available)
+// looks for version in config or pack.json (whichever is available)
 version = (npmPackage && npmPackage.version !== undefined && npmPackage.name == 'semantic-ui')
   ? npmPackage.version
   : config.version

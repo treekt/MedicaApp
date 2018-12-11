@@ -1,5 +1,5 @@
 <a class="ui orange ribbon label">Lista ról</a>
-<table class="ui table">
+<table class="ui table" *ngIf="roles.length > 0">
   <thead>
   <tr>
     <th class="thirteen wide">Nazwa</th>
@@ -18,4 +18,8 @@
   </tr>
   </tbody>
 </table>
-
+<div class="ui warning message" *ngIf="roles.length === 0">
+  <div class="content">
+    <i class="info icon"></i>
+    Nie znaleziono żadnych ról!</div>
+</div>

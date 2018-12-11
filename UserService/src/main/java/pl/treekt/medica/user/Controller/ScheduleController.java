@@ -28,7 +28,6 @@ public class ScheduleController {
     @PostMapping
     public SchedulerEvent saveEvent(@RequestBody SchedulerEvent schedulerEvent) {
         SchedulerEvent event = schedulerEventRepository.save(schedulerEvent);
-        System.out.println(event.getStart() + " -- " + event.getEnd() + "(" + event.getStart().getTime());
         return event;
     }
 
@@ -59,9 +58,7 @@ public class ScheduleController {
             @PathVariable @DateTimeFormat(pattern = "yyyy-MM-dd") Date minDate,
             @PathVariable @DateTimeFormat(pattern = "yyyy-MM-dd") Date maxDate) {
 
-        if(minDate.getTime() == maxDate.getTime()){
             maxDate = DateUtils.addDays(maxDate, 1);
-        }
 
         minDate = DateUtils.addHours(minDate, 1);
         maxDate = DateUtils.addHours(maxDate, 1);

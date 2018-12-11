@@ -18,11 +18,11 @@ public class Visit {
 
     @Id
     private String id;
-    @JsonFormat
+    @JsonFormat(pattern = "yyyy-MM-dd HH:mm")
     private Date date;
     private String status;
-    private VisitType type;
     private VisitDetails visitDetails;
+    private String visitTypeId;
     private String userId;
     private String officeUserId;
 

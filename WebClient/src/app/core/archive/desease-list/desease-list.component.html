@@ -1,0 +1,45 @@
+<div class="ui segment">
+  <div class="ui segment" *ngIf="selectedDesease">
+    <div class="ui top left attached label">Dane choroby</div>
+    <div class="ui small header">
+      <div class="content">
+        Kod i nazwa
+        <div class="sub header">({{selectedDesease.code}}) {{selectedDesease.name}}</div>
+      </div>
+    </div>
+    <div class="ui small header" *ngIf="selectedDesease.description !== '-'">
+      <div class="content">
+        Opis
+        <div class="sub header">{{selectedDesease.description}}
+        </div>
+      </div>
+    </div>
+  </div>
+  <form class="ui form">
+    <div class="field">
+      <label>Choroba</label>
+      <div class="ui left icon input">
+        <i class="search icon"></i>
+        <input type="text" placeholder="Wyszukaj chorobe"
+               (keyup)="deseaseTerm$.next($event.target.value)"/>
+      </div>
+      <div class="ui segment" style="height:200px;overflow-y: scroll;" *ngIf="deseases.length > 0">
+        <table class="ui very basic table">
+          <tbody>
+          <tr *ngFor="let desease of deseases">
+            <td class="three wide">
+              {{desease.code}} {{desease.name}}
+            </td>
+            <td class="three wide">
+              <button class="ui icon right floated button" (click)="onSelectDesease(desease)">
+                <i class="check icon"></i>
+              </button>
+            </td>
+          </tr>
+          </tbody>
+        </table>
+
+      </div>
+    </div>
+  </form>
+</div>

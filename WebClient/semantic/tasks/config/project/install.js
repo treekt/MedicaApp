@@ -349,7 +349,7 @@ module.exports = {
       {
         type: 'checkbox',
         name: 'components',
-        message: 'What components should we include in the package?',
+        message: 'What components should we include in the pack?',
 
         // duplicated manually from tasks/defaults.js with additional property
         choices: [

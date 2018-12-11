@@ -10,8 +10,8 @@ export class VisitTypeListComponent implements OnInit {
 
   visitTypes: VisitType[];
 
-  constructor(private visitRest: VisitRestService) {
-  }
+  constructor(private visitRest: VisitRestService) {}
+
 
   ngOnInit() {
     this.initVisitTypes();

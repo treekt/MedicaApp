@@ -10,10 +10,13 @@ import {RoleGuard} from '../../services/guards/role-guard.service';
 import {VisitManagementComponent} from '../../core/visit/visit-management.component';
 import {CreateVisitComponent} from '../../core/visit/create-visit/create-visit.component';
 import {DashboardComponent} from './dashboard.component';
-import {DirectiveModule} from '../../modules/directive.module';
-import {UserAdminComponentsModule} from '../../modules/user-admin-components.module';
+import {DirectiveModule} from '../../shared/modules/directive.module';
+import {UserAdminComponentsModule} from '../../shared/modules/user-admin-components.module';
 import { MakeVisitComponent } from '../../core/visit/make-visit/make-visit.component';
 import { VisitListComponent } from '../../core/visit/visit-list/visit-list.component';
+import { HomeComponent } from '../../core/home/home.component';
+import { DeseaseListComponent } from '../../core/archive/desease-list/desease-list.component';
+import { MedicinesListComponent } from '../../core/archive/medicines-list/medicines-list.component';
 @NgModule({
   imports: [
     CommonModule,
@@ -30,8 +33,11 @@ import { VisitListComponent } from '../../core/visit/visit-list/visit-list.compo
     CreateVisitComponent,
     MakeVisitComponent,
     VisitListComponent,
+    HomeComponent,
+    DeseaseListComponent,
+    MedicinesListComponent,
   ],
-  providers: [RoleGuard, UserRestService, RoleRestService]
+  providers: [RoleGuard, UserRestService, RoleRestService, UserRestService]
 })
 export class DashboardModule {
 }

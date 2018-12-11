@@ -2,8 +2,11 @@ import {Component, OnInit} from '@angular/core';
 import {ArchiveRestService} from '../../../services/rest/archive-rest.service';
 import {Desease, Medicine, Package} from '../../../models/archive';
 import {Subject} from 'rxjs';
-import {Visit, VisitMedicine} from '../../../models/visit';
+import {Visit, VisitDetails, VisitMedicine, VisitType} from '../../../models/visit';
 import {VisitRestService} from '../../../services/rest/visit-rest.service';
+import {ActivatedRoute} from '@angular/router';
+import {User} from '../../../models/user';
+import {UserRestService} from '../../../services/rest/user-rest.service';
 
 declare var $: any;
 
@@ -16,20 +19,25 @@ export class MakeVisitComponent implements OnInit {
   step = 'interview';
 
   visit: Visit;
+  visitType: VisitType;
+  user: User;
+  officeUser: User;
 
   deseaseTerm$ = new Subject<string>();
-  deseases: Desease[];
-  diagnosedDeseases: Desease[];
+  deseases: Desease[] = [];
+  diagnosedDeseases: Desease[] = [];
 
   medicineTerm$ = new Subject<string>();
-  medicines: Medicine[];
+  medicines: Medicine[] = [];
   selectedMedicine: Medicine;
-  prescribedMedicines: Medicine[];
+  prescribedMedicines: Medicine[] = [];
 
 
-  constructor(private archiveRest: ArchiveRestService, private visitRest: VisitRestService) {
+  constructor(private archiveRest: ArchiveRestService,
+              private userRest: UserRestService,
+              private visitRest: VisitRestService,
+              private route: ActivatedRoute) {
 
-    this.visit = new Visit();
 
     this.archiveRest.searchDesease(this.deseaseTerm$).subscribe(results => {
       this.deseases = results;
@@ -39,12 +47,32 @@ export class MakeVisitComponent implements OnInit {
       this.medicines = results;
     });
 
-    // this.deseaseTerm$.asObservable().subscribe(term => term === '' ? this.deseases = null : {});
-    // this.medicineTerm$.asObservable().subscribe(term => term === '' ? this.medicines = null : {});
-
   }
 
   ngOnInit() {
+    this.initVisit();
+  }
+
+  initVisit() {
+    this.route.params.subscribe(params => {
+      this.visitRest.getVisitById(params['id']).subscribe(visitResult => {
+        this.visit = visitResult;
+        this.userRest.getUserById(this.visit.userId).subscribe(userResult => this.user = userResult);
+        this.userRest.getUserById(this.visit.officeUserId).subscribe(officeUserResult => this.officeUser = officeUserResult);
+        this.visitRest.getVisitTypeById(this.visit.visitTypeId).subscribe(visitTypeResult => this.visitType = visitTypeResult);
+
+        this.visit.visitDetails = new VisitDetails();
+
+        if (this.visit.status !== 'during') {
+          this.setDuringStatusOfVisit();
+        }
+      });
+    });
+  }
+
+  setDuringStatusOfVisit() {
+    this.visitRest.setDuringStatusOfVisit(this.visit.id).subscribe(() => {
+    });
   }
 
 
@@ -56,9 +84,6 @@ export class MakeVisitComponent implements OnInit {
 
 
   addToDiagnosedDeseases(desease: Desease) {
-    if (this.diagnosedDeseases == null) {
-      this.diagnosedDeseases = [];
-    }
     if (!this.diagnosedDeseases.includes(desease)) {
       this.diagnosedDeseases.push(desease);
     }
@@ -66,12 +91,9 @@ export class MakeVisitComponent implements OnInit {
 
   deleteFromDiagnosedDeseases(desease: Desease) {
     if (this.diagnosedDeseases.includes(desease)) {
-      if (this.diagnosedDeseases.length === 1) {
-        this.diagnosedDeseases = null;
-      } else {
-        const index = this.diagnosedDeseases.indexOf(desease);
-        this.diagnosedDeseases.splice(index, 1);
-      }
+      const index = this.diagnosedDeseases.indexOf(desease);
+      this.diagnosedDeseases.splice(index, 1);
+
     }
   }
 
@@ -80,9 +102,6 @@ export class MakeVisitComponent implements OnInit {
   }
 
   addToPrescribedMedicines(_package: Package) {
-    if (this.prescribedMedicines == null) {
-      this.prescribedMedicines = [];
-    }
     let canAddFlag = true;
     for (const medicine of this.prescribedMedicines) {
       if (medicine.packages.includes(_package)) {
@@ -102,12 +121,9 @@ export class MakeVisitComponent implements OnInit {
 
   deleteFromPrescribedMedicines(medicine: Medicine) {
     if (this.prescribedMedicines.includes(medicine)) {
-      if (this.prescribedMedicines.length === 1) {
-        this.prescribedMedicines = null;
-      } else {
-        const index = this.prescribedMedicines.indexOf(medicine);
-        this.prescribedMedicines.slice(index, 1);
-      }
+      const index = this.prescribedMedicines.indexOf(medicine);
+      this.prescribedMedicines.slice(index, 1);
+
     }
   }
 

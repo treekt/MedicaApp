@@ -10,7 +10,7 @@ import {TokenInterceptor} from './interceptors/token.interceptor';
 import {CoreComponent} from './core/core.component';
 import {AuthGuard} from './services/guards/auth-guard.service';
 import {AuthService} from './services/auth.service';
-import {DirectiveModule} from './modules/directive.module';
+import {DirectiveModule} from './shared/modules/directive.module';
 
 @NgModule({
   imports: [

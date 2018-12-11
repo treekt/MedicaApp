@@ -2,8 +2,8 @@ export class Visit {
   id: string;
   date: string;
   status: string;
-  type: string;
   visitDetails: VisitDetails;
+  visitTypeId: string;
   userId: string;
   officeUserId: string;
 

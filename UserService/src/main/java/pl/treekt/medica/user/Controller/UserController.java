@@ -6,6 +6,7 @@ import org.springframework.web.client.RestTemplate;
 import pl.treekt.medica.user.Document.User;
 import pl.treekt.medica.user.Repository.UserRepository;
 
+import java.util.Iterator;
 import java.util.List;
 
 @RestController
@@ -71,11 +72,7 @@ public class UserController {
     }
 
     private List<User> administratorAccountFilter(List<User> users){
-        for(User user : users) {
-            if(user.getId().equals("admin")){
-                users.remove(user);
-            }
-        }
+        users.removeIf(user -> user.getId().equals("admin"));
         return users;
     }
 

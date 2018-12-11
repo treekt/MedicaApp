@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, Input, OnInit} from '@angular/core';
 import {ActivatedRoute} from '@angular/router';
 import {VisitRestService} from '../../../services/rest/visit-rest.service';
 import {Visit} from '../../../models/visit';
@@ -11,9 +11,12 @@ import {UserRestService} from '../../../services/rest/user-rest.service';
 })
 export class VisitListComponent implements OnInit {
 
+  @Input()
+  homeMode: boolean;
+
   forOfficeUser: boolean;
 
-  visits: Visit[];
+  visits: Visit[] = [];
 
   visitStatus = 'planned';
   visitAll = false;
@@ -29,7 +32,7 @@ export class VisitListComponent implements OnInit {
   ngOnInit() {
     this.userRest.getAuthenticatedUser().subscribe(userResult => {
       this.user = userResult;
-      if (this.forOfficeUser) {
+      if (this.user.isOfficeUser) {
         this.initVisitsForOfficeUser();
       } else {
         this.initVisitsForUser();
@@ -38,12 +41,20 @@ export class VisitListComponent implements OnInit {
   }
 
   initVisitsForOfficeUser() {
-    this.visitRest.getAllVisitByOfficeUserIdAndStatusAndVisitAll(this.user.id, this.visitStatus, this.visitAll)
-      .subscribe(visitsResult => this.visits = visitsResult);
+    if (this.homeMode) {
+      this.visitRest.getAllPlannedAndDuringVisitsTodayForOfficeUser(this.user.id).subscribe(visitsResult => this.visits = visitsResult);
+    } else {
+      this.visitRest.getAllVisitByOfficeUserIdAndStatusAndVisitAll(this.user.id, this.visitStatus, this.visitAll)
+        .subscribe(visitsResult => this.visits = visitsResult);
+    }
   }
 
   initVisitsForUser() {
-    this.visitRest.getAllVisitByUserIdAndStatus(this.user.id, this.visitStatus).subscribe(visitsResult => this.visits = visitsResult);
+    if (this.homeMode) {
+      this.visitRest.getAllVisitByUserIdAndStatus(this.user.id, 'planned').subscribe(visitsResult => this.visits = visitsResult);
+    } else {
+      this.visitRest.getAllVisitByUserIdAndStatus(this.user.id, this.visitStatus).subscribe(visitsResult => this.visits = visitsResult);
+    }
   }
 
 }

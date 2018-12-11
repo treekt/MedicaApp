@@ -50,7 +50,7 @@ module.exports = function(gulp) {
       Packaged
   ---------------*/
 
-  gulp.task('package uncompressed css', function() {
+  gulp.task('pack uncompressed css', function() {
     return gulp.src(output.uncompressed + '/**/' + globs.components + globs.ignored + '.css')
       .pipe(plumber())
       .pipe(dedupe())
@@ -63,7 +63,7 @@ module.exports = function(gulp) {
     ;
   });
 
-  gulp.task('package compressed css', function() {
+  gulp.task('pack compressed css', function() {
     return gulp.src(output.uncompressed + '/**/' + globs.components + globs.ignored + '.css')
       .pipe(plumber())
       .pipe(dedupe())
@@ -77,7 +77,7 @@ module.exports = function(gulp) {
     ;
   });
 
-  gulp.task('package uncompressed js', function() {
+  gulp.task('pack uncompressed js', function() {
     return gulp.src(output.uncompressed + '/**/' + globs.components + globs.ignored + '.js')
       .pipe(plumber())
       .pipe(dedupe())
@@ -90,7 +90,7 @@ module.exports = function(gulp) {
     ;
   });
 
-  gulp.task('package compressed js', function() {
+  gulp.task('pack compressed js', function() {
     return gulp.src(output.uncompressed + '/**/' + globs.components + globs.ignored + '.js')
       .pipe(plumber())
       .pipe(dedupe())
@@ -110,7 +110,7 @@ module.exports = function(gulp) {
 
   if(config.rtl) {
 
-    gulp.task('package uncompressed rtl css', function () {
+    gulp.task('pack uncompressed rtl css', function () {
       return gulp.src(output.uncompressed + '/**/' + globs.components + globs.ignoredRTL + '.rtl.css')
         .pipe(dedupe())
         .pipe(replace(assets.uncompressed, assets.packaged))
@@ -122,7 +122,7 @@ module.exports = function(gulp) {
       ;
     });
 
-    gulp.task('package compressed rtl css', function () {
+    gulp.task('pack compressed rtl css', function () {
       return gulp.src(output.uncompressed + '/**/' + globs.components + globs.ignoredRTL + '.rtl.css')
         .pipe(dedupe())
         .pipe(replace(assets.uncompressed, assets.packaged))
@@ -135,7 +135,7 @@ module.exports = function(gulp) {
       ;
     });
 
-    gulp.task('package uncompressed docs css', function() {
+    gulp.task('pack uncompressed docs css', function() {
       return gulp.src(output.uncompressed + '/**/' + globs.components + globs.ignored + '.css')
         .pipe(dedupe())
         .pipe(plumber())
@@ -147,7 +147,7 @@ module.exports = function(gulp) {
       ;
     });
 
-    gulp.task('package compressed docs css', function() {
+    gulp.task('pack compressed docs css', function() {
       return gulp.src(output.uncompressed + '/**/' + globs.components + globs.ignored + '.css')
         .pipe(dedupe())
         .pipe(plumber())
@@ -171,7 +171,7 @@ module.exports = function(gulp) {
     docsOutput = docsConfig.paths.output
   ;
 
-  gulp.task('package uncompressed docs css', function() {
+  gulp.task('pack uncompressed docs css', function() {
     return gulp.src(docsOutput.uncompressed + '/**/' + globs.components + globs.ignored + '.css')
       .pipe(dedupe())
       .pipe(plumber())
@@ -183,7 +183,7 @@ module.exports = function(gulp) {
     ;
   });
 
-  gulp.task('package compressed docs css', function() {
+  gulp.task('pack compressed docs css', function() {
     return gulp.src(docsOutput.uncompressed + '/**/' + globs.components + globs.ignored + '.css')
       .pipe(dedupe())
       .pipe(plumber())
@@ -197,7 +197,7 @@ module.exports = function(gulp) {
     ;
   });
 
-  gulp.task('package uncompressed docs js', function() {
+  gulp.task('pack uncompressed docs js', function() {
     return gulp.src(docsOutput.uncompressed + '/**/' + globs.components + globs.ignored + '.js')
       .pipe(dedupe())
       .pipe(plumber())
@@ -210,7 +210,7 @@ module.exports = function(gulp) {
     ;
   });
 
-  gulp.task('package compressed docs js', function() {
+  gulp.task('pack compressed docs js', function() {
     return gulp.src(docsOutput.uncompressed + '/**/' + globs.components + globs.ignored + '.js')
       .pipe(dedupe())
       .pipe(plumber())

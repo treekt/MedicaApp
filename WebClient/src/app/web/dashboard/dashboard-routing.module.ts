@@ -8,6 +8,9 @@ import {CreateVisitComponent} from '../../core/visit/create-visit/create-visit.c
 import {DashboardComponent} from './dashboard.component';
 import {MakeVisitComponent} from '../../core/visit/make-visit/make-visit.component';
 import {VisitListComponent} from '../../core/visit/visit-list/visit-list.component';
+import {HomeComponent} from '../../core/home/home.component';
+import {DeseaseListComponent} from '../../core/archive/desease-list/desease-list.component';
+import {MedicinesListComponent} from '../../core/archive/medicines-list/medicines-list.component';
 
 
 export const dashboardRoutes: Routes = [
@@ -15,6 +18,23 @@ export const dashboardRoutes: Routes = [
     path: '',
     component: DashboardComponent,
     children: [
+      {path: '', redirectTo: 'home', pathMatch: 'full'},
+      {
+        path: 'home',
+        component: HomeComponent,
+      },
+      {
+        path: 'desease-list',
+        component: DeseaseListComponent,
+      },
+      {
+        path: 'medicine-list',
+        component: MedicinesListComponent,
+      },
+      {
+        path: 'make-visit/:id',
+        component: MakeVisitComponent,
+      },
       {
         path: 'visit-management',
         component: VisitManagementComponent,
@@ -26,10 +46,6 @@ export const dashboardRoutes: Routes = [
             data: {
               forOfficeUser: false
             }
-          },
-          {
-            path: 'make-visit',
-            component: MakeVisitComponent,
           },
           {
             path: 'visit-list',

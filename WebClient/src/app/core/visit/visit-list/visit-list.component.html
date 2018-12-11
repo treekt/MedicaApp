@@ -1,4 +1,4 @@
-<ng-container>
+<ng-container *ngIf="!homeMode">
   <div class="ui segment">
     <form class="ui form">
       <div class="field">
@@ -6,7 +6,7 @@
         <select class="ui dropdown" title="officeUsers" name="visitStatus" [(ngModel)]="visitStatus"
                 (change)="initVisitsForOfficeUser()" semanticDropdown>
           <option value="">Wybierz status wizyty</option>
-          <option value="pending">Umówiona</option>
+          <option value="planned">Umówiona</option>
           <option value="during">W trakcie</option>
           <option value="finished">Zakończona</option>
         </select>
@@ -21,20 +21,34 @@
     </form>
   </div>
 </ng-container>
-<table class="ui table" *ngIf="visits">
+<table class="ui table" *ngIf="visits.length > 0">
   <thead>
   <tr>
     <th>Data</th>
-    <th *ngIf="forOfficeUser">Specjalista</th>
-    <th *ngIf="!forOfficeUser">Pacjent</th>
+    <th *ngIf="user.isOfficeUser">Specjalista</th>
+    <th *ngIf="!user.isOfficeUser">Pacjent</th>
+    <th>Rodzaj wizyty</th>
     <th></th>
   </tr>
   </thead>
   <tbody>
   <tr *ngFor="let visit of visits">
     <td>{{visit.date}}</td>
-    <td>{{visit.officeUserId}}</td>
-    <td>{{visit.userId}}</td>
+    <td *ngIf="user.isOfficeUser">{{visit.officeUserId}}</td>
+    <td *ngIf="!user.isOfficeUser">{{visit.userId}}</td>
+    <td>{{visit.visitTypeId}}</td>
+    <td>
+      <div class="ui icon right floated buttons">
+        <button class="ui button" *ngIf="(visitStatus !== 'finished') && user.isOfficeUser" [routerLink]="['/dashboard/make-visit', visit.id]"><i class="stethoscope icon"></i></button>
+        <button class="ui button" *ngIf="visitStatus === 'finished'"><i class="eye icon"></i></button>
+        <button class="ui button" *ngIf="user.isOfficeUser"><i class="trash alternate outline width icon"></i></button>
+      </div>
+    </td>
   </tr>
   </tbody>
 </table>
+<div class="ui warning message" *ngIf="visits.length === 0">
+  <div class="content">
+    <i class="info icon"></i>
+    Nie znaleziono żadnych wizyt!</div>
+</div>

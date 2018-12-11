@@ -2,7 +2,7 @@
   <div class="column">
     <form class="ui form">
       <h4 class="ui dividing header">Wizyta</h4>
-      <div class="field" *ngIf="forOfficeUser">
+      <div class="field">
         <label>Pacjent</label>
         <div class="ui left icon input">
           <i class="search icon"></i>
@@ -60,7 +60,7 @@
       </div>
       <div class="field">
         <label>Typ wizyty</label>
-        <select class="ui search dropdown" name="visitType" [(ngModel)]="visit.type" semanticDropdown>
+        <select class="ui search dropdown" name="visitType" [(ngModel)]="visit.visitTypeId" semanticDropdown>
           <option value="">Typ wizyty</option>
           <option *ngFor="let visitType of visitTypes" [value]="visitType.id">{{visitType.name}}</option>
         </select>
@@ -93,14 +93,14 @@
           </button>
         </div>
         <div class="right aligned column">
-          <button class="ui green button disabled" type="submit" (click)="makeAppointment()">
+          <button #appointment id="appointment" class="ui green button disabled" type="submit" (click)="makeAppointment()">
             Umów wizytę
           </button>
         </div>
       </div>
     </form>
   </div>
-  <div class="column" style="height:200px;overflow-y: scroll;">
+  <div class="column" style="height:800px;overflow-y: scroll;">
     <table class="ui selectable table">
       <tbody >
       <tr *ngFor="let date of availableVisitDates">

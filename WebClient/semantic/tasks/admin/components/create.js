@@ -8,7 +8,7 @@
   * copy component files from release
   * create commonjs files as index.js for NPM release
   * create release notes that filter only items related to component
-  * custom package.json file from template
+  * custom pack.json file from template
   * create bower.json from template
   * create README from template
   * create meteor.js file
@@ -125,8 +125,8 @@ module.exports = function(callback) {
           npm      : component + ' create NPM Module',
           notes    : component + ' create release notes',
           composer : component + ' create composer.json',
-          package  : component + ' create package.json',
-          meteor   : component + ' create meteor package.js',
+          package  : component + ' create pack.json',
+          meteor   : component + ' create meteor pack.js',
         },
         // paths to includable assets
         manifest = {
@@ -206,7 +206,7 @@ module.exports = function(callback) {
         ;
       });
 
-      // extend package.json
+      // extend pack.json
       gulp.task(task.package, false, function() {
         return gulp.src(release.templates.package)
           .pipe(plumber())
@@ -272,7 +272,7 @@ module.exports = function(callback) {
         ;
       });
 
-      // Creates meteor package.js
+      // Creates meteor pack.js
       gulp.task(task.meteor, function() {
         var
           filenames = ''

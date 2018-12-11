@@ -1,0 +1,91 @@
+<div class="ui segment">
+  <div class="ui segment" *ngIf="selectedMedicine">
+    <div class="ui top left attached label">Dane lekarstwa</div>
+    <div class="ui grid">
+      <div class="eight wide column">
+        <div class="ui small header">
+          <div class="content">
+            Nazwa
+            <div class="sub header">{{selectedMedicine.productName}}</div>
+          </div>
+        </div>
+        <div class="ui small header">
+          <div class="content">
+            Producent
+            <div class="sub header">{{selectedMedicine.entityResponsible}}</div>
+          </div>
+        </div>
+        <div class="ui small header">
+          <div class="content">
+            Substancje aktywne
+            <div class="sub header">
+              <div class="ui list">
+                <div class="item" *ngFor="let activeSubstance of selectedMedicine.activeSubstances">
+                  <div class="description">
+                    {{activeSubstance}}
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="eight wide column">
+        <div class="ui small header">
+          <div class="content">
+            Moc
+            <div class="sub header">{{selectedMedicine.power}}</div>
+          </div>
+        </div>
+        <div class="ui small header">
+          <div class="content">
+            Forma
+            <div class="sub header">{{selectedMedicine.form}}</div>
+          </div>
+        </div>
+        <div class="ui small header">
+          <div class="content">
+            Opakowania
+            <div class="sub header">
+              <div class="ui list">
+                <div class="item" *ngFor="let pack of selectedMedicine.packages">
+
+                  <div class="description">
+                    {{pack.size}} {{pack.unitSize}}
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <form class="ui form">
+    <div class="field">
+      <label>Lekarstwo</label>
+      <div class="ui left icon input">
+        <i class="search icon"></i>
+        <input type="text" placeholder="Wyszukaj lekarstwo"
+               (keyup)="medicineTerm$.next($event.target.value)"/>
+      </div>
+      <div class="ui segment" style="height:200px;overflow-y: scroll;" *ngIf="medicines.length > 0">
+        <table class="ui very basic table">
+          <tbody>
+          <tr *ngFor="let medicine of medicines">
+            <td class="three wide">
+              {{medicine.productName}} {{medicine.power}}
+            </td>
+            <td class="three wide">
+              <button class="ui icon right floated button" (click)="onSelectMedicine(medicine)">
+                <i class="check icon"></i>
+              </button>
+            </td>
+          </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </form>
+</div>

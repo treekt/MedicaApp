@@ -8,7 +8,7 @@
   <button class="ui button" (click)="selectUserType('office')">Pracownicy</button>
   <button class="ui button" (click)="selectUserType('default')">Pacjenci</button>
 </div>
-<table class="ui table">
+<table class="ui table" *ngIf="users.length > 0">
   <thead>
   <tr>
     <th>Imię</th>
@@ -38,3 +38,8 @@
   </tr>
   </tbody>
 </table>
+<div class="ui warning message" *ngIf="users.length === 0">
+  <div class="content">
+    <i class="info icon"></i>
+    Nie znaleziono żadnych danych!</div>
+</div>

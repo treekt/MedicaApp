@@ -59,13 +59,13 @@ export class CreateVisitComponent implements OnInit {
   }
 
   makeAppointment() {
-    this.visitRest.saveVisit(this.visit).subscribe(() => {
-    });
+    this.visit.status = 'planned';
+    this.visitRest.saveVisit(this.visit).subscribe(() => {});
   }
 
   searchVisitDates() {
     this.searchVisitDate.officeUserId = this.visit.officeUserId;
-    this.searchVisitDate.visitTypeId = this.visit.type;
+    this.searchVisitDate.visitTypeId = this.visit.visitTypeId;
     this.searchVisitDate.eventTypeId = 0;
     this.visitRest.getAvailableVisitDates(this.searchVisitDate).subscribe(visitDatesResult => this.availableVisitDates = visitDatesResult);
   }
@@ -83,7 +83,4 @@ export class CreateVisitComponent implements OnInit {
     this.searchVisitDate.dateFrom = date;
   }
 
-  onDateToChange(date: string) {
-    this.searchVisitDate.dateTo = date;
-  }
 }

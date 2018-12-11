@@ -29,7 +29,6 @@ export class SchedulerComponent implements OnInit {
   calendarOptions: Options;
   @ViewChild(CalendarComponent) ucCalendar: CalendarComponent;
 
-
   constructor(private userRest: UserRestService,
               private scheduleRest: ScheduleRestService,
               private route: ActivatedRoute) {

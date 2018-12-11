@@ -17,11 +17,11 @@ module.exports = {
   templates: {
     bower    : './tasks/config/admin/templates/bower.json',
     composer : './tasks/config/admin/templates/composer.json',
-    package  : './tasks/config/admin/templates/package.json',
+    package  : './tasks/config/admin/templates/pack.json',
     meteor   : {
-      css       : './tasks/config/admin/templates/css-package.js',
-      component : './tasks/config/admin/templates/component-package.js',
-      less      : './tasks/config/admin/templates/less-package.js',
+      css       : './tasks/config/admin/templates/css-pack.js',
+      component : './tasks/config/admin/templates/component-pack.js',
+      less      : './tasks/config/admin/templates/less-pack.js',
     },
     readme : './tasks/config/admin/templates/README.md',
     notes  : './RELEASE-NOTES.md'
@@ -30,7 +30,7 @@ module.exports = {
   org         : 'Semantic-Org',
   repo        : 'Semantic-UI',
 
-  // files created for package managers
+  // files created for pack managers
   files: {
     composer : 'composer.json',
     config   : 'semantic.json',
@@ -44,7 +44,7 @@ module.exports = {
   // root name for single component repos
   componentRepoRoot : 'UI-',
 
-  // root name for package managers
+  // root name for pack managers
   packageRoot          : 'semantic-ui-',
 
   // root path to repos

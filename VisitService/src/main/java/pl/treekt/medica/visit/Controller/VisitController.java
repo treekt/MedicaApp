@@ -42,22 +42,37 @@ public class VisitController {
         return this.visitRepository.save(visit);
     }
 
-    @PostMapping("/{id}")
+    @GetMapping("/{id}")
     public Visit findVisitById(@PathVariable String id) {
         return this.visitRepository.findVisitById(id);
+    }
+
+    @PostMapping("/status/during/{id}")
+    public Visit setDuringStatusOfVisit(@PathVariable String id){
+        Visit visit = findVisitById(id);
+        visit.setStatus("during");
+        return saveVisit(visit);
     }
 
     @GetMapping("/all/office/{officeUserId}/{status}/{visitAll}")
     public List<Visit> getAllVisitsByOfficeUserIdAndStatusAndVisitAll(@PathVariable String officeUserId, @PathVariable String status, @PathVariable Boolean visitAll) {
         if(!visitAll){
-            return visitRepository.findAllByOfficeUserIdAndStatus(officeUserId, status);
+            return visitRepository.findAllByStatus(status);
         }
-        return visitRepository.findAllByStatus(status);
+        return visitRepository.findAllByOfficeUserIdAndStatus(officeUserId, status);
     }
 
     @GetMapping("/all/default/{userId}/{status}")
     public List<Visit> getAllVisitsByUserIdAndStatus(@PathVariable String userId, @PathVariable String status) {
         return visitRepository.findAllByUserIdAndStatus(userId, status);
+    }
+
+    @GetMapping("/all/office/today/{officeUserId}")
+    public List<Visit> getAllPlannedAndDuringVisitsToday(@PathVariable String officeUserId) {
+        Long time = new Date().getTime();
+        Date thisDay = new Date(time - time % (24 * 60 * 60 * 1000));
+        Date nextDay = new Date(thisDay.getTime() + 24 * 60 * 60 * 1000);
+        return visitRepository.findAllByOfficeUserIdAndStatusOrStatusAndDateBetween(officeUserId, "planned", "during", thisDay, nextDay);
     }
 
     @PostMapping("/types")
@@ -70,6 +85,11 @@ public class VisitController {
         visitTypeRepository.deleteById(id);
     }
 
+    @GetMapping("/types/{id}")
+    public VisitType getVisitTypeById(@PathVariable String id) {
+        return visitTypeRepository.findVisitTypeById(id);
+    }
+
     @GetMapping("/types/all")
     public List<VisitType> findAllVisitTypes() {
         return visitTypeRepository.findAll();
@@ -79,7 +99,7 @@ public class VisitController {
     public List<String> getAvailableVisitDates(@RequestBody SearchVisitDateRequest searchVisitDateRequest) {
         List<SchedulerEvent> workEvents = getSchedulerEvents(searchVisitDateRequest);
         Map<SchedulerEvent, List<Visit>> visitInEvents = new HashMap<>();
-        VisitType visitType = visitTypeRepository.findVisitTypeById(searchVisitDateRequest.getVisitTypeId());
+        VisitType visitType = getVisitTypeById(searchVisitDateRequest.getVisitTypeId());
 
         //Fetching all visits in these work events
         for (SchedulerEvent event : workEvents) {
@@ -103,7 +123,7 @@ public class VisitController {
                 for (Visit visit : visits) {
                     if (visit.getDate().getTime() == tempDate.getTime()) {
                         visitExistsAlready = true;
-                        minute += visit.getType().getDuration() - 1;
+                        minute += visitType.getDuration() - 1;
                         visits.remove(visit);
                         break;
                     }

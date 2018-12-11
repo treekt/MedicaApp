@@ -10,7 +10,7 @@ declare var $: any;
   templateUrl: './role-list.component.html'
 })
 export class RoleListComponent implements OnInit {
-  roles: Role[];
+  roles: Role[] = [];
 
   constructor(private roleRestService: RoleRestService) {
   }

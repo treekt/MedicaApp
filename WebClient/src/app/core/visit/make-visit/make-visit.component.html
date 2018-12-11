@@ -1,27 +1,34 @@
-<div class="ui steps">
-  <div id="interview" class="step active">
-    <i class="pencil alternate icon"></i>
-    <div class="content">
-      <div class="title">Wywiad</div>
-      <div class="description">Dowiedz się co dolega pacjentowi</div>
+<div class="ui segment" *ngIf="visit">
+  <div class="ui steps">
+    <div id="interview" class="step active">
+      <i class="pencil alternate icon"></i>
+      <div class="content">
+        <div class="title">Wywiad</div>
+        <div class="description">Dowiedz się co dolega pacjentowi</div>
+      </div>
+    </div>
+    <div id="diagnosis" class="step">
+      <i class="stethoscope icon"></i>
+      <div class="content">
+        <div class="title">Diagnoza</div>
+        <div class="description">Zdiagnozuj przypadłość</div>
+      </div>
+    </div>
+    <div id="recommendation" class="step">
+      <i class="pills icon"></i>
+      <div class="content">
+        <div class="title">Zalecenie</div>
+        <div class="description">Podaj sposób leczenia</div>
+      </div>
+    </div>
+    <div id="summary" class="step">
+      <i class="clipboard check icon"></i>
+      <div class="content">
+        <div class="title">Podsumowanie</div>
+        <div class="description">Sprawdź zgodność i zakończ wizytę</div>
+      </div>
     </div>
   </div>
-  <div id="diagnosis" class="step">
-    <i class="stethoscope icon"></i>
-    <div class="content">
-      <div class="title">Diagnoza</div>
-      <div class="description">Zdiagnozuj przypadłość</div>
-    </div>
-  </div>
-  <div id="recommendation" class="step">
-    <i class="pills icon"></i>
-    <div class="content">
-      <div class="title">Zalecenie</div>
-      <div class="description">Podaj sposób leczenia</div>
-    </div>
-  </div>
-</div>
-<ng-container>
 
   <ng-template [ngIf]="step === 'interview'">
     <form class="ui form">
@@ -48,61 +55,54 @@
           <input type="text" placeholder="Wyszukaj schodzenie (nazwa lub kod ICD10)"
                  (keyup)="deseaseTerm$.next($event.target.value)"/>
         </div>
-        <ng-container *ngIf="deseases">
-          <div class="ui segments">
-            <div class="ui segment" style="height:200px;overflow-y: scroll;">
-              <table class="ui very basic table" *ngIf="deseases">
-                <tbody>
-                <tr *ngFor="let desease of deseases">
-                  <td class="three wide">
-                    {{desease.code}}
-                  </td>
-                  <td class="ten wide">
-                    {{desease.name}}
-                  </td>
-                  <td class="three wide">
-                    <button class="ui icon right floated button" (click)="addToDiagnosedDeseases(desease)">
-                      <i class="plus icon"></i>
-                    </button>
-                  </td>
-                </tr>
-                </tbody>
-              </table>
+        <div class="ui segments" *ngIf="deseases.length > 0">
+          <div class="ui segment" style="height:200px;overflow-y: scroll;">
+            <table class="ui very basic table">
+              <tbody>
+              <tr *ngFor="let desease of deseases">
+                <td class="three wide">
+                  {{desease.code}}
+                </td>
+                <td class="ten wide">
+                  {{desease.name}}
+                </td>
+                <td class="three wide">
+                  <button class="ui icon right floated button" (click)="addToDiagnosedDeseases(desease)">
+                    <i class="plus icon"></i>
+                  </button>
+                </td>
+              </tr>
+              </tbody>
+            </table>
 
-            </div>
-            <div class="ui secondary segment" *ngIf="diagnosedDeseases">
-              <table class="ui very basic table" *ngIf="diagnosedDeseases">
-                <thead>
-                <tr>
-                  <th class="three wide">Kod ICD10</th>
-                  <th class="ten wide">Nazwa</th>
-                  <th class="three wide"></th>
-                </tr>
-                </thead>
-                <tbody>
-                <tr *ngFor="let desease of diagnosedDeseases">
-                  <td class="three wide">
-                    {{desease.code}}
-                  </td>
-                  <td class="ten wide">
-                    {{desease.name}}
-                  </td>
-                  <td class="three wide">
-                    <button class="ui icon red right floated button" (click)="deleteFromDiagnosedDeseases(desease)">
-                      <i class="minus icon"></i>
-                    </button>
-                  </td>
-                </tr>
-                </tbody>
-              </table>
-            </div>
           </div>
-        </ng-container>
-        <ng-container *ngIf="!deseases">
-          <div class="ui visible message">
-            <p>Nie wyszukałeś chorób!</p>
+          <div class="ui secondary segment" *ngIf="diagnosedDeseases.length > 0">
+            <table class="ui very basic table">
+              <thead>
+              <tr>
+                <th class="three wide">Kod ICD10</th>
+                <th class="ten wide">Nazwa</th>
+                <th class="three wide"></th>
+              </tr>
+              </thead>
+              <tbody>
+              <tr *ngFor="let desease of diagnosedDeseases">
+                <td class="three wide">
+                  {{desease.code}}
+                </td>
+                <td class="ten wide">
+                  {{desease.name}}
+                </td>
+                <td class="three wide">
+                  <button class="ui icon red right floated button" (click)="deleteFromDiagnosedDeseases(desease)">
+                    <i class="minus icon"></i>
+                  </button>
+                </td>
+              </tr>
+              </tbody>
+            </table>
           </div>
-        </ng-container>
+        </div>
 
       </div>
       <button (click)="goFromTo('diagnosis', 'interview')" class="ui left floated blue button">Wróć</button>
@@ -124,96 +124,93 @@
           <input type="text" placeholder="Wyszukaj leków"
                  (keyup)="medicineTerm$.next($event.target.value)"/>
         </div>
-        <ng-container *ngIf="medicines">
-          <div class="ui segments">
-            <div class="ui segment">
-              <div class="ui two column grid">
-                <div class="column" style="height:200px; overflow-y: scroll;">
-                  <table class="ui very basic table">
-                    <tbody>
-                    <tr *ngFor="let medicine of medicines">
-                      <td class="three wide">
-                        {{medicine.productName}}
-                      </td>
-                      <td class="ten wide">
-                        {{medicine.power}}
-                      </td>
-                      <td>
-                        {{medicine.form}}
-                      </td>
-                      <td class="three wide">
-                        <button class="ui icon blue right floated button"
-                                (click)="selectMedicineToDisplayPackages(medicine)">
-                          <i class="angle right icon"></i>
-                        </button>
-                      </td>
-                    </tr>
-                    </tbody>
-                  </table>
-                </div>
-                <div class="column" style="height:200px; overflow-y: scroll;" *ngIf="selectedMedicine">
-                  <table class="ui very basic table">
-                    <tbody>
-                    <tr *ngFor="let _package of selectedMedicine.packages">
-                      <td class="thirteen wide">
-                        {{_package.size}} {{_package.unitSize}}
-                      </td>
-                      <td class="three wide">
-                        <button class="ui icon right floated button" (click)="addToPrescribedMedicines(_package)">
-                          <i class="plus icon"></i>
-                        </button>
-                      </td>
-                    </tr>
-                    </tbody>
-                  </table>
-                </div>
+        <div class="ui segments" *ngIf="medicines.length > 0">
+          <div class="ui segment">
+            <div class="ui two column grid">
+              <div class="column" style="height:200px; overflow-y: scroll;">
+                <table class="ui very basic table">
+                  <tbody>
+                  <tr *ngFor="let medicine of medicines">
+                    <td class="three wide">
+                      {{medicine.productName}}
+                    </td>
+                    <td class="ten wide">
+                      {{medicine.power}}
+                    </td>
+                    <td>
+                      {{medicine.form}}
+                    </td>
+                    <td class="three wide">
+                      <button class="ui icon blue right floated button"
+                              (click)="selectMedicineToDisplayPackages(medicine)">
+                        <i class="angle right icon"></i>
+                      </button>
+                    </td>
+                  </tr>
+                  </tbody>
+                </table>
+              </div>
+              <div class="column" style="height:200px; overflow-y: scroll;" *ngIf="selectedMedicine">
+                <table class="ui very basic table">
+                  <tbody>
+                  <tr *ngFor="let _package of selectedMedicine.packages">
+                    <td class="thirteen wide">
+                      {{_package.size}} {{_package.unitSize}}
+                    </td>
+                    <td class="three wide">
+                      <button class="ui icon right floated button" (click)="addToPrescribedMedicines(_package)">
+                        <i class="plus icon"></i>
+                      </button>
+                    </td>
+                  </tr>
+                  </tbody>
+                </table>
               </div>
             </div>
-            <div class="ui secondary segment" *ngIf="prescribedMedicines">
-              <table class="ui very basic table">
-                <thead>
-                <tr>
-                  <th class="seven wide">Nazwa</th>
-                  <th class="two wide">Moc</th>
-                  <th class="three wide">Forma</th>
-                  <th class="two wide">Opakowanie</th>
-                  <th class="two wide"></th>
-                </tr>
-                </thead>
-                <tbody>
-                <tr *ngFor="let medicine of prescribedMedicines">
-                  <td class="seven wide">
-                    {{medicine.productName}}
-                  </td>
-                  <td class="two wide">
-                    {{medicine.power}}
-                  </td>
-                  <td class="three wide">
-                    {{medicine.form}}
-                  </td>
-                  <td class="two wide">
-                    {{medicine.packages[0].size}} {{medicine.packages[0].unitSize}}
-                  </td>
-                  <td class="two wide">
-                    <button class="ui icon red right floated button" (click)="deleteFromPrescribedMedicines(medicine)">
-                      <i class="minus icon"></i>
-                    </button>
-                  </td>
-                </tr>
-                </tbody>
-              </table>
-            </div>
           </div>
-        </ng-container>
-        <ng-container *ngIf="!medicines">
-          <div class="ui visible message">
-            <p>Nie wyszukałeś leków!</p>
+          <div class="ui secondary segment" *ngIf="prescribedMedicines.length > 0">
+            <table class="ui very basic table">
+              <thead>
+              <tr>
+                <th class="seven wide">Nazwa</th>
+                <th class="two wide">Moc</th>
+                <th class="three wide">Forma</th>
+                <th class="two wide">Opakowanie</th>
+                <th class="two wide"></th>
+              </tr>
+              </thead>
+              <tbody>
+              <tr *ngFor="let medicine of prescribedMedicines">
+                <td class="seven wide">
+                  {{medicine.productName}}
+                </td>
+                <td class="two wide">
+                  {{medicine.power}}
+                </td>
+                <td class="three wide">
+                  {{medicine.form}}
+                </td>
+                <td class="two wide">
+                  {{medicine.packages[0].size}} {{medicine.packages[0].unitSize}}
+                </td>
+                <td class="two wide">
+                  <button class="ui icon red right floated button"
+                          (click)="deleteFromPrescribedMedicines(medicine)">
+                    <i class="minus icon"></i>
+                  </button>
+                </td>
+              </tr>
+              </tbody>
+            </table>
           </div>
-        </ng-container>
+        </div>
       </div>
       <button (click)="goFromTo('recommendation', 'diagnosis')" class="ui left floated blue button">Wróć</button>
-      <button (click)="finishVisit()" class="ui right floated green button">Zakończ</button>
+      <button (click)="goFromTo('recommendation', 'summary')" class="ui right floated blue button">Podsumowanie</button>
     </form>
   </ng-template>
-
-</ng-container>
+  <ng-template [ngIf]="step === 'summary'">
+      <button (click)="goFromTo('summary', 'recommendation')" class="ui left floated blue button">Wróć</button>
+      <button (click)="finishVisit()" class="ui right floated green button">Zakończ wizytę</button>
+  </ng-template>
+</div>

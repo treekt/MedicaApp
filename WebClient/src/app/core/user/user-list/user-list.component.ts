@@ -12,7 +12,7 @@ export class UserListComponent implements OnInit {
   forAdministration: boolean;
 
   userType: string;
-  users: User[];
+  users: User[] = [];
 
   constructor(private userRest: UserRestService, private route: ActivatedRoute) {
     this.route.data.subscribe(data => {

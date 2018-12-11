@@ -6,7 +6,7 @@
   This are tasks to be run by project maintainers
   - Creating Component Repos
   - Syncing with GitHub via APIs
-  - Modifying package files
+  - Modifying pack files
 */
 
 /*******************************
@@ -43,7 +43,7 @@ module.exports = function(gulp) {
 
   /* Tasks */
   gulp.task('release', 'Stages changes in GitHub repos for all distributions', release);
-  gulp.task('publish', 'Publishes all releases (components, package)', publish);
+  gulp.task('publish', 'Publishes all releases (components, pack)', publish);
   gulp.task('register', 'Registers all packages with NPM', register);
 
 };
