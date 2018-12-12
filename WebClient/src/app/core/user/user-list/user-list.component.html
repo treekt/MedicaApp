@@ -33,7 +33,7 @@
     </td>
     <td>{{user.userDetails.pesel}}</td>
     <td>
-      <button (click)="showModalToDelete(user)" class="ui red icon right floated button"><i class="trash alternate outline align center icon"></i></button>
+      <button (click)="showModalToDelete(user)" *showPrivileged="[202]" class="ui red icon right floated button"><i class="trash alternate outline align center icon"></i></button>
     </td>
   </tr>
   </tbody>

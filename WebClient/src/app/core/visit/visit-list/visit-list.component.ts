@@ -16,8 +16,6 @@ export class VisitListComponent implements OnInit {
   @Input()
   homeMode: boolean;
 
-  forOfficeUser: boolean;
-
   visits: VisitCompact[] = [];
 
   visitStatus = 'planned';
@@ -27,10 +25,7 @@ export class VisitListComponent implements OnInit {
 
   visitToDelete: VisitCompact;
 
-  constructor(private userRest: UserRestService, private visitRest: VisitRestService, private route: ActivatedRoute) {
-    this.route.data.subscribe(data => {
-      this.forOfficeUser = data['forOfficeUser'];
-    });
+  constructor(private userRest: UserRestService, private visitRest: VisitRestService){
   }
 
   ngOnInit() {

@@ -26,4 +26,9 @@ public class MedicineController {
         return medicineRepository.findAllByProductNameContainingAndProductType(productName, "ludzki");
     }
 
+    @GetMapping("/{id}")
+    public Medicine getMedicineById(@PathVariable String id) {
+        return medicineRepository.findMedicineById(id);
+    }
+
 }

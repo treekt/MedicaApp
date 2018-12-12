@@ -80,4 +80,12 @@ export class VisitRestService {
     return this.http.get(this.endpoint + '/count/deseases/diagnosed');
   }
 
+  getMedicinesForVisit(id: string): Observable<any> {
+    return this.http.get(this.endpoint + '/medicines/' + id);
+  }
+
+  getDeseasesForVisit(id: string): Observable<any> {
+    return this.http.get(this.endpoint + '/deseases/' + id);
+  }
+
 }

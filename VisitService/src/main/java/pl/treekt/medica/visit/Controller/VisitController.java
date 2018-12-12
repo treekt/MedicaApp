@@ -6,6 +6,7 @@ import org.springframework.http.HttpMethod;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.client.RestTemplate;
+import pl.treekt.medica.visit.Document.Embedded.VisitMedicine;
 import pl.treekt.medica.visit.Document.Visit;
 import pl.treekt.medica.visit.Document.VisitType;
 import pl.treekt.medica.visit.Entity.SchedulerEvent;
@@ -186,6 +187,33 @@ public class VisitController {
         }
         return availableDates;
     }
+
+    @GetMapping("/medicines/{visitId}")
+    public List<Object> getAllMedicinesForVisit(@PathVariable String visitId) {
+        Visit visit = findVisitById(visitId);
+        List<Object> medicines = new ArrayList<>();
+
+        for(VisitMedicine visitMedicine : visit.getVisitDetails().getMedicines()) {
+            Object medicine = restTemplate.getForObject("http://archive-service/medicine/" + visitMedicine.getMedicineId(), Object.class);
+            medicines.add(medicine);
+        }
+
+        return medicines;
+    }
+
+    @GetMapping("/deseases/{visitId}")
+    public List<Object> getAllDeseasesForVisit(@PathVariable String visitId) {
+        Visit visit = findVisitById(visitId);
+        List<Object> deseases = new ArrayList<>();
+
+        for(Integer deseaseId : visit.getVisitDetails().getDeseases()) {
+            Object medicine = restTemplate.getForObject("http://archive-service/desease/" + deseaseId, Object.class);
+            deseases.add(medicine);
+        }
+
+        return deseases;
+    }
+
 
 
     private List<SchedulerEvent> getSchedulerEvents(SearchVisitDateRequest searchVisitDateRequest) {

@@ -24,21 +24,23 @@ export class CreateUserComponent implements OnInit {
               private userRestService: UserRestService,
               private credsRestService: AuthRestService,
               private route: ActivatedRoute) {
-
   }
 
   ngOnInit() {
     this.user = new User();
-    if (this.user.isOfficeUser) {
-      this.user.officeDetails = new OfficeDetails();
-    } else {
-      // TODO: Ustaw dla uzytkowika role 'Pacjent'
-    }
-    this.credentials = new Credentials();
-
     this.route.data.subscribe(data => {
       this.user.isOfficeUser = data['isOfficeUser'];
+
+      if (this.user.isOfficeUser) {
+        this.user.officeDetails = new OfficeDetails();
+      } else {
+        // TODO: Ustaw dla uzytkowika role 'Pacjent'
+      }
+      this.credentials = new Credentials();
     });
+
+
+
 
     this.initAvailableRoles();
   }

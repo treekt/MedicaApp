@@ -4,7 +4,7 @@ import {VisitRestService} from '../../../services/rest/visit-rest.service';
 import {UserRestService} from '../../../services/rest/user-rest.service';
 import {Subject} from 'rxjs';
 import {SearchVisitDate, Visit, VisitType} from '../../../models/visit';
-import {ActivatedRoute} from '@angular/router';
+import {AuthService} from '../../../services/auth.service';
 
 declare var $: any;
 
@@ -14,7 +14,7 @@ declare var $: any;
 })
 export class CreateVisitComponent implements OnInit {
 
-  forOfficeUser: boolean;
+  forOfficeUser = false;
 
   visit: Visit;
 
@@ -29,13 +29,13 @@ export class CreateVisitComponent implements OnInit {
   userTerm$ = new Subject<string>();
   officeUserTerm$ = new Subject<string>();
 
-  constructor(private userRest: UserRestService, private visitRest: VisitRestService, private route: ActivatedRoute) {
-
-    this.route.data.subscribe(data => {
-      this.forOfficeUser = data['forOfficeUser'];
-    });
+  constructor(private userRest: UserRestService, private visitRest: VisitRestService, private authService: AuthService) {
+    if (authService.hasPermission(205)) {
+      this.forOfficeUser = true;
+    }
 
     this.visit = new Visit();
+
     this.searchVisitDate = new SearchVisitDate();
     this.userRest.search(this.userTerm$, false).subscribe(usersResult => this.users = usersResult);
     this.userRest.search(this.officeUserTerm$, true).subscribe(officeUsersResult => this.officeUsers = officeUsersResult);
@@ -43,7 +43,9 @@ export class CreateVisitComponent implements OnInit {
 
   ngOnInit() {
     this.initVisitTypes();
-    if (!this.forOfficeUser) {
+    if (this.forOfficeUser) {
+      this.userRest.getAuthenticatedUser().subscribe(userResult => this.visit.officeUserId = userResult.id);
+    } else {
       this.userRest.getAuthenticatedUser().subscribe(userResult => this.visit.userId = userResult.id);
     }
   }
@@ -60,7 +62,8 @@ export class CreateVisitComponent implements OnInit {
 
   makeAppointment() {
     this.visit.status = 'planned';
-    this.visitRest.saveVisit(this.visit).subscribe(() => {});
+    this.visitRest.saveVisit(this.visit).subscribe(() => {
+    });
   }
 
   searchVisitDates() {

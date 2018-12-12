@@ -1,9 +1,9 @@
 <ng-container *ngIf="isOfficeUser">
-  <a class="ui blue ribbon label" >Kreator konta specjalisty</a>
+  <a class="ui blue ribbon label">Kreator konta specjalisty</a>
   <br/>
   <br/>
 </ng-container>
-<form  class="ui form" (ngSubmit)="saveOfficeUser()">
+<form class="ui form" (ngSubmit)="saveOfficeUser()">
   <!--Dane podstawowe-->
   <h4 class="ui dividing header">Dane podstawowe</h4>
   <div class="two fields">
@@ -11,11 +11,11 @@
       <label>Email</label>
       <input type="text" placeholder="Email" name="email" [(ngModel)]="credentials.email">
     </div>
-    <div *ngIf="user.isOfficeUser" class="field" >
+    <div *ngIf="user.isOfficeUser" class="field">
       <label>Rola</label>
       <select class="ui dropdown" name="role" [(ngModel)]="user.roleName" semanticDropdown>
         <option value="">Rola</option>
-        <option *ngFor="let role of roles" [value]="role.name" >{{role.name}}</option>
+        <option *ngFor="let role of roles" [value]="role.name">{{role.name}}</option>
       </select>
     </div>
   </div>
@@ -31,9 +31,9 @@
   </div>
 
   <!--Dane zawodowe-->
-  <ng-container *ngIf="isOfficeUser">
+  <ng-container *ngIf="user.isOfficeUser">
     <h4 class="ui dividing header">Dane zawodowe</h4>
-    <div class="two fields">
+    <div class="three fields">
       <div class="field">
         <label>Tytuł naukowy</label>
         <input type="text" placeholder="Tytuł naukowy" name="degree" [(ngModel)]="user.officeDetails.degree">
@@ -41,6 +41,13 @@
       <div class="field">
         <label>PWZ</label>
         <input type="number" placeholder="PWZ" name="pwz" [(ngModel)]="user.officeDetails.pwz">
+      </div>
+      <div class="field">
+        <label>Specjalista</label>
+        <div class="ui toggle checkbox">
+          <label></label>
+          <input type="checkbox" name="public" [(ngModel)]="user.officeDetails.isSpecialist" title="">
+        </div>
       </div>
     </div>
 
@@ -79,7 +86,8 @@
     </div>
     <div class="field">
       <label>Data urodzenia</label>
-      <div class="ui calendar" calendarType="datetime" semanticCalendar [calendarType]="'date'" (changeDate)="user.userDetails.birthday = $event">
+      <div class="ui calendar" calendarType="datetime" semanticCalendar [calendarType]="'date'"
+           (changeDate)="user.userDetails.birthday = $event">
         <div class="ui input left icon">
           <i class="calendar icon"></i>
           <input type="text" placeholder="Data urodzenia" name="birthday">
@@ -121,7 +129,8 @@
     </div>
     <div class="field">
       <label>Województwo</label>
-      <select class="ui fluid dropdown" title="Województwo" name="voivodeship" [(ngModel)]="user.address.voivodeship" semanticDropdown>
+      <select class="ui fluid dropdown" title="Województwo" name="voivodeship" [(ngModel)]="user.address.voivodeship"
+              semanticDropdown>
         <option value="">Województwo</option>
         <option value="DŚ">Dolnośląskie</option>
         <option value="KP">Kujawsko-Pomorskie</option>

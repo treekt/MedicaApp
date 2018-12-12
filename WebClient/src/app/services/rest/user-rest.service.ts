@@ -34,7 +34,8 @@ export class UserRestService {
   }
 
   getAllUsersContainsFirstNameOrLastName(firstNameOrLastName: string, isOfficeUser: boolean): Observable<any> {
-    return this.http.get(this.endpoint + '/all/' + (firstNameOrLastName === '' ? 'nothing' : firstNameOrLastName) + '/' + isOfficeUser);
+    return this.http.get(
+      this.endpoint + '/all/' + (firstNameOrLastName === '' ? 'nothing' : firstNameOrLastName) + '/' + isOfficeUser + '/' + true);
   }
 
   getUserById(id: string): Observable<any> {

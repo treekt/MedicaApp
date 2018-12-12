@@ -188,7 +188,7 @@ export class SchedulerComponent implements OnInit {
   }
 
   pushEventIntoEventList(event: SchedulerEvent) {
-    if (this.events.includes(event)) {
+    if (this.events.indexOf(event) > -1) {
       const index = this.events.indexOf(event);
       this.events.splice(index, 1);
     }

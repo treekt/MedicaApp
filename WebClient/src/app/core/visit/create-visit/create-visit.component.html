@@ -1,6 +1,6 @@
 <form class="ui form">
   <h4 class="ui dividing header">Wizyta</h4>
-  <div class="field">
+  <div class="field" *showPrivileged="[204, 205]">
     <label>Pacjent</label>
     <div class="ui left icon input">
       <i class="search icon"></i>
@@ -28,7 +28,7 @@
 
     </div>
   </div>
-  <div class="field">
+  <div class="field" *showPrivileged="[204,206]">
     <label>Specjalista</label>
     <div class="ui left icon input">
       <i class="search icon"></i>

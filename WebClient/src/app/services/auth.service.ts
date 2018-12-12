@@ -3,7 +3,6 @@ import {HttpClient} from '@angular/common/http';
 import {tap} from 'rxjs/operators';
 import {JwtHelperService} from '@auth0/angular-jwt';
 import {RoleRestService} from './rest/role-rest.service';
-import {Permission} from '../models/permissions';
 
 
 export const TOKEN_NAME = 'token';
@@ -12,23 +11,20 @@ export const helper = new JwtHelperService();
 @Injectable()
 export class AuthService {
 
-  private static FULLY_PRIVILEGED_ROLE = 'ADMIN';
+  private static FULLY_PRIVILEGED_ROLE = 'Administrator';
   private url = 'http://localhost:8762/auth/login';
-  permissions: number[] = [];
 
   constructor(private http: HttpClient, private roleRest: RoleRestService) {
   }
 
+
   private initPermissions() {
-    if (this.isAdministrator()) {
-      for (const permission of Permission.allValues()) {
-        this.permissions.push(permission.id);
-      }
-    } else {
-      this.roleRest.getPermissionsOfRole(this.getRoleOfAuthenticatedUser()).subscribe(response => this.permissions = response);
+    if (!this.isAdministrator()) {
+      this.roleRest.getPermissionsOfRole(this.getRoleOfAuthenticatedUser()).subscribe(permissionsResult => {
+        localStorage.setItem('permissions', permissionsResult);
+      });
     }
   }
-
 
 
   login(credentials) {
@@ -43,6 +39,7 @@ export class AuthService {
 
   logout() {
     localStorage.removeItem('token');
+    localStorage.removeItem('permissions');
   }
 
   isTokenExpired(token?: string): boolean {
@@ -60,7 +57,7 @@ export class AuthService {
   }
 
   getRoleOfAuthenticatedUser() {
-    return this.getTokenPayload().roles;
+    return this.getTokenPayload().roles[0];
   }
 
   getEmailOfAuthenticatedUser() {
@@ -75,12 +72,22 @@ export class AuthService {
     localStorage.setItem(TOKEN_NAME, token);
   }
 
-  canAccess(permissionId: number): boolean {
-    return !!this.permissions.find(id => id === permissionId);
+  getPermissionsOfAuthenticatedUser() {
+    return localStorage.getItem('permissions').split(',').map(function (i) {
+      return parseInt(i, 10);
+    });
+  }
+
+  hasPermission(permissionId: number) {
+    if (this.getPermissionsOfAuthenticatedUser().indexOf(permissionId) > -1) {
+      return true;
+    }
+    return false;
   }
 
   isAdministrator() {
-    return this.getEmailOfAuthenticatedUser().toUpperCase() === AuthService.FULLY_PRIVILEGED_ROLE.toUpperCase();
+    return this.getRoleOfAuthenticatedUser() === AuthService.FULLY_PRIVILEGED_ROLE;
   }
+
 
 }

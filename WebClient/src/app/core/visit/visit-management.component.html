@@ -1,10 +1,10 @@
 <div class="ui grid">
   <div class="three wide column">
     <div class="ui vertical pointing menu">
-      <a class="item" routerLink="visit-list" routerLinkActive="active">
+      <a class="item" routerLink="visit-list" routerLinkActive="active" *showPrivileged="[207]">
         Lista wizyt
       </a>
-      <a class="item" routerLink="create-visit" routerLinkActive="active">
+      <a class="item" routerLink="create-visit" routerLinkActive="active" *showPrivileged="[204,205,206]">
         Umów wizytę
       </a>
     </div>

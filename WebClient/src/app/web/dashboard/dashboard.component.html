@@ -1,8 +1,12 @@
 <div class="ui individual grid">
-  <app-select-card iconClasses="calendar alternate outline" routerLink="visit-management" buttonName="Wizyty"></app-select-card>
-  <app-select-card iconClasses="users" routerLink="user-management" buttonName="Użytkownicy"></app-select-card>
-  <app-select-card iconClasses="syringe" routerLink="desease-list" buttonName="Klasyfikacja chorób ICD10"></app-select-card>
-  <app-select-card iconClasses="pills" routerLink="medicine-list" buttonName="Rejestr produktów leczniczych"></app-select-card>
+  <app-select-card iconClasses="calendar alternate outline" routerLink="visit-management" buttonName="Wizyty"
+                   *showPrivileged="[208,209,210]"></app-select-card>
+  <app-select-card iconClasses="users" routerLink="user-management" buttonName="Użytkownicy"
+                   *showPrivileged="[201,203]"></app-select-card>
+  <app-select-card iconClasses="syringe" routerLink="desease-list" buttonName="Klasyfikacja chorób ICD10"
+                   *showPrivileged="[211]"></app-select-card>
+  <app-select-card iconClasses="pills" routerLink="medicine-list" buttonName="Rejestr produktów leczniczych"
+                   *showPrivileged="[212]"></app-select-card>
 </div>
 
 <div class="ui container">

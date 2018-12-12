@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+import {NgModule, TemplateRef} from '@angular/core';
 import { CommonModule } from '@angular/common';
 import {FormsModule} from '@angular/forms';
 import {FullCalendarModule} from 'ng-fullcalendar';
@@ -12,12 +12,12 @@ import {UserListComponent} from '../../core/user/user-list/user-list.component';
     CommonModule,
     FormsModule,
     FullCalendarModule,
-    DirectiveModule
+    DirectiveModule,
   ],
   declarations: [
     UserListComponent,
     CreateUserComponent,
-    SchedulerComponent,
+    SchedulerComponent
   ],
   exports: [
     UserListComponent,

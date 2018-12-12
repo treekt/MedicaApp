@@ -15,6 +15,7 @@ export class User {
 export class OfficeDetails {
   pwz: number;
   degree: string;
+  isSpecialist: boolean;
 }
 
 export class UserDetails {

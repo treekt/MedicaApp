@@ -7,25 +7,36 @@ import {AuthService} from '../../services/auth.service';
 })
 export class ShowPrivilegedDirective implements OnInit {
 
-  permission: Permission;
 
   constructor(private templateRef: TemplateRef<any>,
               private viewContainer: ViewContainerRef,
               private authService: AuthService) {
   }
 
-  @Input() set showPrivileged(permission: Permission) {
-    this.permission = permission;
+  ngOnInit(): void {
   }
 
-  ngOnInit(): void {
-    if (this.authService.permissions.includes(this.permission.id)) {
+  // @Input('showPrivileged') set showPrivileged(permission: Permission) {
+  //   this.giveAccess(this.authService.permissions.includes(permission.id));
+  // }
+
+  @Input('showPrivileged') set showPrivilegedMany(requiredPermissions: number[]) {
+    let privileged = false;
+    for (const permission of requiredPermissions) {
+      if (this.authService.getPermissionsOfAuthenticatedUser().indexOf(permission) > -1) {
+        privileged = true;
+      }
+    }
+    this.giveAccess(privileged);
+  }
+
+  giveAccess(lever: boolean) {
+    if (lever) {
       this.viewContainer.createEmbeddedView(this.templateRef);
     } else {
       this.viewContainer.clear();
     }
   }
-
 
 
 }

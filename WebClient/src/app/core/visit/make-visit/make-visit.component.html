@@ -84,8 +84,8 @@
             </div>
           </div>
         </div>
-        <div class="ui small header">
-          <div class="content">
+        <div class="ui small header" *ngIf="officeUser.officeDetails">
+          <div class="content" *ngIf="officeUser.officeDetails.pwz">
             PWZ
             <div class="sub header">{{officeUser.officeDetails.pwz}}</div>
           </div>
@@ -274,11 +274,11 @@
     </form>
   </ng-template>
   <ng-template [ngIf]="step === 'summary'">
-    <div class="ui segment">
+    <div class="ui segment" *ngIf="prescribedMedicines && diagnosedDeseases && visit">
       <div class="ui top left attached label">Przeprowadzona wizyta</div>
       <div class="ui grid">
         <div class="sixteen wide column">
-          <div class="ui small header">
+          <div class="ui small header" *ngIf="visit.visitDetails.interview">
             <div class="content">
               Wywiad
               <div class="sub header">{{visit.visitDetails.interview}}</div>
@@ -286,60 +286,65 @@
           </div>
         </div>
         <div class="eight wide column">
-          <div class="ui small header">
+          <div class="ui small header" *ngIf="visit.visitDetails.diagnosis">
             <div class="content">
               Diagnoza
               <div class="sub header">{{visit.visitDetails.diagnosis}}</div>
             </div>
           </div>
-          <div class="ui small header">
-            Zdiagnozowane choroby
-          </div>
-          <div class="ui segment" style="height:120px; overflow-y: scroll;" *ngIf="diagnosedDeseases.length > 0">
-            <table class="ui very basic table">
-              <tbody>
-              <tr *ngFor="let desease of diagnosedDeseases">
-                <td class="three wide">
-                  {{desease.code}}
-                </td>
-                <td class="thirteen wide">
-                  {{desease.name}}
-                </td>
-              </tr>
-              </tbody>
-            </table>
-          </div>
+          <ng-template *ngIf="diagnosedDeseases.length > 0">
+            <div class="ui small header">
+              Zdiagnozowane choroby
+            </div>
+            <div class="ui segment" style="height:120px; overflow-y: scroll;">
+              <table class="ui very basic table">
+                <tbody>
+                <tr *ngFor="let desease of diagnosedDeseases">
+                  <td class="three wide">
+                    {{desease.code}}
+                  </td>
+                  <td class="thirteen wide">
+                    {{desease.name}}
+                  </td>
+                </tr>
+                </tbody>
+              </table>
+            </div>
+          </ng-template>
+
         </div>
         <div class="eight wide column">
-          <div class="ui small header">
+          <div class="ui small header" *ngIf="visit.visitDetails.recommendation">
             <div class="content">
               Zalecenia
               <div class="sub header">{{visit.visitDetails.recommendation}}</div>
             </div>
           </div>
-          <div class="ui small header">
-            Zapisane leki
-          </div>
-          <div class="ui segment" style="height:120px; overflow-y: scroll;" *ngIf="prescribedMedicines.length > 0">
-            <table class="ui very basic table">
-              <tbody>
-              <tr *ngFor="let medicine of prescribedMedicines">
-                <td class="six wide">
-                  {{medicine.productName}}
-                </td>
-                <td class="three wide">
-                  {{medicine.power}}
-                </td>
-                <td class="three wide">
-                  {{medicine.form}}
-                </td>
-                <td class="seven wide">
-                  {{medicine.packages[0].size}} {{medicine.packages[0].unitSize}}
-                </td>
-              </tr>
-              </tbody>
-            </table>
-          </div>
+          <ng-template *ngIf="prescribedMedicines.length > 0">
+            <div class="ui small header">
+              Zapisane leki
+            </div>
+            <div class="ui segment" style="height:120px; overflow-y: scroll;">
+              <table class="ui very basic table">
+                <tbody>
+                <tr *ngFor="let medicine of prescribedMedicines">
+                  <td class="six wide">
+                    {{medicine.productName}}
+                  </td>
+                  <td class="three wide">
+                    {{medicine.power}}
+                  </td>
+                  <td class="three wide">
+                    {{medicine.form}}
+                  </td>
+                  <td class="seven wide">
+                    {{medicine.packages[0].size}} {{medicine.packages[0].unitSize}}
+                  </td>
+                </tr>
+                </tbody>
+              </table>
+            </div>
+          </ng-template>
         </div>
 
       </div>

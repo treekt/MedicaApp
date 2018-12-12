@@ -8,9 +8,10 @@ import {AuthService} from '../services/auth.service';
 })
 export class CoreComponent implements OnInit {
 
+
   constructor(
     private router: Router,
-    private authService: AuthService) {
+    public authService: AuthService) {
   }
 
   ngOnInit() {

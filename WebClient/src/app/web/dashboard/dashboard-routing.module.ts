@@ -47,10 +47,7 @@ export const dashboardRoutes: Routes = [
           {path: '', redirectTo: 'visit-list', pathMatch: 'full'},
           {
             path: 'create-visit',
-            component: CreateVisitComponent,
-            data: {
-              forOfficeUser: false
-            }
+            component: CreateVisitComponent
           },
           {
             path: 'visit-list',

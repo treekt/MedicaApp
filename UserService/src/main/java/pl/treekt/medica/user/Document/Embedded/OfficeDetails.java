@@ -13,4 +13,5 @@ public class OfficeDetails {
 
     private Integer pwz;
     private String degree;
+    private Boolean isSpecialist;
 }

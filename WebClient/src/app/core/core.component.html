@@ -5,11 +5,11 @@
   </a>
 
   <div class="right menu">
-    <a class="item" routerLink="/administration" routerLinkActive="active">
+    <a class="item" routerLink="/administration" *ngIf="authService.isAdministrator()" routerLinkActive="active">
       <i class="wrench icon"></i>
       Administracja
     </a>
-    <div class="ui dropdown item" routerLink="/profile" semanticDropdown>
+    <div class="ui dropdown item" routerLink="/profile" *ngIf="!authService.isAdministrator()">
       <i class="user circle icon"></i>
       Konto
     </div>
