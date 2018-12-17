@@ -38,6 +38,7 @@ export class UserRestService {
       this.endpoint + '/all/' + (firstNameOrLastName === '' ? 'nothing' : firstNameOrLastName) + '/' + isOfficeUser + '/' + true);
   }
 
+
   getUserById(id: string): Observable<any> {
     return this.http.get(this.endpoint + '/' + id);
   }

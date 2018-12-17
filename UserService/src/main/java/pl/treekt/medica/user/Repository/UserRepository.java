@@ -11,8 +11,8 @@ public interface UserRepository extends MongoRepository<User, String> {
 
     User findUserById(String id);
     List<User> findAllByIsOfficeUser(boolean isOfficeUser);
-    List<User> findAllByUserDetails_FirstNameContainsOrUserDetails_LastNameContainsAndIsOfficeUser(String userDetails_firstName, String userDetails_lastName, Boolean isOfficeUser);
-    List<User> findAllByUserDetails_FirstNameContainsOrUserDetails_LastNameContainsAndIsOfficeUserAndOfficeDetails_IsSpecialist(String userDetails_firstName, String userDetails_lastName, Boolean isOfficeUser, Boolean officeDetails_isSpecialist);
+    List<User> findAllByUserDetails_FirstNameContainsAndIsOfficeUserOrUserDetails_LastNameContainsAndIsOfficeUser(String userDetails_firstName, Boolean isOfficeUser, String userDetails_lastName, Boolean isOfficeUser2);
+    List<User> findAllByUserDetails_FirstNameContainsAndIsOfficeUserAndOfficeDetails_IsSpecialistOrUserDetails_LastNameContainsAndIsOfficeUserAndOfficeDetails_IsSpecialist(String userDetails_firstName, Boolean isOfficeUser, Boolean officeDetails_isSpecialist, String userDetails_lastName, Boolean isOfficeUser2, Boolean officeDetails_isSpecialist2);
     Integer countUsersByIsOfficeUser(Boolean isOfficeUser);
     void deleteUserById(String id);
 

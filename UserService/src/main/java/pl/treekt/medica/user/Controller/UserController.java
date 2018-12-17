@@ -47,10 +47,13 @@ public class UserController {
 
     @GetMapping("/all/{firstNameOrLastName}/{isOfficeUser}/{isSpecialist}")
     public List<User> getAllUsersContainsFirstNameOrLastName(@PathVariable String firstNameOrLastName, @PathVariable Boolean isOfficeUser, @PathVariable Boolean isSpecialist) {
-        if(!isOfficeUser) {
-            return administratorAccountFilter(userRepository.findAllByUserDetails_FirstNameContainsOrUserDetails_LastNameContainsAndIsOfficeUser(firstNameOrLastName, firstNameOrLastName, isOfficeUser));
+        if(isOfficeUser) {
+            System.out.println("office User");
+            return administratorAccountFilter(userRepository.findAllByUserDetails_FirstNameContainsAndIsOfficeUserAndOfficeDetails_IsSpecialistOrUserDetails_LastNameContainsAndIsOfficeUserAndOfficeDetails_IsSpecialist(firstNameOrLastName, true, isSpecialist, firstNameOrLastName, true, isSpecialist));
         }else{
-            return administratorAccountFilter(userRepository.findAllByUserDetails_FirstNameContainsOrUserDetails_LastNameContainsAndIsOfficeUserAndOfficeDetails_IsSpecialist(firstNameOrLastName,firstNameOrLastName, true, isSpecialist));
+            System.out.println("no office User");
+            return administratorAccountFilter(userRepository.findAllByUserDetails_FirstNameContainsAndIsOfficeUserOrUserDetails_LastNameContainsAndIsOfficeUser(firstNameOrLastName, false, firstNameOrLastName, false));
+
         }
     }
 
