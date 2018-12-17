@@ -1,5 +1,4 @@
 import {Directive, Input, OnInit, TemplateRef, ViewContainerRef} from '@angular/core';
-import {Permission} from '../../models/permissions';
 import {AuthService} from '../../services/auth.service';
 
 @Directive({
@@ -23,7 +22,9 @@ export class ShowPrivilegedDirective implements OnInit {
   @Input('showPrivileged') set showPrivilegedMany(requiredPermissions: number[]) {
     let privileged = false;
     for (const permission of requiredPermissions) {
-      if (this.authService.getPermissionsOfAuthenticatedUser().indexOf(permission) > -1) {
+      if (permission === 202 && this.authService.isAdministrator()) {
+        privileged = true;
+      } else if (this.authService.getPermissionsOfAuthenticatedUser().indexOf(permission) > -1) {
         privileged = true;
       }
     }
