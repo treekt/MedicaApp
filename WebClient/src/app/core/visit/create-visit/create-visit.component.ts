@@ -14,8 +14,6 @@ declare var $: any;
 })
 export class CreateVisitComponent implements OnInit {
 
-  forOfficeUser = false;
-
   visit: Visit;
 
   users: User[] = [];
@@ -30,9 +28,6 @@ export class CreateVisitComponent implements OnInit {
   officeUserTerm$ = new Subject<string>();
 
   constructor(private userRest: UserRestService, private visitRest: VisitRestService, private authService: AuthService) {
-    if (authService.hasPermission(205)) {
-      this.forOfficeUser = true;
-    }
 
     this.visit = new Visit();
 
@@ -43,9 +38,9 @@ export class CreateVisitComponent implements OnInit {
 
   ngOnInit() {
     this.initVisitTypes();
-    if (this.forOfficeUser) {
+    if (this.authService.hasPermission(205)) {
       this.userRest.getAuthenticatedUser().subscribe(userResult => this.visit.officeUserId = userResult.id);
-    } else {
+    } else if (this.authService.hasPermission(215)) {
       this.userRest.getAuthenticatedUser().subscribe(userResult => this.visit.userId = userResult.id);
     }
   }

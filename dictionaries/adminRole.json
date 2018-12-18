@@ -2,5 +2,9 @@
   {
     "_id": "Administrator",
     "permissions": []
+  },
+  {
+    "_id": "Pacjent",
+    "permissions": [215, 207, 208, 210]
   }
 ]

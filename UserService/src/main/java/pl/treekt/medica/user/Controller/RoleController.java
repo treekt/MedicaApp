@@ -49,6 +49,7 @@ public class RoleController {
 
     private List<Role> administratorRoleFilter(List<Role> roles){
         roles.removeIf(role -> role.getName().equals("Administrator"));
+        roles.removeIf(role -> role.getName().equals("Pacjent"));
         return roles;
     }
 

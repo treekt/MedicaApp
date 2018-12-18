@@ -34,7 +34,7 @@ export class CreateUserComponent implements OnInit {
       if (this.user.isOfficeUser) {
         this.user.officeDetails = new OfficeDetails();
       } else {
-        // TODO: Ustaw dla uzytkowika role 'Pacjent'
+        this.user.roleName = 'Pacjent';
       }
       this.credentials = new Credentials();
     });

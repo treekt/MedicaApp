@@ -18,6 +18,7 @@ export class Permission {
   static readonly SEARCH_AND_DISPLAY_MEDICINES = new Permission(212, 'Szukanie i wyświetlanie informacji o lekarstwach');
   static readonly FILTER_DISPLAYED_VISIT_LIST = new Permission(213, 'Filtrowanie wyświetlonej listy wizyt');
   static readonly DISPLAY_HOME_VISIT_LIST = new Permission(214, 'Wyświetlanie wizyt na stronie domowej');
+  static readonly CREATE_VISIT_BY_PATIENT = new Permission(215, 'Umawianie wizyty przez pacjenta');
 
 
   constructor(public readonly id: number, public readonly name: string) {

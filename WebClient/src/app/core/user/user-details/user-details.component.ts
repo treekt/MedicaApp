@@ -21,7 +21,7 @@ export class UserDetailsComponent implements OnInit {
   }
 
   initUser() {
-    this.userRest.getAuthenticatedUser().subscribe(userResult => {this.user = userResult; console.log(userResult); });
+    this.userRest.getAuthenticatedUser().subscribe(userResult => this.user = userResult);
     this.userEmail = this.authServie.getEmailOfAuthenticatedUser();
   }
 

@@ -1,9 +1,11 @@
 package pl.treekt.medica.visit.Controller;
 
+import org.apache.commons.lang.time.DateUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.ParameterizedTypeReference;
 import org.springframework.http.HttpMethod;
 import org.springframework.http.ResponseEntity;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.client.RestTemplate;
 import pl.treekt.medica.visit.Document.Embedded.VisitMedicine;
@@ -17,6 +19,8 @@ import pl.treekt.medica.visit.Repository.VisitTypeRepository;
 
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
+import java.time.LocalDateTime;
+import java.time.ZoneId;
 import java.util.*;
 
 @RestController
@@ -76,10 +80,10 @@ public class VisitController {
 
     @GetMapping("/all/office/today/{officeUserId}")
     public List<VisitCompact> getAllPlannedAndDuringVisitsToday(@PathVariable String officeUserId) {
-        Long time = new Date().getTime();
-        Date thisDay = new Date(time - time % (24 * 60 * 60 * 1000));
-        Date nextDay = new Date(thisDay.getTime() + 24 * 60 * 60 * 1000);
-        return transformToVisitCompact(visitRepository.findAllByOfficeUserIdAndStatusOrStatusAndDateBetween(officeUserId, "planned", "during", thisDay, nextDay));
+
+        Date thisDay = DateUtils.truncate(new Date(), Calendar.DAY_OF_MONTH);
+        Date nextDay = DateUtils.addDays(thisDay,1);
+        return transformToVisitCompact(visitRepository.findAllByOfficeUserIdAndStatusAndDateBetweenOrOfficeUserIdAndStatusAndDateBetween(officeUserId, "planned", thisDay, nextDay, officeUserId, "during", thisDay, nextDay));
     }
 
     @GetMapping("/count/finished")

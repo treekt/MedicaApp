@@ -1,8 +1,8 @@
 <a class="ui ribbon blue label">Dane użytkownika</a>
 <br/>
 <br/>
-<div class="ui grid">
-  <div class="eight wide column">
+<div class="ui grid" *ngIf="user">
+  <div class="eight wide column" *ngIf="user.userDetails">
     <div class="ui segment">
       <div class="ui top left attached label">Dane osobowe</div>
       <div class="ui small header">
@@ -57,7 +57,7 @@
       </div>
     </div>
   </div>
-  <div class="eight wide column">
+  <div class="eight wide column" *ngIf="user.address">
     <div class="ui segment">
       <div class="ui top left attached label">Adres</div>
       <div class="ui small header">
@@ -99,7 +99,7 @@
     </div>
   </div>
   <div class="eight wide column">
-    <div class="ui segment" *ngIf="user.isOfficeUser">
+    <div class="ui segment" *ngIf="user.isOfficeUser && user.officeDetails">
       <div class="ui top left attached label">Dane zawodowe</div>
       <br/>
       <div class="ui small header">
@@ -108,13 +108,13 @@
           <div class="sub header">{{user.roleName}}</div>
         </div>
       </div>
-      <div class="ui small header">
+      <div class="ui small header" *ngIf="user.officeDetails.isSpecialist">
         <div class="content">
           Stopień naukowy
           <div class="sub header">{{user.officeDetails.degree}}</div>
         </div>
       </div>
-      <div class="ui small header">
+      <div class="ui small header" *ngIf="user.officeDetails.isSpecialist">
         <div class="content">
           PWZ
           <div class="sub header">{{user.officeDetails.pwz}}</div>

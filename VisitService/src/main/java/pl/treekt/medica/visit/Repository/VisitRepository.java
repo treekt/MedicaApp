@@ -15,6 +15,6 @@ public interface VisitRepository extends MongoRepository<Visit, String> {
     List<Visit> findAllByUserIdAndStatus(String userId, String status);
     List<Visit> findAllByStatus(String status);
     List<Visit> findAllByOfficeUserIdAndStatus(String officeUserId, String status);
-    List<Visit> findAllByOfficeUserIdAndStatusOrStatusAndDateBetween(String officeUserId, String status, String status2, Date date, Date date2);
+    List<Visit> findAllByOfficeUserIdAndStatusAndDateBetweenOrOfficeUserIdAndStatusAndDateBetween(String officeUserId, String status, Date date, Date date2, String officeUserId2, String status2, Date date3, Date date4);
     Integer countVisitsByStatus(String status);
 }

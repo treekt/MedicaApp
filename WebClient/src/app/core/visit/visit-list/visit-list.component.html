@@ -52,7 +52,7 @@
                   [routerLink]="['/dashboard/visit-details', visit.id]"><i class="eye icon"></i></button>
         </ng-container>
         <ng-container *showPrivileged="[210]">
-          <button class="ui red button" *ngIf="user.isOfficeUser" (click)="showModalToDelete(visit)"><i
+          <button class="ui red button" (click)="showModalToDelete(visit)"><i
             class="close icon"></i></button>
         </ng-container>
 
