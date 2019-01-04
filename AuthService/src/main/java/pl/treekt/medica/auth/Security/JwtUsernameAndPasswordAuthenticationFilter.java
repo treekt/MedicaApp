@@ -10,11 +10,10 @@ import org.springframework.security.core.AuthenticationException;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
+import pl.treekt.medica.auth.Configuration.JwtConfiguration;
 import pl.treekt.medica.auth.Repository.AuthHistoryRepository;
-import pl.treekt.medica.config.Security.JwtConfig;
 
 import javax.servlet.FilterChain;
-import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
@@ -29,9 +28,9 @@ public class JwtUsernameAndPasswordAuthenticationFilter extends UsernamePassword
     // We use auth manager to validate the user credentials
     private AuthenticationManager authManager;
 
-    private final JwtConfig jwtConfig;
+    private final JwtConfiguration jwtConfig;
 
-    public JwtUsernameAndPasswordAuthenticationFilter(AuthenticationManager authManager, JwtConfig jwtConfig) {
+    public JwtUsernameAndPasswordAuthenticationFilter(AuthenticationManager authManager, JwtConfiguration jwtConfig) {
         this.authManager = authManager;
         this.jwtConfig = jwtConfig;
 

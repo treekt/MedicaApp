@@ -6,7 +6,7 @@ import org.springframework.security.authentication.UsernamePasswordAuthenticatio
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.filter.OncePerRequestFilter;
-import pl.treekt.medica.config.Security.JwtConfig;
+import pl.treekt.medica.gateway.Configuration.JwtConfiguration;
 
 import javax.servlet.FilterChain;
 import javax.servlet.ServletException;
@@ -18,9 +18,9 @@ import java.util.stream.Collectors;
 
 public class JwtTokenAuthenticationFilter extends OncePerRequestFilter {
 
-    private final JwtConfig jwtConfig;
+    private final JwtConfiguration jwtConfig;
 
-    public JwtTokenAuthenticationFilter(JwtConfig jwtConfig) {
+    public JwtTokenAuthenticationFilter(JwtConfiguration jwtConfig) {
         this.jwtConfig = jwtConfig;
     }
 
@@ -31,8 +31,8 @@ public class JwtTokenAuthenticationFilter extends OncePerRequestFilter {
         String header = request.getHeader(jwtConfig.getHeader());
 
         // 2. validate the header and check the prefix
-        if(header == null || !header.startsWith(jwtConfig.getPrefix())) {
-            chain.doFilter(request, response);  		// If not valid, go to the next filter.
+        if (header == null || !header.startsWith(jwtConfig.getPrefix())) {
+            chain.doFilter(request, response);        // If not valid, go to the next filter.
             return;
         }
 
@@ -46,7 +46,7 @@ public class JwtTokenAuthenticationFilter extends OncePerRequestFilter {
         // 3. Get the token
         String token = header.replace(jwtConfig.getPrefix(), "");
 
-        try {	// exceptions might be thrown in creating the claims if for example the token is expired
+        try {    // exceptions might be thrown in creating the claims if for example the token is expired
 
             // 4. Validate the token
             Claims claims = Jwts.parser()
@@ -55,7 +55,7 @@ public class JwtTokenAuthenticationFilter extends OncePerRequestFilter {
                     .getBody();
 
             String username = claims.getSubject();
-            if(username != null) {
+            if (username != null) {
                 @SuppressWarnings("unchecked") List<String> authorities = (List<String>) claims.get("roles");
 
                 // 5. Create auth object

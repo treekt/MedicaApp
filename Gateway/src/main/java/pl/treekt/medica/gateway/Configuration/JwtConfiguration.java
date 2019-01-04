@@ -1,10 +1,10 @@
-package pl.treekt.medica.config.Security;
+package pl.treekt.medica.gateway.Configuration;
 
 import lombok.Data;
 import org.springframework.beans.factory.annotation.Value;
 
 @Data
-public class JwtConfig {
+public class JwtConfiguration {
     @Value("${security.jwt.uri:/auth/login}")
     private String Uri;
 

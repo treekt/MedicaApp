@@ -12,7 +12,6 @@ import org.springframework.security.web.authentication.UsernamePasswordAuthentic
 import org.springframework.web.cors.CorsConfiguration;
 import org.springframework.web.cors.CorsConfigurationSource;
 import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
-import pl.treekt.medica.config.Security.JwtConfig;
 import pl.treekt.medica.gateway.Security.JwtTokenAuthenticationFilter;
 
 import javax.servlet.http.HttpServletResponse;
@@ -23,7 +22,7 @@ import java.util.Collections;
 public class SecurityTokenConfiguration extends WebSecurityConfigurerAdapter {
 
     @Autowired
-    private JwtConfig jwtConfig;
+    private JwtConfiguration jwtConfig;
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
@@ -49,8 +48,8 @@ public class SecurityTokenConfiguration extends WebSecurityConfigurerAdapter {
 
 
     @Bean
-    public JwtConfig jwtConfig() {
-        return new JwtConfig();
+    public JwtConfiguration jwtConfig() {
+        return new JwtConfiguration();
     }
 
     @Bean

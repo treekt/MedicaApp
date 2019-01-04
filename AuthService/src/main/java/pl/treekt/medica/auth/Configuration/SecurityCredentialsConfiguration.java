@@ -11,18 +11,21 @@ import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import pl.treekt.medica.auth.Security.JwtUsernameAndPasswordAuthenticationFilter;
 import pl.treekt.medica.auth.Service.UserDetailsServiceImpl;
-import pl.treekt.medica.config.Security.JwtConfig;
 
 import javax.servlet.http.HttpServletResponse;
 
 @EnableWebSecurity
 public class SecurityCredentialsConfiguration extends WebSecurityConfigurerAdapter {
 
-    @Autowired
-    private UserDetailsServiceImpl userDetailsService;
+    private final UserDetailsServiceImpl userDetailsService;
+
+    private final JwtConfiguration jwtConfig;
 
     @Autowired
-    private JwtConfig jwtConfig;
+    public SecurityCredentialsConfiguration(UserDetailsServiceImpl userDetailsService, JwtConfiguration jwtConfig) {
+        this.userDetailsService = userDetailsService;
+        this.jwtConfig = jwtConfig;
+    }
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
@@ -51,8 +54,8 @@ public class SecurityCredentialsConfiguration extends WebSecurityConfigurerAdapt
     }
 
     @Bean
-    public JwtConfig jwtConfig() {
-        return new JwtConfig();
+    public JwtConfiguration jwtConfig() {
+        return new JwtConfiguration();
     }
 
     @Bean
