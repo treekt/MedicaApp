@@ -2,7 +2,6 @@ package pl.treekt.medica.auth.Configuration;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
-import org.springframework.http.HttpMethod;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
@@ -10,21 +9,21 @@ import org.springframework.security.config.annotation.web.configuration.WebSecur
 import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import pl.treekt.medica.auth.Security.JwtUsernameAndPasswordAuthenticationFilter;
-import pl.treekt.medica.auth.Service.UserDetailsServiceImpl;
+import pl.treekt.medica.auth.Service.UserService;
 
 import javax.servlet.http.HttpServletResponse;
 
 @EnableWebSecurity
 public class SecurityCredentialsConfiguration extends WebSecurityConfigurerAdapter {
 
-    private final UserDetailsServiceImpl userDetailsService;
-
-    private final JwtConfiguration jwtConfig;
+    private final UserService userDetailsService;
 
     @Autowired
-    public SecurityCredentialsConfiguration(UserDetailsServiceImpl userDetailsService, JwtConfiguration jwtConfig) {
+    private JwtConfiguration jwtConfig;
+
+    @Autowired
+    public SecurityCredentialsConfiguration(UserService userDetailsService) {
         this.userDetailsService = userDetailsService;
-        this.jwtConfig = jwtConfig;
     }
 
     @Override

@@ -16,16 +16,14 @@ import pl.treekt.medica.auth.Repository.CredentialsRepository;
 import java.util.List;
 
 @Service
-public class UserDetailsServiceImpl implements UserDetailsService {
+public class UserService implements UserDetailsService {
 
     private final RestTemplate restTemplate;
-    private final BCryptPasswordEncoder encoder;
     private final CredentialsRepository credentialsRepository;
 
     @Autowired
-    public UserDetailsServiceImpl(RestTemplate restTemplate, BCryptPasswordEncoder encoder, CredentialsRepository credentialsRepository) {
+    public UserService(RestTemplate restTemplate, CredentialsRepository credentialsRepository) {
         this.restTemplate = restTemplate;
-        this.encoder = encoder;
         this.credentialsRepository = credentialsRepository;
     }
 
@@ -33,7 +31,6 @@ public class UserDetailsServiceImpl implements UserDetailsService {
     public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
 
         List<Credentials> credentials = credentialsRepository.findAll();
-//        credentials.addAll(getSpecialCredentials());
 
         for (Credentials creds : credentials) {
             if (creds.getEmail().equals(email)) {
@@ -54,11 +51,4 @@ public class UserDetailsServiceImpl implements UserDetailsService {
     private String fetchRoleNameByUserId(String userId) {
         return restTemplate.getForObject("http://user-service/roleName/" + userId, String.class);
     }
-
-//    private List<Credentials> getSpecialCredentials(){
-//        List<Credentials> specialCredentials = Collections.singletonList(
-//                new Credentials("admin", "admin", encoder.encode("admin"))
-//        );
-//        return specialCredentials;
-//    }
 }
