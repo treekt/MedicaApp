@@ -101,7 +101,7 @@
         <textarea rows="3" placeholder="Przeprowadź wywiad pacjentem i zanotuj" name="interview"
                   [(ngModel)]="visit.visitDetails.interview"></textarea>
       </div>
-      <button (click)="goFromTo('interview', 'diagnosis')" class="ui right floated blue button">Dalej</button>
+      <button (click)="goFromTo('interview', 'diagnosis')" class="ui right blue button">Dalej</button>
     </form>
   </ng-template>
 
@@ -169,8 +169,8 @@
         </div>
 
       </div>
-      <button (click)="goFromTo('diagnosis', 'interview')" class="ui left floated blue button">Wróć</button>
-      <button (click)="goFromTo('diagnosis', 'recommendation')" class="ui right floated blue button">Dalej</button>
+      <button (click)="goFromTo('diagnosis', 'interview')" class="ui blue button">Wróć</button>
+      <button (click)="goFromTo('diagnosis', 'recommendation')" class="ui blue button">Dalej</button>
     </form>
   </ng-template>
 
@@ -269,8 +269,8 @@
           </div>
         </div>
       </div>
-      <button (click)="goFromTo('recommendation', 'diagnosis')" class="ui left floated blue button">Wróć</button>
-      <button (click)="goFromTo('recommendation', 'summary')" class="ui right floated blue button">Podsumowanie</button>
+      <button (click)="goFromTo('recommendation', 'diagnosis')" class="ui blue button">Wróć</button>
+      <button (click)="goFromTo('recommendation', 'summary')" class="ui blue button">Podsumowanie</button>
     </form>
   </ng-template>
   <ng-template [ngIf]="step === 'summary'">
@@ -349,7 +349,7 @@
       </div>
     </div>
 
-    <button (click)="goFromTo('summary', 'recommendation')" class="ui left floated blue button">Wróć</button>
-    <button (click)="finishVisit()" class="ui right floated green button">Zakończ wizytę</button>
+    <button (click)="goFromTo('summary', 'recommendation')" class="ui blue button">Wróć</button>
+    <button (click)="finishVisit()" class="ui green button">Zakończ wizytę</button>
   </ng-template>
 </div>
