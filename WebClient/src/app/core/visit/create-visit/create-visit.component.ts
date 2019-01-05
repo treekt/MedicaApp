@@ -43,6 +43,63 @@ export class CreateVisitComponent implements OnInit {
     } else if (this.authService.hasPermission(215)) {
       this.userRest.getAuthenticatedUser().subscribe(userResult => this.visit.userId = userResult.id);
     }
+    this.initFormValidator();
+  }
+
+  initFormValidator() {
+    const self = this;
+    $('.ui.form').form({
+      fields: {
+        patient: {
+          identifier: 'patient',
+          rules: [
+            {
+              type: 'empty',
+              prompt: 'Proszę, wpisz imię lub nazwisko pacjenta'
+            }
+          ]
+        },
+        specialist: {
+          identifier: 'specialist',
+          rules: [
+            {
+              type: 'empty',
+              prompt: 'Proszę, wpisz imię lub nazwisko specjalisty'
+            }
+          ]
+        },
+        visitType: {
+          identifier: 'visitType',
+          rules: [
+            {
+              type: 'empty',
+              prompt: 'Proszę, wybierz rodzaj wizyty'
+            }
+          ]
+        },
+        dateFrom: {
+          identifier: 'dateFrom',
+          rules: [
+            {
+              type: 'empty',
+              prompt: 'Proszę, wybierz początkową datę'
+            }
+          ]
+        },
+        dateTo: {
+          identifier: 'dateTo',
+          rules: [
+            {
+              type: 'empty',
+              prompt: 'Proszę, wybierz końcową datę'
+            }
+          ]
+        }
+      },
+      onSuccess: function() {
+        self.searchVisitDates();
+      }
+    });
   }
 
   initVisitTypes() {

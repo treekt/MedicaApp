@@ -1,10 +1,10 @@
-<form class="ui form">
+<div class="ui form">
   <h4 class="ui dividing header">Wizyta</h4>
   <div class="field" *showPrivileged="[204, 205]">
     <label>Pacjent</label>
     <div class="ui left icon input">
       <i class="search icon"></i>
-      <input type="text" placeholder="Wyszukaj pacjenta"
+      <input type="text" name="patient" placeholder="Wyszukaj pacjenta"
              (keyup)="userTerm$.next($event.target.value)"/>
     </div>
     <div class="ui segment" style="height:150px;overflow-y: scroll;" *ngIf="users.length > 0">
@@ -32,7 +32,7 @@
     <label>Specjalista</label>
     <div class="ui left icon input">
       <i class="search icon"></i>
-      <input type="text" placeholder="Wyszukaj specjaliste"
+      <input type="text" name="specialist" placeholder="Wyszukaj specjaliste"
              (keyup)="officeUserTerm$.next($event.target.value)"/>
     </div>
     <div class="ui segment" style="height:150px;overflow-y: scroll;" *ngIf="officeUsers.length > 0">
@@ -103,14 +103,14 @@
 
   <div class="ui two column grid">
     <div class="column">
-      <button class="ui blue button" type="submit" (click)="searchVisitDates()">
+      <button class="ui blue submit button">
         Wyszukaj terminy
       </button>
     </div>
     <div class="right aligned column">
-      <button #appointment id="appointment" class="ui green button disabled" type="submit" (click)="makeAppointment()">
+      <button #appointment id="appointment" class="ui green button disabled" (click)="makeAppointment()">
         Umów wizytę
       </button>
     </div>
   </div>
-</form>
+</div>

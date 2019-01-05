@@ -22,7 +22,7 @@ export class CreateVisitTypeComponent implements OnInit {
   }
 
   initFormValidator() {
-    const selft = this;
+    const self = this;
     $('.ui.form').form({
       fields: {
         visitTypeName: {
