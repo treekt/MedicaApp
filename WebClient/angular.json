@@ -31,7 +31,8 @@
             "scripts": [
               "node_modules/jquery/dist/jquery.min.js",
               "node_modules/semantic-ui-calendar/dist/calendar.min.js",
-              "semantic/dist/semantic.min.js"
+              "semantic/dist/semantic.min.js",
+              "canvas/canvasjs.min.js"
             ]
           },
           "configurations": {

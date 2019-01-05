@@ -1,5 +1,5 @@
-import {NgModule, TemplateRef} from '@angular/core';
-import { CommonModule } from '@angular/common';
+import {NgModule} from '@angular/core';
+import {CommonModule} from '@angular/common';
 import {FormsModule} from '@angular/forms';
 import {FullCalendarModule} from 'ng-fullcalendar';
 import {DirectiveModule} from './directive.module';
@@ -25,4 +25,5 @@ import {UserListComponent} from '../../core/user/user-list/user-list.component';
     SchedulerComponent
   ]
 })
-export class UserAdminComponentsModule { }
+export class UserAdminComponentsModule {
+}

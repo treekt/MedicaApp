@@ -6,7 +6,6 @@ import {FormsModule} from '@angular/forms';
 import {UserManagementComponent} from '../../core/user/user-management.component';
 import {UserRestService} from '../../services/rest/user-rest.service';
 import {RoleRestService} from '../../services/rest/role-rest.service';
-import {RoleGuard} from '../../services/guards/role-guard.service';
 import {VisitManagementComponent} from '../../core/visit/visit-management.component';
 import {CreateVisitComponent} from '../../core/visit/create-visit/create-visit.component';
 import {DashboardComponent} from './dashboard.component';
@@ -39,7 +38,7 @@ import { VisitDetailsComponent } from '../../core/visit/visit-details/visit-deta
     MedicinesListComponent,
     VisitDetailsComponent,
   ],
-  providers: [RoleGuard, UserRestService, RoleRestService, UserRestService]
+  providers: [UserRestService, RoleRestService, UserRestService]
 })
 export class DashboardModule {
 }

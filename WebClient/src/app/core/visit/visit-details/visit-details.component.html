@@ -82,7 +82,7 @@
             <div class="sub header">{{visit.visitDetails.diagnosis}}</div>
           </div>
         </div>
-        <ng-template *ngIf="diagnosedDeseases.length > 0">
+        <div *ngIf="diagnosedDeseases.length > 0">
           <div class="ui small header">
             Zdiagnozowane choroby
           </div>
@@ -100,7 +100,7 @@
               </tbody>
             </table>
           </div>
-        </ng-template>
+        </div>
 
       </div>
       <div class="eight wide column">
@@ -110,7 +110,7 @@
             <div class="sub header">{{visit.visitDetails.recommendation}}</div>
           </div>
         </div>
-        <ng-template *ngIf="prescribedMedicines.length > 0">
+        <div *ngIf="prescribedMedicines.length > 0">
           <div class="ui small header">
             Zapisane leki
           </div>
@@ -134,7 +134,7 @@
               </tbody>
             </table>
           </div>
-        </ng-template>
+        </div>
       </div>
 
     </div>

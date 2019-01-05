@@ -63,8 +63,8 @@ export class UserRestService {
     return this.http.get(this.endpoint + '/office/all');
   }
 
-  countOfficeUsers(): Observable<any> {
-    return this.http.get(this.endpoint + '/count/all/office');
+  countUserTypes(): Observable<any> {
+    return this.http.get(this.endpoint + '/count/types');
   }
 
 }

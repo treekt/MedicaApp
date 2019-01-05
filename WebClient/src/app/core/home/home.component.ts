@@ -8,22 +8,11 @@ import {VisitRestService} from '../../services/rest/visit-rest.service';
 })
 export class HomeComponent implements OnInit {
 
-  officeUsersCounter: number;
-  finishedVisitsCounter: number;
-  prescribedMedicinesCounter: number;
-  diagnosedDeseasesCounter: number;
 
-  constructor(private userRest: UserRestService, private visitRest: VisitRestService) { }
+  constructor() { }
 
   ngOnInit() {
-    this.initCounters();
   }
 
-  initCounters() {
-    this.userRest.countOfficeUsers().subscribe(valueResult => this.officeUsersCounter = valueResult);
-    this.visitRest.countFinishedVisits().subscribe(valueResult => this.finishedVisitsCounter = valueResult);
-    this.visitRest.countPrescribedMedicines().subscribe(valueResult => this.prescribedMedicinesCounter = valueResult);
-    this.visitRest.countDiagnosedDeseases().subscribe(valueResult => this.diagnosedDeseasesCounter = valueResult);
-  }
 
 }

@@ -4,8 +4,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.client.RestTemplate;
 import pl.treekt.medica.user.Document.User;
+import pl.treekt.medica.user.Entity.UserTypeCounter;
 import pl.treekt.medica.user.Repository.UserRepository;
 
+import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
@@ -72,15 +74,19 @@ public class UserController {
         return administratorAccountFilter(userRepository.findAllByIsOfficeUser(true));
     }
 
-    @GetMapping("/count/all/office")
-    public Integer countOfficeUsers() {
-        return userRepository.countUsersByIsOfficeUser(true);
-    }
-
-
     @GetMapping("/roleName/{userId}")
     public String getRoleNameForUser(@PathVariable String userId) {
         return userRepository.findUserById(userId).getRoleName();
+    }
+
+    @GetMapping("/count/types")
+    public List<UserTypeCounter> countUserTypes(){
+        List<UserTypeCounter> userTypeCounters = new ArrayList<>();
+        userTypeCounters.add(new UserTypeCounter("Pacjenci", userRepository.countUsersByIsOfficeUser(false)));
+        userTypeCounters.add(new UserTypeCounter("Pracownicy", userRepository.countUsersByIsOfficeUserAndOfficeDetails_IsSpecialist(true, false)));
+        userTypeCounters.add(new UserTypeCounter("Specjaliści", userRepository.countUsersByIsOfficeUserAndOfficeDetails_IsSpecialist(true, true)));
+
+        return userTypeCounters;
     }
 
     private List<User> administratorAccountFilter(List<User> users){

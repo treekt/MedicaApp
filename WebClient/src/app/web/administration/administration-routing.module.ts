@@ -8,6 +8,8 @@ import {RoleListComponent} from '../../core/role/role-list/role-list.component';
 import {SchedulerComponent} from '../../core/scheduler/scheduler.component';
 import {CreateVisitTypeComponent} from '../../core/visit/create-visit-type/create-visit-type.component';
 import {VisitTypeListComponent} from '../../core/visit/visit-type-list/visit-type-list.component';
+import {MonthVisitsChartComponent} from '../../core/charts/month-visits-chart/month-visits-chart.component';
+import {UserTypesChartComponent} from '../../core/charts/user-types-chart/user-types-chart.component';
 
 export const administrationRoutes: Routes = [
   {
@@ -52,7 +54,15 @@ export const administrationRoutes: Routes = [
       {
         path: 'visit-type-list',
         component: VisitTypeListComponent
-      }
+      },
+      {
+        path: 'month-visits-stats',
+        component: MonthVisitsChartComponent
+      },
+      {
+        path: 'user-types-stats',
+        component: UserTypesChartComponent
+      },
     ]
   }
 ];

@@ -1,5 +1,5 @@
 <div class="ui mini menu">
-  <a class="item" routerLink="/dashboard" routerLinkActive="active">
+  <a class="item" routerLink="/dashboard" *ngIf="!authService.isAdministrator()" routerLinkActive="active">
     <i class="tachometer alternate icon"></i>
     Start
   </a>

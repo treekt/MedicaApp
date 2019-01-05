@@ -1,0 +1,32 @@
+<form class="ui form">
+  <div class="two fields">
+    <div class="field">
+      <label>Rok</label>
+      <select class="ui fluid dropdown" title="year" name="year" [(ngModel)]="year" (change)="constructChart()" semanticDropdown>
+        <option value="">Rok</option>
+        <option value="2019">2019</option>
+        <option value="2018">2018</option>
+      </select>
+    </div>
+    <div *ngIf="year" class="field">
+      <label>Miesiąc</label>
+      <select class="ui fluid dropdown" title="month" name="month" [(ngModel)]="month" (change)="constructChart()"
+              semanticDropdown>
+        <option value="">Miesiąc</option>
+        <option value="01">Styczeń</option>
+        <option value="02">Luty</option>
+        <option value="03">Marzec</option>
+        <option value="04">Kwiecień</option>
+        <option value="05">Maj</option>
+        <option value="06">Czerwiec</option>
+        <option value="07">Lipiec</option>
+        <option value="08">Sierpień</option>
+        <option value="09">Wrzesień</option>
+        <option value="10">Październik</option>
+        <option value="11">Listopad</option>
+        <option value="12">Grudzień</option>
+      </select>
+    </div>
+  </div>
+</form>
+<div id="chartContainer" style="height: 370px; width: 100%;"></div>

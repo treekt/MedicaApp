@@ -50,20 +50,32 @@
             Wizyty
           </div>
           <div class="menu">
-            <div class="ui dropdown item" semanticDropdown>
-              Rodzaje wizyt
-              <i class="dropdown icon"></i>
-              <div class="menu">
-                <div class="item" routerLink="visit-type-list" routerLinkActive="active">
-                  <i class="list ul card icon"></i>
-                  Lista
-                </div>
-                <div class="item" routerLink="create-visit-type" routerLinkActive="active">
-                  <i class="pencil alternate icon"></i>
-                  Stwórz
-                </div>
-              </div>
+            <div class="item" routerLink="visit-type-list" routerLinkActive="active">
+              <i class="list ul card icon"></i>
+              Lista
             </div>
+            <div class="item" routerLink="create-visit-type" routerLinkActive="active">
+              <i class="pencil alternate icon"></i>
+              Stwórz
+            </div>
+          </div>
+        </div>
+        <div class="item">
+          <div class="header">
+            <i class="users icon"></i>
+            Statystyki
+          </div>
+          <div class="menu">
+            <a class="item" routerLink="month-visits-stats" routerLinkActive="active">
+              <i class="chart bar icon"></i>
+              Wizyty w miesiacu
+            </a>
+          </div>
+          <div class="menu">
+            <a class="item" routerLink="user-types-stats" routerLinkActive="active">
+              <i class="chart pie icon"></i>
+              Istniejący żytkownicy
+            </a>
           </div>
         </div>
       </div>

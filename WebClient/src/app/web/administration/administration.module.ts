@@ -9,8 +9,10 @@ import {UserAdminComponentsModule} from '../../shared/modules/user-admin-compone
 import {CreateRoleComponent} from '../../core/role/create-role/create-role.component';
 import {RoleListComponent} from '../../core/role/role-list/role-list.component';
 import {FormsModule} from '@angular/forms';
-import { CreateVisitTypeComponent } from '../../core/visit/create-visit-type/create-visit-type.component';
-import { VisitTypeListComponent } from '../../core/visit/visit-type-list/visit-type-list.component';
+import {CreateVisitTypeComponent} from '../../core/visit/create-visit-type/create-visit-type.component';
+import {VisitTypeListComponent} from '../../core/visit/visit-type-list/visit-type-list.component';
+import {MonthVisitsChartComponent} from '../../core/charts/month-visits-chart/month-visits-chart.component';
+import { UserTypesChartComponent } from '../../core/charts/user-types-chart/user-types-chart.component';
 
 @NgModule({
   imports: [
@@ -25,7 +27,9 @@ import { VisitTypeListComponent } from '../../core/visit/visit-type-list/visit-t
     CreateRoleComponent,
     RoleListComponent,
     CreateVisitTypeComponent,
-    VisitTypeListComponent
+    VisitTypeListComponent,
+    MonthVisitsChartComponent,
+    UserTypesChartComponent
   ],
   providers: [UserRestService, RoleRestService]
 })

@@ -11,6 +11,7 @@ import {CoreComponent} from './core/core.component';
 import {AuthGuard} from './services/guards/auth-guard.service';
 import {AuthService} from './services/auth.service';
 import {DirectiveModule} from './shared/modules/directive.module';
+import {AdminGuard} from './services/guards/admin-guard.service';
 
 @NgModule({
   imports: [
@@ -28,6 +29,7 @@ import {DirectiveModule} from './shared/modules/directive.module';
   ],
   providers: [
     AuthGuard,
+    AdminGuard,
     AuthService,
     {
       provide: HTTP_INTERCEPTORS,

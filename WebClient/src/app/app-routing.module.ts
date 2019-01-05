@@ -3,6 +3,7 @@ import {RouterModule, Routes} from '@angular/router';
 import {LoginComponent} from './core/login/login.component';
 import {CoreComponent} from './core/core.component';
 import {AuthGuard} from './services/guards/auth-guard.service';
+import {AdminGuard} from './services/guards/admin-guard.service';
 
 
 export const routes: Routes = [
@@ -22,7 +23,8 @@ export const routes: Routes = [
       },
       {
         path: 'dashboard',
-        loadChildren: './web/dashboard/dashboard.module#DashboardModule'
+        loadChildren: './web/dashboard/dashboard.module#DashboardModule',
+        canActivate: [AdminGuard]
       },
       {
         path: 'profile',

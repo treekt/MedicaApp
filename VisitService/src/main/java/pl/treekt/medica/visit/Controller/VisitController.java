@@ -14,10 +14,12 @@ import pl.treekt.medica.visit.Document.VisitType;
 import pl.treekt.medica.visit.Entity.SchedulerEvent;
 import pl.treekt.medica.visit.Entity.SearchVisitDateRequest;
 import pl.treekt.medica.visit.Entity.VisitCompact;
+import pl.treekt.medica.visit.Entity.VisitsPerDay;
 import pl.treekt.medica.visit.Repository.VisitRepository;
 import pl.treekt.medica.visit.Repository.VisitTypeRepository;
 
 import java.text.DateFormat;
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.time.LocalDateTime;
 import java.time.ZoneId;
@@ -86,35 +88,6 @@ public class VisitController {
         return transformToVisitCompact(visitRepository.findAllByOfficeUserIdAndStatusAndDateBetweenOrOfficeUserIdAndStatusAndDateBetween(officeUserId, "planned", thisDay, nextDay, officeUserId, "during", thisDay, nextDay));
     }
 
-    @GetMapping("/count/finished")
-    public Integer countFinishedVisits() {
-        return visitRepository.countVisitsByStatus("finished");
-    }
-
-    @GetMapping("/count/medicines/prescribed")
-    public Integer countPrescribedMedicines() {
-        int counter = 0;
-        List<Visit> visits = visitRepository.findAll();
-        for(Visit visit : visits){
-            if(visit.getVisitDetails().getMedicines() != null) {
-                counter += visit.getVisitDetails().getMedicines().size();
-            }
-        }
-        return counter;
-    }
-
-    @GetMapping("/count/deseases/diagnosed")
-    public Integer countDiagnosedDeseases() {
-        int counter = 0;
-        List<Visit> visits = visitRepository.findAll();
-        for(Visit visit : visits){
-            if(visit.getVisitDetails().getDeseases() != null) {
-                counter += visit.getVisitDetails().getDeseases().size();
-            }
-        }
-        return counter;
-    }
-
     @PostMapping("/types")
     public VisitType saveVisitType(@RequestBody VisitType visitType) {
         return visitTypeRepository.save(visitType);
@@ -181,8 +154,10 @@ public class VisitController {
                                 }
                             }
                         }
-                        availableDates.add(dateFormat.format(tempDate));
-                        minute += visitType.getDuration() - 1;
+                        if(canPutDate){
+                            availableDates.add(dateFormat.format(tempDate));
+                            minute += visitType.getDuration() - 1;
+                        }
                     } else {
                         break;
                     }
@@ -245,5 +220,24 @@ public class VisitController {
         }
 
         return visitsCompact;
+    }
+
+    @GetMapping("/count/{year}/{month}")
+    public List<VisitsPerDay> countVisitInMonthAndYear(@PathVariable Integer year, @PathVariable Integer month) throws ParseException {
+        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+
+        Calendar calendar = new GregorianCalendar(year, month, 1);
+        List<VisitsPerDay> visitsPerDays = new ArrayList<>();
+        int daysInMonth = calendar.getActualMaximum(Calendar.DAY_OF_MONTH);
+
+        for(int i = 1; i <= daysInMonth; i++) {
+            Date thisDay = dateFormat.parse(year + "-" + month + "-" + i);
+            VisitsPerDay visitsPerDay = new VisitsPerDay();
+            visitsPerDay.setDay(i);
+            visitsPerDay.setValue(visitRepository.countVisitsByDate(thisDay));
+
+            visitsPerDays.add(visitsPerDay);
+        }
+        return visitsPerDays;
     }
 }

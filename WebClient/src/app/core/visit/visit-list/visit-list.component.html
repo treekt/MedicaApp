@@ -11,13 +11,6 @@
           <option value="finished">Zakończona</option>
         </select>
       </div>
-      <div class="field" *showPrivileged="[213]">
-        <label>Specjalista wizyt</label>
-        <div class="ui slider checkbox">
-          <input type="checkbox" (change)="initVisitsForOfficeUser()" name="visitAll" [(ngModel)]="visitAll">
-          <label>Wszystkie/Moje</label>
-        </div>
-      </div>
     </form>
   </div>
 </ng-container>
@@ -25,8 +18,8 @@
   <thead>
   <tr>
     <th>Data</th>
-    <th *ngIf="!user.isOfficeUser">Specjalista</th>
-    <th *ngIf="user.isOfficeUser">Pacjent</th>
+    <th *ngIf="user.isOfficeUser && !user.officeDetails.isSpecialist">Specjalista</th>
+    <th>Pacjent</th>
     <th>Rodzaj wizyty</th>
     <th></th>
   </tr>
@@ -34,10 +27,10 @@
   <tbody>
   <tr *ngFor="let visit of visits">
     <td>{{visit.date}}</td>
-    <td *ngIf="!user.isOfficeUser">{{visit.officeUser.userDetails.firstName}}
+    <td *ngIf="user.isOfficeUser && !user.officeDetails.isSpecialist">{{visit.officeUser.userDetails.firstName}}
       {{visit.officeUser.userDetails.lastName}}
     </td>
-    <td *ngIf="user.isOfficeUser">{{visit.user.userDetails.firstName}} {{visit.user.userDetails.lastName}}
+    <td>{{visit.user.userDetails.firstName}} {{visit.user.userDetails.lastName}}
       ({{visit.user.userDetails.pesel}})
     </td>
     <td>{{visit.visitType.name}}</td>
