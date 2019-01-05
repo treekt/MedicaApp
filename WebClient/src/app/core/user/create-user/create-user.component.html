@@ -3,7 +3,7 @@
   <br/>
   <br/>
 </ng-container>
-<form class="ui form" (ngSubmit)="saveOfficeUser()">
+<div class="ui form">
   <!--Dane podstawowe-->
   <h4 class="ui dividing header">Dane podstawowe</h4>
   <div class="two fields">
@@ -98,7 +98,7 @@
   <div class="two fields">
     <div class="field">
       <label>Pesel</label>
-      <input type="number" placeholder="Pesel" name="pesle" [(ngModel)]="user.userDetails.pesel">
+      <input type="number" placeholder="Pesel" name="pesel" [(ngModel)]="user.userDetails.pesel">
     </div>
     <div class="field">
       <label>Numer telefonu</label>
@@ -115,11 +115,11 @@
     </div>
     <div class="field">
       <label>Numer domu</label>
-      <input type="number" placeholder="Numer domu" name="houseNr" [(ngModel)]="user.address.houseNumber">
+      <input type="number" placeholder="Numer domu" name="houseNumber" [(ngModel)]="user.address.houseNumber">
     </div>
     <div class="field">
       <label>Numer mieszkania</label>
-      <input type="text" placeholder="Numer mieszkania" name="apartmentNr" [(ngModel)]="user.address.apartmentNumber">
+      <input type="text" placeholder="Numer mieszkania" name="apartmentNumber" [(ngModel)]="user.address.apartmentNumber">
     </div>
   </div>
   <div class="three fields">
@@ -157,11 +157,12 @@
     </div>
   </div>
 
-  <button class="ui green button" type="submit">
+  <button class="ui green submit button">
     Stwórz konto
     <ng-container *ngIf="user.isOfficeUser; else defaultUser">
       specjalisty
     </ng-container>
     <ng-template #defaultUser>pacjenta</ng-template>
   </button>
-</form>
+  <div class="ui error message"></div>
+</div>

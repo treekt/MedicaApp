@@ -48,8 +48,8 @@ export class VisitRestService {
   }
 
 
-  getAllVisitByOfficeUserIdAndStatusAndVisitAll(officeUserId: string, status: string, visitAll: boolean): Observable<any> {
-    return this.http.get(this.endpoint + '/all/office/' + officeUserId + '/' + status + '/' + visitAll);
+  getAllVisitByOfficeUserIdAndStatusAndIsSpecialist(officeUserId: string, status: string, isSpecialist: boolean): Observable<any> {
+    return this.http.get(this.endpoint + '/all/office/' + officeUserId + '/' + status + '/' + isSpecialist);
   }
 
   getAllVisitByUserIdAndStatus(userId: string, status: string): Observable<any> {

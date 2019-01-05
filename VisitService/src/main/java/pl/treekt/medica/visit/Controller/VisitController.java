@@ -67,9 +67,9 @@ public class VisitController {
         return saveVisit(visit);
     }
 
-    @GetMapping("/all/office/{officeUserId}/{status}/{visitAll}")
-    public List<VisitCompact> getAllVisitsByOfficeUserIdAndStatusAndVisitAll(@PathVariable String officeUserId, @PathVariable String status, @PathVariable Boolean visitAll) {
-        if(!visitAll){
+    @GetMapping("/all/office/{officeUserId}/{status}/{isSpecialist}")
+    public List<VisitCompact> getAllVisitsByOfficeUserIdAndStatusAndIsSpecialist(@PathVariable String officeUserId, @PathVariable String status, @PathVariable Boolean isSpecialist) {
+        if(!isSpecialist){
             return transformToVisitCompact(visitRepository.findAllByStatus(status));
         }
         return transformToVisitCompact(visitRepository.findAllByOfficeUserIdAndStatus(officeUserId, status));

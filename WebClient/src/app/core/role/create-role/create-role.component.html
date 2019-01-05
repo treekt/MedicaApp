@@ -1,7 +1,7 @@
 <a class="ui orange ribbon label">Kreator roli</a>
 <br/>
 <br/>
-<form class="ui form">
+<div class="ui form">
   <div class="field">
     <label>Nazwa roli</label>
     <input type="text" placeholder="Nazwa roli" name="roleName" [(ngModel)]="role.name">
@@ -16,6 +16,7 @@
       </div>
     </div>
   </div>
-  <button (click)="saveRole()" class="ui green button" type="submit">Zapisz role</button>
-</form>
+  <button class="ui green submit button">Zapisz role</button>
+  <div class="ui error message"></div>
+</div>
 

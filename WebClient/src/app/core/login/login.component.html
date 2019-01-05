@@ -1,5 +1,5 @@
 <div class="ui container">
-  <form class="ui form">
+  <div class="ui form form-width">
     <div class="ui stacked segment">
       <div class="field">
         <div class="ui left icon input">
@@ -13,11 +13,8 @@
           <input type="password" name="password" placeholder="Hasło" [(ngModel)]="password" required>
         </div>
       </div>
-        <div class="ui fluid green submit button" (click)="login()">Zaloguj się</div>
+      <div class="ui fluid green submit button">Zaloguj się</div>
     </div>
     <div class="ui error message"></div>
-  </form>
-  <div class="ui active inverted dimmer" *ngIf="isLogin">
-    <div class="ui large text loader">Logowanie</div>
   </div>
 </div>

@@ -3,6 +3,8 @@ import {Permission} from '../../../models/permissions';
 import {Role} from '../../../models/role';
 import {RoleRestService} from '../../../services/rest/role-rest.service';
 
+declare var $: any;
+
 @Component({
   selector: 'app-create-role',
   templateUrl: './create-role.component.html'
@@ -18,8 +20,28 @@ export class CreateRoleComponent implements OnInit {
   ngOnInit() {
     this.permissions = Permission.allValues();
     this.role = new Role();
+    this.initFormValidator();
   }
 
+  initFormValidator() {
+    const self = this;
+    $('.ui.form').form({
+      fields: {
+        roleName: {
+          identifier: 'roleName',
+          rules: [
+            {
+              type: 'empty',
+              prompt: 'Proszę, podaj nazwę roli'
+            }
+          ]
+        }
+      },
+      onSuccess: function() {
+        self.saveRole();
+      }
+    });
+  }
 
   saveRole() {
     this.roleRestService.saveRole(this.role).subscribe(() => {});

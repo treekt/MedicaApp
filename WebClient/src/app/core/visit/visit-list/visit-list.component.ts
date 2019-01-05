@@ -1,5 +1,4 @@
 import {Component, Input, OnInit} from '@angular/core';
-import {ActivatedRoute} from '@angular/router';
 import {VisitRestService} from '../../../services/rest/visit-rest.service';
 import {VisitCompact} from '../../../models/visit';
 import {User} from '../../../models/user';
@@ -19,13 +18,12 @@ export class VisitListComponent implements OnInit {
   visits: VisitCompact[] = [];
 
   visitStatus = 'planned';
-  visitAll = false;
 
   user: User;
 
   visitToDelete: VisitCompact;
 
-  constructor(private userRest: UserRestService, private visitRest: VisitRestService){
+  constructor(private userRest: UserRestService, private visitRest: VisitRestService) {
   }
 
   ngOnInit() {
@@ -43,8 +41,13 @@ export class VisitListComponent implements OnInit {
     if (this.homeMode) {
       this.visitRest.getAllPlannedAndDuringVisitsTodayForOfficeUser(this.user.id).subscribe(visitsResult => this.visits = visitsResult);
     } else {
-      this.visitRest.getAllVisitByOfficeUserIdAndStatusAndVisitAll(this.user.id, this.visitStatus, this.visitAll)
-        .subscribe(visitsResult => this.visits = visitsResult);
+      if (this.user.isOfficeUser && this.user.officeDetails.isSpecialist) {
+        this.visitRest.getAllVisitByOfficeUserIdAndStatusAndIsSpecialist(this.user.id, this.visitStatus, true)
+          .subscribe(visitsResult => this.visits = visitsResult);
+      } else {
+        this.visitRest.getAllVisitByOfficeUserIdAndStatusAndIsSpecialist(this.user.id, this.visitStatus, false)
+          .subscribe(visitsResult => this.visits = visitsResult);
+      }
     }
   }
 
