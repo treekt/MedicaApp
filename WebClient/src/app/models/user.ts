@@ -7,6 +7,7 @@ export class User {
   roleName: string;
 
   constructor() {
+    this.isOfficeUser = false;
     this.userDetails = new UserDetails();
     this.address = new Address();
   }
@@ -16,6 +17,10 @@ export class OfficeDetails {
   pwz: number;
   degree: string;
   isSpecialist: boolean;
+
+  constructor() {
+    this.isSpecialist = false;
+  }
 }
 
 export class UserDetails {

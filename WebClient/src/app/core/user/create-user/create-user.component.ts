@@ -47,6 +47,7 @@ export class CreateUserComponent implements OnInit {
   initFormValidation() {
     const self = this;
     $('.ui.form').form({
+      inline: true,
       fields: {
         email: {
           identifier: 'email',

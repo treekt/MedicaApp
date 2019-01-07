@@ -26,6 +26,7 @@ export class CreateRoleComponent implements OnInit {
   initFormValidator() {
     const self = this;
     $('.ui.form').form({
+      inline: true,
       fields: {
         roleName: {
           identifier: 'roleName',

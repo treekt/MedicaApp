@@ -49,6 +49,7 @@ export class CreateVisitComponent implements OnInit {
   initFormValidator() {
     const self = this;
     $('.ui.form').form({
+      inline: true,
       fields: {
         patient: {
           identifier: 'patient',

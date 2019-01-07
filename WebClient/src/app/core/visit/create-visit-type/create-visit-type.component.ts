@@ -24,6 +24,7 @@ export class CreateVisitTypeComponent implements OnInit {
   initFormValidator() {
     const self = this;
     $('.ui.form').form({
+      inline: true,
       fields: {
         visitTypeName: {
           identifier: 'visitTypeName',
@@ -35,7 +36,7 @@ export class CreateVisitTypeComponent implements OnInit {
           ]
         },
         visitTypeDuration: {
-          identifier: 'VisitTypeDuration',
+          identifier: 'visitTypeDuration',
           rules: [
             {
               type: 'empty',

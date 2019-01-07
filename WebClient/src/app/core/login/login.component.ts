@@ -27,6 +27,7 @@ export class LoginComponent implements OnInit {
   initFormValidator() {
     const self = this;
     $('.ui.form').form({
+      inline: true,
       fields: {
         email: {
           identifier: 'email',
