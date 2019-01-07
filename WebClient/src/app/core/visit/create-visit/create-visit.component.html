@@ -7,7 +7,7 @@
       <input type="text" name="patient" placeholder="Wyszukaj pacjenta"
              (keyup)="userTerm$.next($event.target.value)"/>
     </div>
-    <div class="ui segment" style="height:150px;overflow-y: scroll;" *ngIf="users.length > 0">
+    <div class="ui segment" style="height: fit-content; max-height: 150px;overflow-y: scroll;" *ngIf="users.length > 0">
       <table class="ui very basic table">
         <tbody>
         <tr *ngFor="let user of users">
@@ -35,7 +35,7 @@
       <input type="text" name="specialist" placeholder="Wyszukaj specjaliste"
              (keyup)="officeUserTerm$.next($event.target.value)"/>
     </div>
-    <div class="ui segment" style="height:150px;overflow-y: scroll;" *ngIf="officeUsers.length > 0">
+    <div class="ui segment" style="height:fit-content; max-height: 150px;overflow-y: scroll;" *ngIf="officeUsers.length > 0">
       <table class="ui very basic table">
         <tbody>
         <tr *ngFor="let officeUser of officeUsers">

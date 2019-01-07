@@ -70,7 +70,7 @@
         <input type="text" placeholder="Wyszukaj lekarstwo"
                (keyup)="medicineTerm$.next($event.target.value)"/>
       </div>
-      <div class="ui segment" style="height:200px;overflow-y: scroll;" *ngIf="medicines.length > 0">
+      <div class="ui segment" style="height:fit-content; max-height: 200px;;overflow-y: scroll;" *ngIf="medicines.length > 0">
         <table class="ui very basic table">
           <tbody>
           <tr *ngFor="let medicine of medicines">

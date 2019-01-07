@@ -23,7 +23,7 @@
         <input type="text" placeholder="Wyszukaj chorobe"
                (keyup)="deseaseTerm$.next($event.target.value)"/>
       </div>
-      <div class="ui segment" style="height:200px;overflow-y: scroll;" *ngIf="deseases.length > 0">
+      <div class="ui segment" style="height:fit-content; max-height: 200px;;overflow-y: scroll;" *ngIf="deseases.length > 0">
         <table class="ui very basic table">
           <tbody>
           <tr *ngFor="let desease of deseases">

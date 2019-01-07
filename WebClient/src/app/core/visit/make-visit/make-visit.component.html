@@ -120,7 +120,7 @@
                  (keyup)="deseaseTerm$.next($event.target.value)"/>
         </div>
         <div class="ui segments" *ngIf="deseases.length > 0">
-          <div class="ui segment" style="height:200px;overflow-y: scroll;">
+          <div class="ui segment" style="height:fit-content; max-height: 200px;;overflow-y: scroll;">
             <table class="ui very basic table">
               <tbody>
               <tr *ngFor="let desease of deseases">
@@ -191,7 +191,7 @@
         <div class="ui segments" *ngIf="medicines.length > 0">
           <div class="ui segment">
             <div class="ui two column grid">
-              <div class="column" style="height:200px; overflow-y: scroll;">
+              <div class="column" style="height:fit-content; max-height: 200px; overflow-y: scroll;">
                 <table class="ui very basic table">
                   <tbody>
                   <tr *ngFor="let medicine of medicines">
@@ -274,7 +274,18 @@
     </form>
   </ng-template>
   <ng-template [ngIf]="step === 'summary'">
-    <div class="ui segment" *ngIf="prescribedMedicines && diagnosedDeseases && visit">
+    <div class="ui segment"  *ngIf="prescribedMedicines && diagnosedDeseases && visit">
+      <div style="margin-top: 25px" class="ui warning message"
+           *ngIf="prescribedMedicines.length === 0
+           && prescribedMedicines.length === 0
+           && !visit.visitDetails.interview
+           && !visit.visitDetails.diagnosis
+           && !visit.visitDetails.recommendation">
+        <div class="content">
+          <i class="info icon"></i>
+          Nie uzupełniono żadnych danych wizyty!
+        </div>
+      </div>
       <div class="ui top left attached label">Przeprowadzona wizyta</div>
       <div class="ui grid">
         <div class="sixteen wide column">
