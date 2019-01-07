@@ -91,7 +91,7 @@ export class CreateUserComponent implements OnInit {
               prompt: 'Proszę, potwierdź hasło'
             },
             {
-              type: 'email',
+              type: 'length[6]',
               prompt: 'Potwierdzone hasło musi spełniać te same wymagania'
             }
           ]
