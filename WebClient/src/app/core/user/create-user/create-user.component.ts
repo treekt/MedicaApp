@@ -205,7 +205,7 @@ export class CreateUserComponent implements OnInit {
           ]
         },
       },
-      onSuccess: function() {
+      onSuccess: function () {
         self.saveUser();
       }
     });
@@ -216,10 +216,16 @@ export class CreateUserComponent implements OnInit {
   }
 
   saveUser() {
-    this.userRestService.saveUser(this.user).subscribe(userResult => {
-      this.credentials.userId = userResult.id;
-      this.credsRestService.saveCredentials(this.credentials).subscribe(() => {
-      });
+    this.userRestService.checkIfExistsByEmail(this.credentials.email).subscribe(result => {
+      if (result === false) {
+        this.userRestService.saveUser(this.user).subscribe(userResult => {
+          this.credentials.userId = userResult.id;
+          this.credsRestService.saveCredentials(this.credentials).subscribe(() => {
+          });
+        });
+      } else {
+        alert('istnieje!');
+      }
     });
 
   }

@@ -11,7 +11,7 @@
     </div>
   </div>
   <div class="eight wide column">
-    <div class="ui segment">
+    <div class="ui segment" *ngIf="!user.isOfficeUser || (user.isOfficeUser && user.officeDetails.isSpecialist)">
       <br/><br/>
       <div class="ui top left attached label">Nadchodzące wizyty</div>
       <app-visit-list [homeMode]="true"></app-visit-list>

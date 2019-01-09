@@ -10,6 +10,7 @@ import pl.treekt.medica.user.Repository.UserRepository;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
+import java.util.Objects;
 
 @RestController
 @RequestMapping("/")
@@ -47,13 +48,20 @@ public class UserController {
         return userRepository.findUserById(userId);
     }
 
+    @GetMapping("/email/exists/{email}")
+    public Boolean checkEmailExists(@PathVariable String email){
+        String userId = restTemplate.getForObject("http://auth-service/auth/credentials/userId/" + email, String.class);
+        if(Objects.equals(userId, "none")){
+            return false;
+        }
+        return true;
+    }
+
     @GetMapping("/all/{firstNameOrLastName}/{isOfficeUser}/{isSpecialist}")
     public List<User> getAllUsersContainsFirstNameOrLastName(@PathVariable String firstNameOrLastName, @PathVariable Boolean isOfficeUser, @PathVariable Boolean isSpecialist) {
         if(isOfficeUser) {
-            System.out.println("office User");
             return administratorAccountFilter(userRepository.findAllByUserDetails_FirstNameContainsAndIsOfficeUserAndOfficeDetails_IsSpecialistOrUserDetails_LastNameContainsAndIsOfficeUserAndOfficeDetails_IsSpecialist(firstNameOrLastName, true, isSpecialist, firstNameOrLastName, true, isSpecialist));
         }else{
-            System.out.println("no office User");
             return administratorAccountFilter(userRepository.findAllByUserDetails_FirstNameContainsAndIsOfficeUserOrUserDetails_LastNameContainsAndIsOfficeUser(firstNameOrLastName, false, firstNameOrLastName, false));
 
         }

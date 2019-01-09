@@ -37,7 +37,10 @@ public class AuthController {
 
     @GetMapping("/credentials/userId/{email}")
     public String getEmailOfCredentials(@PathVariable String email){
-        return credentialsRepository.findCredentialsByEmail(email).getUserId();
+        if(credentialsRepository.existsCredentialsByEmail(email)){
+            return credentialsRepository.findCredentialsByEmail(email).getUserId();
+        }
+        return "none";
     }
 
 }

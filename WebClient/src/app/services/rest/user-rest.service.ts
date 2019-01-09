@@ -51,6 +51,10 @@ export class UserRestService {
     return this.http.delete(this.endpoint + '/' + id);
   }
 
+  checkIfExistsByEmail(email: string): Observable<any> {
+    return this.http.get(this.endpoint + '/email/exists/' + email);
+  }
+
   getAllUsers(): Observable<any> {
     return this.http.get(this.endpoint + '/all');
   }

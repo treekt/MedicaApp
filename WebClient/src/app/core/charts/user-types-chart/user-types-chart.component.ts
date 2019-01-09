@@ -18,7 +18,10 @@ export class UserTypesChartComponent implements OnInit {
   ngOnInit() {
     this.userService.countUserTypes().pipe(
       map(res =>
-        res.map(item => ({y: item.value, name: item.name})))
+        res.map(item => ({
+          y: Math.floor(Math.random() * Math.floor(100)),
+          name: item.name
+        })))
     ).subscribe(result => {
       this.dataPoints = result;
       this.renderChart();
