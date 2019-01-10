@@ -5,6 +5,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.ParameterizedTypeReference;
 import org.springframework.http.HttpMethod;
 import org.springframework.http.ResponseEntity;
+import org.springframework.transaction.annotation.Isolation;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.client.RestTemplate;
@@ -45,6 +46,7 @@ public class VisitController {
         this.dateFormat.setTimeZone(TimeZone.getTimeZone("GMT"));
     }
 
+    @Transactional(isolation = Isolation.REPEATABLE_READ)
     @PostMapping()
     public Visit saveVisit(@RequestBody Visit visit) {
         return this.visitRepository.save(visit);

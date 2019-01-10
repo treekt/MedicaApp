@@ -54,7 +54,7 @@ export class MonthVisitsChartComponent implements OnInit {
         content: '{name}: {y}'
       },
       data: [{
-        type: 'area',
+        type: 'spline',
         color: 'green',
         dataPoints: this.dataPoints
       }]
