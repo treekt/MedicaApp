@@ -1,0 +1,4 @@
+{"_id":"Administrator","permissions":[{"$numberInt":"201"}]}
+{"_id":"Lekarz","permissions":[{"$numberInt":"203"},{"$numberInt":"205"},{"$numberInt":"207"},{"$numberInt":"208"},{"$numberInt":"209"},{"$numberInt":"210"},{"$numberInt":"211"},{"$numberInt":"212"},{"$numberInt":"213"},{"$numberInt":"214"},{"$numberInt":"216"}],"_class":"pl.treekt.medica.user.Document.Role"}
+{"_id":"Recepcjonista","permissions":[{"$numberInt":"201"},{"$numberInt":"202"},{"$numberInt":"203"},{"$numberInt":"204"},{"$numberInt":"207"},{"$numberInt":"208"},{"$numberInt":"210"},{"$numberInt":"211"},{"$numberInt":"212"},{"$numberInt":"216"}],"_class":"pl.treekt.medica.user.Document.Role"}
+{"_id":"Pacjent","permissions":[{"$numberInt":"215"},{"$numberInt":"207"},{"$numberInt":"208"},{"$numberInt":"210"}],"_class":"pl.treekt.medica.user.Document.Role"}

@@ -1,0 +1,1577 @@
+{
+	"info": {
+		"_postman_id": "a1bbdf87-e758-481b-9a2b-4335f5e94638",
+		"name": "Requests verification",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Delete requests from all services",
+			"item": [
+				{
+					"name": "deleteRole",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "57f7fc70-6737-4cdc-91a7-580c29e10ec5",
+								"exec": [
+									"pm.environment.unset(\"roleId\");"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "http://localhost:8200/role/{{roleId}}",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8200",
+							"path": [
+								"role",
+								"{{roleId}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "deleteUser",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "82f2f8ca-cfe8-4392-b203-a888a462c084",
+								"exec": [
+									"pm.environment.unset(\"userId\");"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "http://localhost:8200/{{userId}}",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8200",
+							"path": [
+								"{{userId}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "deleteSchedule",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "http://localhost:8200/schedule/{{scheduleId}}",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8200",
+							"path": [
+								"schedule",
+								"{{scheduleId}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "deleteCredentials",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "http://localhost:9100/auth/credentials/{{credentialId}}",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "9100",
+							"path": [
+								"auth",
+								"credentials",
+								"{{credentialId}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "deleteVisitType",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "http://localhost:8400/types/{{visitTypeId}}",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8400",
+							"path": [
+								"types",
+								"{{visitTypeId}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "deleteVisit",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "http://localhost:8400/{{visitId}}",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8400",
+							"path": [
+								"{{visitId}}"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"id": "8be33e76-1a1a-474d-9ba7-f9160a658550",
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"id": "9890376c-3336-4207-b482-33339ef22d38",
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				}
+			]
+		},
+		{
+			"name": "Authorization requests with gateway",
+			"item": [
+				{
+					"name": "login",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "ad357d12-8f5b-4585-a6cd-fdba8b637b9e",
+								"exec": [
+									"var token = postman.getResponseHeader(\"Authorization\");",
+									"pm.environment.set(\"token\", token);"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"email\": \"postman@gmail.com\",\n\t\"password\": \"haslo1\"\n}"
+						},
+						"url": {
+							"raw": "http://localhost:8762/auth/login",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8762",
+							"path": [
+								"auth",
+								"login"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "user request by gateway test method",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "http://localhost:8762/user/{{userId}}",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8762",
+							"path": [
+								"user",
+								"{{userId}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "visit request by gateway test method",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "http://localhost:8762/visit/{{visitId}}",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8762",
+							"path": [
+								"visit",
+								"{{visitId}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "auth request by gateway test method",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "http://localhost:8762/auth/credentials/userId/postman@gmail.com",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8762",
+							"path": [
+								"auth",
+								"credentials",
+								"userId",
+								"postman@gmail.com"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "archive request by gateway test method",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "http://localhost:8762/archive/desease/all/code/G80",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8762",
+							"path": [
+								"archive",
+								"desease",
+								"all",
+								"code",
+								"G80"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"id": "1e7b95b8-f55e-4f82-bb3f-4a8a11778aaa",
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"id": "c0a9cde1-d8f2-4839-9b29-a0d6cafbb7a9",
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				}
+			]
+		},
+		{
+			"name": "All services requests without gateway",
+			"item": [
+				{
+					"name": "User service requests",
+					"item": [
+						{
+							"name": "RoleController",
+							"item": [
+								{
+									"name": "saveRole",
+									"event": [
+										{
+											"listen": "test",
+											"script": {
+												"id": "bd947705-2101-4bb2-bd8c-4609f4ac719f",
+												"exec": [
+													"var jsonData = JSON.parse(responseBody);",
+													"pm.environment.set(\"roleId\", jsonData.name);"
+												],
+												"type": "text/javascript"
+											}
+										}
+									],
+									"request": {
+										"method": "POST",
+										"header": [
+											{
+												"key": "Content-Type",
+												"value": "application/json",
+												"type": "text"
+											}
+										],
+										"body": {
+											"mode": "raw",
+											"raw": "{\n\t\"name\": \"Lekarz\",\n\t\"permissions\": [1,2,3,4,5]\n}"
+										},
+										"url": {
+											"raw": "http://localhost:8200/role",
+											"protocol": "http",
+											"host": [
+												"localhost"
+											],
+											"port": "8200",
+											"path": [
+												"role"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "getRole",
+									"request": {
+										"method": "GET",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": ""
+										},
+										"url": {
+											"raw": "http://localhost:8200/role/{{roleId}}",
+											"protocol": "http",
+											"host": [
+												"localhost"
+											],
+											"port": "8200",
+											"path": [
+												"role",
+												"{{roleId}}"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "getAllRoles",
+									"request": {
+										"method": "GET",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": ""
+										},
+										"url": {
+											"raw": "http://localhost:8200/role/all",
+											"protocol": "http",
+											"host": [
+												"localhost"
+											],
+											"port": "8200",
+											"path": [
+												"role",
+												"all"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "getAllPermissionsOfRole",
+									"request": {
+										"method": "GET",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": ""
+										},
+										"url": {
+											"raw": "http://localhost:8200/role/permissions/{{roleId}}",
+											"protocol": "http",
+											"host": [
+												"localhost"
+											],
+											"port": "8200",
+											"path": [
+												"role",
+												"permissions",
+												"{{roleId}}"
+											]
+										}
+									},
+									"response": []
+								}
+							],
+							"_postman_isSubFolder": true
+						},
+						{
+							"name": "UserController",
+							"item": [
+								{
+									"name": "saveUser",
+									"event": [
+										{
+											"listen": "test",
+											"script": {
+												"id": "b411ac91-4e4e-46af-bab3-7e99ee2d1641",
+												"exec": [
+													"var jsonData = JSON.parse(responseBody);",
+													"pm.environment.set(\"userId\", jsonData.id);"
+												],
+												"type": "text/javascript"
+											}
+										}
+									],
+									"request": {
+										"method": "POST",
+										"header": [
+											{
+												"key": "Content-Type",
+												"value": "application/json"
+											}
+										],
+										"body": {
+											"mode": "raw",
+											"raw": "{\n\t\"isOfficeUser\": true,\n\t\"officeDetails\": {\n\t\t\"pwz\": 1234567,\n\t\t\"degree\": \"Mgr\",\n\t\t\"isSpecialist\": true\n\t},\n\t\"userDetails\": {\n\t\t\"firstName\": \"Adam\",\n\t\t\"middleName\": \"Piotr\",\n\t\t\"lastName\": \"Nowak\",\n\t\t\"familyName\": \"Nowak\",\n\t\t\"birthday\": \"1992-06-21\",\n\t\t\"gender\": \"M\",\n\t\t\"pesel\": 92062102345,\n\t\t\"phone\": 516432921\n\t},\n\t\"address\": {\n\t\t\"street\": \"Konopackiego\",\n\t\t\"houseNumber\": \"5\",\n\t\t\"apartmentNumber\": \"3\",\n\t\t\"city\": \"Tychy\",\n\t\t\"voivodeship\": \"Śląskie\",\n\t\t\"zip\": \"42-400\"\n\t},\n\t\"roleName\": \"Lekarz\"\n}"
+										},
+										"url": {
+											"raw": "http://localhost:8200",
+											"protocol": "http",
+											"host": [
+												"localhost"
+											],
+											"port": "8200"
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "getUser",
+									"request": {
+										"method": "GET",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": ""
+										},
+										"url": {
+											"raw": "http://localhost:8200/{{userId}}",
+											"protocol": "http",
+											"host": [
+												"localhost"
+											],
+											"port": "8200",
+											"path": [
+												"{{userId}}"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "getAllUsers",
+									"request": {
+										"method": "GET",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": ""
+										},
+										"url": {
+											"raw": "http://localhost:8200/all",
+											"protocol": "http",
+											"host": [
+												"localhost"
+											],
+											"port": "8200",
+											"path": [
+												"all"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "getAllUsersContainsFirstNameOrLastName",
+									"request": {
+										"method": "GET",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": ""
+										},
+										"url": {
+											"raw": "http://localhost:8200/all/Ada/true/true",
+											"protocol": "http",
+											"host": [
+												"localhost"
+											],
+											"port": "8200",
+											"path": [
+												"all",
+												"Ada",
+												"true",
+												"true"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "getAllDefaultUsers",
+									"request": {
+										"method": "GET",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": ""
+										},
+										"url": {
+											"raw": "http://localhost:8200/default/all",
+											"protocol": "http",
+											"host": [
+												"localhost"
+											],
+											"port": "8200",
+											"path": [
+												"default",
+												"all"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "getAllOfficeUsers",
+									"request": {
+										"method": "GET",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": ""
+										},
+										"url": {
+											"raw": "http://localhost:8200/office/all",
+											"protocol": "http",
+											"host": [
+												"localhost"
+											],
+											"port": "8200",
+											"path": [
+												"office",
+												"all"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "getRoleNameOfUser",
+									"request": {
+										"method": "GET",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": ""
+										},
+										"url": {
+											"raw": "http://localhost:8200/roleName/{{userId}}",
+											"protocol": "http",
+											"host": [
+												"localhost"
+											],
+											"port": "8200",
+											"path": [
+												"roleName",
+												"{{userId}}"
+											]
+										}
+									},
+									"response": []
+								}
+							],
+							"_postman_isSubFolder": true
+						},
+						{
+							"name": "ScheduleController",
+							"item": [
+								{
+									"name": "saveSchedule",
+									"event": [
+										{
+											"listen": "test",
+											"script": {
+												"id": "78b4c59b-c563-4894-8509-1274126e2b87",
+												"exec": [
+													"var jsonData = JSON.parse(responseBody);",
+													"pm.environment.set(\"scheduleId\", jsonData.id);"
+												],
+												"type": "text/javascript"
+											}
+										}
+									],
+									"request": {
+										"method": "POST",
+										"header": [
+											{
+												"key": "Content-Type",
+												"value": "application/json",
+												"type": "text"
+											}
+										],
+										"body": {
+											"mode": "raw",
+											"raw": "{\n\t\"title\": \"Praca\",\n\t\"description\": \"Dzień pracujący\",\n\t\"type\": 0,\n\t\"start\": \"2018-12-20 8:00\",\n\t\"end\": \"2018-12-20 16:00\",\n\t\"color\": \"blue\",\n\t\"userId\": \"{{userId}}\"\n}"
+										},
+										"url": {
+											"raw": "http://localhost:8200/schedule",
+											"protocol": "http",
+											"host": [
+												"localhost"
+											],
+											"port": "8200",
+											"path": [
+												"schedule"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "getAllSchedules",
+									"request": {
+										"method": "GET",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": ""
+										},
+										"url": {
+											"raw": "http://localhost:8200/schedule/all",
+											"protocol": "http",
+											"host": [
+												"localhost"
+											],
+											"port": "8200",
+											"path": [
+												"schedule",
+												"all"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "getAllSchedulesByUserId",
+									"request": {
+										"method": "GET",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": ""
+										},
+										"url": {
+											"raw": "http://localhost:8200/schedule/all/{{userId}}",
+											"protocol": "http",
+											"host": [
+												"localhost"
+											],
+											"port": "8200",
+											"path": [
+												"schedule",
+												"all",
+												"{{userId}}"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "getAllSchedulesByUserIdAndType",
+									"request": {
+										"method": "GET",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": ""
+										},
+										"url": {
+											"raw": "http://localhost:8200/schedule/all/{{userId}}/0",
+											"protocol": "http",
+											"host": [
+												"localhost"
+											],
+											"port": "8200",
+											"path": [
+												"schedule",
+												"all",
+												"{{userId}}",
+												"0"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "getAllScheduleByUserIdAndTypeAndBetweenDates",
+									"request": {
+										"method": "GET",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": ""
+										},
+										"url": {
+											"raw": "http://localhost:8200/schedule/all/{{userId}}/0/between/2018-12-20/2018-12-20",
+											"protocol": "http",
+											"host": [
+												"localhost"
+											],
+											"port": "8200",
+											"path": [
+												"schedule",
+												"all",
+												"{{userId}}",
+												"0",
+												"between",
+												"2018-12-20",
+												"2018-12-20"
+											]
+										}
+									},
+									"response": []
+								}
+							],
+							"_postman_isSubFolder": true
+						}
+					],
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"id": "4f0236d3-c953-4470-9f5c-860e8fbc052c",
+								"type": "text/javascript",
+								"exec": [
+									""
+								]
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"id": "29f5f170-7f11-4c37-b42c-7666a8de84f1",
+								"type": "text/javascript",
+								"exec": [
+									""
+								]
+							}
+						}
+					],
+					"_postman_isSubFolder": true
+				},
+				{
+					"name": "Auth service requests",
+					"item": [
+						{
+							"name": "saveCredentials",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"id": "ae9eb939-6af9-4967-87ac-0522a4919b5a",
+										"exec": [
+											"var jsonData = JSON.parse(responseBody);",
+											"pm.environment.set(\"credentialId\", jsonData.userId)"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n\t\"userId\": \"{{userId}}\",\n\t\"email\": \"postman@gmail.com\",\n\t\"password\": \"haslo1\"\n}"
+								},
+								"url": {
+									"raw": "http://localhost:9100/auth/credentials",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "9100",
+									"path": [
+										"auth",
+										"credentials"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "getEmailFromCredentials",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": ""
+								},
+								"url": {
+									"raw": "http://localhost:9100/auth/credentials/userId/postman@gmail.com",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "9100",
+									"path": [
+										"auth",
+										"credentials",
+										"userId",
+										"postman@gmail.com"
+									]
+								}
+							},
+							"response": []
+						}
+					],
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"id": "d88e29f2-f0b6-448c-abca-36759d84ba22",
+								"type": "text/javascript",
+								"exec": [
+									""
+								]
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"id": "d18e47b2-165c-4422-8de4-fbeabbd2a2b8",
+								"type": "text/javascript",
+								"exec": [
+									""
+								]
+							}
+						}
+					],
+					"_postman_isSubFolder": true
+				},
+				{
+					"name": "Archive service requests",
+					"item": [
+						{
+							"name": "DeseaseController",
+							"item": [
+								{
+									"name": "getAllContainsName",
+									"request": {
+										"method": "GET",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": ""
+										},
+										"url": {
+											"raw": "http://localhost:8100/desease/all/name/Gru",
+											"protocol": "http",
+											"host": [
+												"localhost"
+											],
+											"port": "8100",
+											"path": [
+												"desease",
+												"all",
+												"name",
+												"Gru"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "getAllContainsCode",
+									"request": {
+										"method": "GET",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": ""
+										},
+										"url": {
+											"raw": "http://localhost:8100/desease/all/code/D2",
+											"protocol": "http",
+											"host": [
+												"localhost"
+											],
+											"port": "8100",
+											"path": [
+												"desease",
+												"all",
+												"code",
+												"D2"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "getAllCodeOrName",
+									"request": {
+										"method": "GET",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": ""
+										},
+										"url": {
+											"raw": "http://localhost:8100/desease/all/Chole",
+											"protocol": "http",
+											"host": [
+												"localhost"
+											],
+											"port": "8100",
+											"path": [
+												"desease",
+												"all",
+												"Chole"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "getDesease",
+									"request": {
+										"method": "GET",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": ""
+										},
+										"url": {
+											"raw": "http://localhost:8100/desease/2270",
+											"protocol": "http",
+											"host": [
+												"localhost"
+											],
+											"port": "8100",
+											"path": [
+												"desease",
+												"2270"
+											]
+										}
+									},
+									"response": []
+								}
+							],
+							"_postman_isSubFolder": true
+						},
+						{
+							"name": "MedicineController",
+							"item": [
+								{
+									"name": "getAllMedicineContainsName",
+									"request": {
+										"method": "GET",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": ""
+										},
+										"url": {
+											"raw": "http://localhost:8100/medicine/all/Rutino",
+											"protocol": "http",
+											"host": [
+												"localhost"
+											],
+											"port": "8100",
+											"path": [
+												"medicine",
+												"all",
+												"Rutino"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "getMedicine",
+									"request": {
+										"method": "GET",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": ""
+										},
+										"url": {
+											"raw": "http://localhost:8100/medicine/100020790",
+											"protocol": "http",
+											"host": [
+												"localhost"
+											],
+											"port": "8100",
+											"path": [
+												"medicine",
+												"100020790"
+											]
+										}
+									},
+									"response": []
+								}
+							],
+							"_postman_isSubFolder": true
+						}
+					],
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"id": "1b75bd67-b283-4170-b806-96e1508ba48a",
+								"type": "text/javascript",
+								"exec": [
+									""
+								]
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"id": "8ac3cca3-1b41-448d-b84b-cd4fd5f22c11",
+								"type": "text/javascript",
+								"exec": [
+									""
+								]
+							}
+						}
+					],
+					"_postman_isSubFolder": true
+				},
+				{
+					"name": "Visit service requests",
+					"item": [
+						{
+							"name": "saveVisitType",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"id": "85609e60-78b8-48a0-9077-aa27a23bf9b0",
+										"exec": [
+											"var jsonData = JSON.parse(responseBody);",
+											"pm.environment.set(\"visitTypeId\", jsonData.id)"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n\t\"name\": \"Konsultacja lekarska\",\n\t\"duration\": 20\n}"
+								},
+								"url": {
+									"raw": "http://localhost:8400/types",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8400",
+									"path": [
+										"types"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "getVisitType",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": ""
+								},
+								"url": {
+									"raw": "http://localhost:8400/types/{{visitTypeId}}",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8400",
+									"path": [
+										"types",
+										"{{visitTypeId}}"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "getAllVisitTypes",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": ""
+								},
+								"url": {
+									"raw": "http://localhost:8400/types/all",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8400",
+									"path": [
+										"types",
+										"all"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "saveVisit",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"id": "4e1f5528-22db-4c11-bda3-1df24bb120dd",
+										"exec": [
+											"var jsonData = JSON.parse(responseBody);",
+											"pm.environment.set(\"visitId\", jsonData.id);"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n\t\"date\": \"2018-12-20 08:20\",\n\t\"status\": \"planned\",\n\t\"visitDetails\": {\n\t\t\"interview\": \"Wywiad z pacjentem\",\n\t\t\"diagnosis\": \"Przeprowadzona diagnoza\",\n\t\t\"recommendation\": \"Rekomendacje dla pacjenta\",\n\t\t\"deseases\": [234,237],\n\t\t\"medicines\": [\n\t\t\t{\n\t\t\t\t\"medicineId\": \"100000014\",\n\t\t\t\t\"packageId\": \"3\"\n\t\t\t}\n\t\t]\n\t},\n\t\"visitTypeId\": \"{{visitTypeId}}\",\n\t\"userId\": \"none\",\n\t\"officeUserId\": \"{{userId}}\"\n}\n"
+								},
+								"url": {
+									"raw": "http://localhost:8400",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8400"
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "getVisit",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": ""
+								},
+								"url": {
+									"raw": "http://localhost:8400/{{visitId}}",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8400",
+									"path": [
+										"{{visitId}}"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "setDuringStatusOfVisit",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": ""
+								},
+								"url": {
+									"raw": "http://localhost:8400/status/during/{{visitId}}",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8400",
+									"path": [
+										"status",
+										"during",
+										"{{visitId}}"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "getAllVisitsByOfficeUserIdAndStatusAndVisitAll",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": ""
+								},
+								"url": {
+									"raw": "http://localhost:8400/all/office/{{userId}}/during/true",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8400",
+									"path": [
+										"all",
+										"office",
+										"{{userId}}",
+										"during",
+										"true"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "getAllPlannedAndDuringVisitsToday",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": ""
+								},
+								"url": {
+									"raw": "http://localhost:8400/all/office/today/{{userId}",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8400",
+									"path": [
+										"all",
+										"office",
+										"today",
+										"{{userId}"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "getAvailableVisitDates",
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n\t\"officeUserId\": \"{{userId}}\",\n\t\"visitTypeId\": \"{{visitTypeId}}\",\n\t\"eventTypeId\": 0,\n\t\"dateFrom\": \"2018-12-20\",\n\t\"dateTo\": \"2018-12-20\"\n}"
+								},
+								"url": {
+									"raw": "http://localhost:8400/dates/available",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8400",
+									"path": [
+										"dates",
+										"available"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "getAllDeseasesForVisit",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": ""
+								},
+								"url": {
+									"raw": "http://localhost:8400/deseases/{{visitId}}",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8400",
+									"path": [
+										"deseases",
+										"{{visitId}}"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "getAllMedicinesForVisit",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": ""
+								},
+								"url": {
+									"raw": "http://localhost:8400/medicines/{{visitId}}",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8400",
+									"path": [
+										"medicines",
+										"{{visitId}}"
+									]
+								}
+							},
+							"response": []
+						}
+					],
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"id": "ecba1e5c-a661-4c3c-b64b-39d22cac4fdf",
+								"type": "text/javascript",
+								"exec": [
+									""
+								]
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"id": "2b28d15a-4dc3-4783-a602-f9a9f935128e",
+								"type": "text/javascript",
+								"exec": [
+									""
+								]
+							}
+						}
+					],
+					"_postman_isSubFolder": true
+				}
+			],
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"id": "a3575039-e5d6-4d20-beaa-e99cb1cc5012",
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"id": "05cfe4c8-75f3-4b8b-a958-e46e05c8ce09",
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				}
+			]
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"id": "393c3312-f794-4aba-bae1-761db2db8598",
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"id": "c937f6b2-e0f8-43d3-8eba-26fcc3960a00",
+				"type": "text/javascript",
+				"exec": [
+					"pm.test(\"Response must have status 200 OK\", function () {",
+					"    pm.response.to.have.status(200);",
+					"});"
+				]
+			}
+		}
+	]
+}

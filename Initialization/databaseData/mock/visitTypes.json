@@ -1,0 +1,1 @@
+{"_id":{"$oid":"5c183b391ee56413f06514ee"},"name":"Konsultacja lekarska","duration":{"$numberInt":"15"},"_class":"pl.treekt.medica.visit.Document.VisitType"}
